@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CsharpTraining/enum-training/enum-training/enum-training.csproj" />
+  <Project Path="CsharpTraining/StructTraining/StructTraining/StructTraining.csproj" />
+  <Project Path="CsharpTraining/StructTrainingV2/OutAndRefTraining/OutAndRefTraining.csproj" />
+  <Project Path="CsharpTraining/StructTrainingV2/StructTrainingV2/StructTrainingV2.csproj" />
+  <Project Path="MyFirstApp/MyFirstApp/MyFirstApp.csproj" />
+</Solution>
