@@ -1,7 +1,7 @@
 <Solution>
-  <Project Path="CsharpTraining/enum-training/enum-training/enum-training.csproj" />
-  <Project Path="CsharpTraining/StructTraining/StructTraining/StructTraining.csproj" />
-  <Project Path="CsharpTraining/StructTrainingV2/OutAndRefTraining/OutAndRefTraining.csproj" />
-  <Project Path="CsharpTraining/StructTrainingV2/StructTrainingV2/StructTrainingV2.csproj" />
-  <Project Path="MyFirstApp/MyFirstApp/MyFirstApp.csproj" />
+  <Project Path="MyFirstApp/MyFirstApp.csproj" />
+  <Project Path="EnumTraining/enum-training.csproj" />
+  <Project Path="StructTraining/StructTraining.csproj" />
+  <Project Path="OutAndRefTraining/OutAndRefTraining.csproj" />
+  <Project Path="StructTrainingV2/StructTrainingV2.csproj" />
 </Solution>
