@@ -157,9 +157,49 @@ Console.WriteLine(y); // 10
 
 
 
+// 確認問題8
 
 
 
+// もしbalance > amount　なら引き算（balance-amount）してtrueを返す
+// このときbalanceは減らす refなのかい？！
 
+// もしbalance < amount || amount =< 0ならfalseだけ返す
+
+int balance = 1000;
+// なんでrefを使用するの？
+// refを使用すると、balance変数も更新できるから。
+// もし使用しなかった場合、TryWithdrawを実行してもbalanceが更新されなくてずっと残高1000円になったままになる
+bool TryWithdraw(ref int balance, int amount)
+{
+    // <=なのか=<なのかわからなくなる👉️使い方を調べる
+    //if (balance < amount || amount <= 0)
+    //{
+    //    return false;
+    //}
+    //else{
+    //    balance -= amount;
+    //    return true;
+    //}
+
+    if (balance >= amount && amount > 0)
+    {
+        balance -= amount;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+if (TryWithdraw(ref balance, -100))
+{
+    Console.WriteLine($"引き出し成功: 残高 {balance}");
+}
+else
+{
+    Console.WriteLine($"引き出し失敗");
+}
 
 
