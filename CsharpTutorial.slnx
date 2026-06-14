@@ -1,7 +1,8 @@
 <Solution>
-  <Project Path="MyFirstApp/MyFirstApp.csproj" />
   <Project Path="EnumTraining/enum-training.csproj" />
-  <Project Path="StructTraining/StructTraining.csproj" />
+  <Project Path="MyFirstApp/MyFirstApp.csproj" />
+  <Project Path="OopTraining/OopTraining.csproj" Id="a8200dc6-e8f6-41fa-9002-96ec6bc24343" />
   <Project Path="OutAndRefTraining/OutAndRefTraining.csproj" />
+  <Project Path="StructTraining/StructTraining.csproj" />
   <Project Path="StructTrainingV2/StructTrainingV2.csproj" />
 </Solution>
