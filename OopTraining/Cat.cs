@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OopTraining
+// namespaceは囲わなくても、以下の書き方でOKらしい
+namespace OopTraining;
+
+public class Cat : Animal
 {
-    public class Cat : Animal
+    public override void Speak()
     {
-        public override void Speak()
-        {
-            Console.WriteLine("ぷにぷに");
-        }
+        Console.WriteLine("ぷにぷに");
     }
 }
+
