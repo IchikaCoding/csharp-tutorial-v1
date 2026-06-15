@@ -6,4 +6,8 @@ public class Dog: Animal
         Console.WriteLine("私は食べてません！");
         
     }
+    public override void Speak()
+    {
+        Console.WriteLine("もふもふ");
+    }
 }
