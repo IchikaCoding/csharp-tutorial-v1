@@ -31,5 +31,25 @@ internal class Program
 
         food.Price = -100;
         Console.WriteLine(food.Price); // 900
+
+        // ＝＝＝＝＝＝継承の練習＝＝＝＝＝＝＝＝＝
+
+        var curry = new Curry();
+        curry.Name = "インドカレー";
+        curry.Price = 1200;
+        curry.Eat();
+        curry.Describe();
+
+        var sushi = new Sushi();
+        sushi.Name = "甘エビ";
+        sushi.Price = 100;
+        sushi.Eat();
+        sushi.Describe();
+
+        List<Food> foods = new List<Food> { new Curry(), new Sushi(), new Drink() };
+        foreach (var item in foods)
+        {
+            item.Describe();
+        }
     }
 }

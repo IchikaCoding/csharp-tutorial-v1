@@ -14,5 +14,9 @@ namespace OopTraining
         {
             Console.WriteLine($"{Name}を食べました。");
         }
+        public virtual void Describe()
+        {
+            Console.WriteLine("これは食べ物です");
+        }
     }
 }
