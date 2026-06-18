@@ -17,3 +17,7 @@ foreach (var item in menuItems)
 // Orderクラスを作成して、注文を簡単にしたい！
 Order order = new Order();
 order.Add(drink);
+order.Add(dessert);
+
+
+order.DisplayList();

@@ -6,7 +6,7 @@ namespace OopTrainingV2
 {
     public class Food : MenuItem
     {
-        public override void Discribe()
+        public override void Describe()
         {
             Console.WriteLine("これは食べ物です");
         }
