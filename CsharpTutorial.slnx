@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="EnumTraining/enum-training.csproj" />
+  <Project Path="FirstWpfApp1/FirstWpfApp1.csproj" Id="a84efe88-051a-4f4e-a97a-2c1b52163f24" />
   <Project Path="MyFirstApp/MyFirstApp.csproj" />
   <Project Path="OopTraining/OopTraining.csproj" Id="a8200dc6-e8f6-41fa-9002-96ec6bc24343" />
   <Project Path="OopTrainingV2/OopTrainingV2.csproj" Id="c9e34d93-5a98-40aa-b902-317f684f2c8b" />
