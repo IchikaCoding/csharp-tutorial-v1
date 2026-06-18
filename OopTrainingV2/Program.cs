@@ -3,8 +3,8 @@
 
 // DesertとDrinkがほしい
 
-MenuItem dessert = new Dessert("いちごタルト", 0, false);
-MenuItem drink = new Drink("カフェラテ", 0, false);
+MenuItem dessert = new Dessert("いちごタルト", 700, false);
+MenuItem drink = new Drink("カフェラテ", 250, false);
 
 List<MenuItem> menuItems = new List<MenuItem>{ dessert, drink };
 
@@ -21,3 +21,5 @@ order.Add(dessert);
 
 
 order.DisplayList();
+
+Console.WriteLine(order.Sum());

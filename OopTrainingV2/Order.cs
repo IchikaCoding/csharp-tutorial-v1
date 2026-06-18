@@ -6,7 +6,7 @@ namespace OopTrainingV2
 {
     public class Order
     {
-        //private MenuItem _meneItem;
+        private double _totalAmount;
         private List<MenuItem> _menuItems = new List<MenuItem>();
 
         // 売り切れの商品は注文に追加されないように修正
@@ -37,6 +37,15 @@ namespace OopTrainingV2
             }
             
         }
-       
+       public double Sum()
+        {
+            foreach (var item in _menuItems)
+            {
+                // Orderクラスからは、Drinkクラスのpriceにアクセス出来ません。。
+                // MenueItemクラスにDiscountプロパティがあればアクセス可能なきがする
+                _totalAmount += item.GetDiscountValue();
+            }
+            return _totalAmount;
+        }
     }
 }
