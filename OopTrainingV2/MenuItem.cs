@@ -19,10 +19,11 @@ namespace OopTrainingV2
         {
             Console.WriteLine("これは商品説明です。");
         }
-        public virtual double GetDiscountValue()
+        public virtual double GetValue()
         {
             return Price;
         }
+        
         
         // コンストラクタが3つの引数を持っている。継承した後はどうする？
         // 👉️baseで親クラスに渡せば取得可能

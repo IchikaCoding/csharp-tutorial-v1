@@ -41,9 +41,7 @@ namespace OopTrainingV2
         {
             foreach (var item in _menuItems)
             {
-                // Orderクラスからは、Drinkクラスのpriceにアクセス出来ません。。
-                // MenueItemクラスにDiscountプロパティがあればアクセス可能なきがする
-                _totalAmount += item.GetDiscountValue();
+                _totalAmount += item.GetValue();
             }
             return _totalAmount;
         }

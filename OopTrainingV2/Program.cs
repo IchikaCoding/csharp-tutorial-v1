@@ -4,7 +4,7 @@
 // DesertとDrinkがほしい
 
 MenuItem dessert = new Dessert("いちごタルト", 700, false);
-MenuItem drink = new Drink("カフェラテ", 250, false);
+MenuItem drink = new Drink("カフェラテ", 10, false);
 
 List<MenuItem> menuItems = new List<MenuItem>{ dessert, drink };
 
