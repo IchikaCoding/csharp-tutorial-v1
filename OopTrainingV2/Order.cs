@@ -6,7 +6,7 @@ namespace OopTrainingV2
 {
     public class Order
     {
-        private double _totalAmount;
+        //private double _totalAmount;
         private List<MenuItem> _menuItems = new List<MenuItem>();
 
         // 売り切れの商品は注文に追加されないように修正
@@ -39,11 +39,13 @@ namespace OopTrainingV2
         }
        public double Sum()
         {
+            // 変数を宣言
+            double totalAmount = 0;
             foreach (var item in _menuItems)
             {
-                _totalAmount += item.GetValue();
+                totalAmount += item.GetValue();
             }
-            return _totalAmount;
+            return totalAmount;
         }
     }
 }

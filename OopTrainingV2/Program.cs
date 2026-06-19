@@ -23,3 +23,5 @@ order.Add(dessert);
 order.DisplayList();
 
 Console.WriteLine(order.Sum());
+Console.WriteLine(order.Sum());
+Console.WriteLine(order.Sum());

@@ -32,7 +32,7 @@ namespace OopTrainingV2
         //        return false;
         //    }
         //}
-        public override double GetValue()
+        public override double GetDiscountedPrice()
         {
             var result = Price - 50;
             if (result >= 0)
@@ -45,7 +45,7 @@ namespace OopTrainingV2
                 // ここにリターンを書かないといけないけど何も返すものがない
                 // boolにして解決
                 Console.WriteLine("0円未満となるため割引出来ません");
-                return Price;
+                return 0;
             }
         }
 

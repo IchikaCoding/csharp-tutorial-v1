@@ -19,7 +19,7 @@ namespace OopTrainingV2
         {
             Console.WriteLine("これは商品説明です。");
         }
-        public virtual double GetValue()
+        public virtual double GetDiscountedPrice()
         {
             return Price;
         }
