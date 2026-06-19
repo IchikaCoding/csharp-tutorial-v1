@@ -27,3 +27,12 @@ Console.WriteLine(order.Sum());
 Console.WriteLine(order.Sum());
 
 order.Display();
+
+//var order1 = new Order();
+
+//order.Add(new Food ("カレー", 900, true);
+//order.Add(new Drink { Name = "コーラ", Price = 250 });
+//order.Add(new Dessert { Name = "プリン", Price = 400 });
+//order.Add(new Food { Name = "ハンバーグ", Price = 1000, IsSoledOut = true });
+
+//order.Display();
