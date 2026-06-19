@@ -19,33 +19,50 @@ namespace OopTrainingV2
             {
                 Console.WriteLine($"{menuItem.Name}は売り切れです");
                 return;
-            }   
+            }
 
             _menuItems.Add(menuItem);
             Console.WriteLine($"{menuItem.Name}を注文しました");
         }
-       //public Order(MenuItem menuItem)
-       // {
-       //     _meneItem = menuItem;
-       // }
-       public void DisplayList()
+        //public Order(MenuItem menuItem)
+        // {
+        //     _meneItem = menuItem;
+        // }
+        public void DisplayList()
         {
             Console.WriteLine("======リストの中身=====");
             foreach (var item in _menuItems)
             {
                 Console.WriteLine($"{item.Name}");
             }
-            
+
         }
-       public double Sum()
+        public double Sum()
         {
             // 変数を宣言
             double totalAmount = 0;
             foreach (var item in _menuItems)
             {
-                totalAmount += item.GetValue();
+                totalAmount += item.GetDiscountedPrice();
             }
             return totalAmount;
+        }
+        // 計算結果など表示する処理を作る
+        // 返り値はvoid、引数はなし
+        // 商品名はitem.Name
+        // 割引後価格円はitem.GetDiscountedPrice();
+        // 商品説明はitem.Describe()
+        // 合計金額円はSumで算出
+        public void Display()
+        {
+            Console.WriteLine("注文内容:");
+            foreach (var item in _menuItems)
+            {
+                Console.WriteLine($"{item.Name} - {item.GetDiscountedPrice()}円 - {item.Describe()}");
+            }
+            
+            Console.WriteLine($"合計: {Sum()}円");
+
         }
     }
 }

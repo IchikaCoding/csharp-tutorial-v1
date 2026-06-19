@@ -15,9 +15,9 @@ namespace OopTrainingV2
         public double Price { get { return _price; } set { if (value >= 0) _price = value;  }}
         public bool IsSoldOut { get; set; }
 
-        public virtual void Describe()
+        public virtual string Describe()
         {
-            Console.WriteLine("これは商品説明です。");
+            return "これは商品説明です。";
         }
         public virtual double GetDiscountedPrice()
         {

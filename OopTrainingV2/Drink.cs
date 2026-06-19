@@ -8,9 +8,9 @@ namespace OopTrainingV2
     {
         // これでDiscount()を実行した時しかセットできないようなったのかな？
         public double DiscountValue { get; private set; }
-        public override void Describe()
+        public override string Describe()
         {
-            Console.WriteLine("これは飲み物です");
+            return "これは飲み物です";
         }
         public Drink(string name, double price, bool isSoldOut) : base(name, price, isSoldOut) { }
 
@@ -44,7 +44,7 @@ namespace OopTrainingV2
             {
                 // ここにリターンを書かないといけないけど何も返すものがない
                 // boolにして解決
-                Console.WriteLine("0円未満となるため割引出来ません");
+                //Console.WriteLine("0円未満となるため割引出来ません");
                 return 0;
             }
         }

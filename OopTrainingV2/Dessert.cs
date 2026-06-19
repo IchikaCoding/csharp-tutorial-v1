@@ -6,9 +6,9 @@ namespace OopTrainingV2
 {
     public class Dessert : MenuItem
     {
-        public override void Describe()
+        public override string Describe()
         {
-            Console.WriteLine("これはデザートです");
+            return "これはデザートです";
         }
         public Dessert(string name, double price, bool isSoldOut) : base(name, price, isSoldOut) { }
     }

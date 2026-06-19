@@ -6,9 +6,9 @@ namespace OopTrainingV2
 {
     public class Food : MenuItem
     {
-        public override void Describe()
+        public override string Describe()
         {
-            Console.WriteLine("これは食べ物です");
+            return "これは食べ物です";
         }
         // baseのうしろって親クラスの値を使いますよってこと？
         // Foodインスタンス作成時に渡された値が`MenuItem` コンストラクタへ渡される
