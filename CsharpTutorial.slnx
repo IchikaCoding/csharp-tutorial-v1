@@ -7,4 +7,5 @@
   <Project Path="OutAndRefTraining/OutAndRefTraining.csproj" />
   <Project Path="StructTraining/StructTraining.csproj" />
   <Project Path="StructTrainingV2/StructTrainingV2.csproj" />
+  <Project Path="TwoDArrayTraining/TwoDArrayTraining.csproj" Id="d158f9d8-2842-487a-aa86-6279e2e712b8" />
 </Solution>
