@@ -129,4 +129,41 @@ Debug.WriteLine("これ表示されている？", scores1[0]); // nullだった
 var array = new string[] { null, null };
 Debug.WriteLine("例外？", array[0]);
 
-Debug.WriteLine("==========================================");
+Debug.WriteLine("=================練習問題01=====================");
+
+
+
+int[][] numbers =
+{
+    new int[] { 10, 20 },
+    new int[] { 30, 40, 50 },
+    new int[] { 60 }
+};
+
+Console.WriteLine(numbers[1][0]); // 30
+
+
+Debug.WriteLine("=================練習問題02=====================");
+
+// 全部の点数の合計を出すコードを書いてみましょう。
+// 👉️一つずつ取り出す処理だと思って間違えた。問題はしっかり読みましょう
+
+int[][] scores2 =
+{
+    new int[] { 80, 90 },
+    new int[] { 70, 85, 95 },
+    new int[] { 100 }
+};
+
+// 合計結果を代入する先を用意
+int sum = 0;
+
+foreach (int[] row in scores2)
+{
+    // 配列から一つずつ要素取り出す
+    foreach (int item in row)
+    {
+        sum += item;
+    }
+}
+Debug.WriteLine($"合計：{sum}");
