@@ -1,4 +1,8 @@
 ﻿
+using System.ComponentModel.Design;
+using System.Diagnostics;
+Debug.WriteLine("Hello World");
+
 // int[行数, 列数]
 // int[,]で2次元配列？int[,,]で3次元配列？
 // これってからの配列ができるの？
@@ -45,3 +49,26 @@ foreach (int element in m)
 {
     Console.WriteLine(element);
 }
+
+// =================================================================
+
+// 3 は外側の配列の要素数。ジャグ配列では行の数と考えてOK
+int[][] scores = new int[3][];
+
+// scores は配列そのものなので、Debug.WriteLine しても中身は自動表示されない
+// ToString() の結果として型名っぽいものが出る
+Debug.WriteLine(scores);
+
+// scores[0], scores[1], scores[2] は外側の配列のインデックス
+// つまり何行目かを指定している
+scores[0] = new int[] { 80, 90 };
+scores[1] = new int[] { 70, 85, 95 };
+scores[2] = new int[] { 100 };
+
+// scores[0][1] は、0行目の1番目の値
+// つまり 90
+Debug.WriteLine(scores[0][1]);
+
+// scores[0] は int[] 型、つまり配列そのもの
+// だから中身ではなく型名っぽいものが表示される
+Debug.WriteLine(scores[0]);
