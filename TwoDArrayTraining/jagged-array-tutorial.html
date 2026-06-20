@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C# 初心者向け: ジャグ配列の教材</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --paper: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --line: #d8dee8;
+      --accent: #0f766e;
+      --accent-soft: #e6f4f1;
+      --warn: #9a3412;
+      --warn-soft: #fff3e8;
+      --code-bg: #111827;
+      --code-text: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Yu Gothic", "Meiryo", system-ui, sans-serif;
+      line-height: 1.75;
+    }
+
+    header {
+      background: #113f3a;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.35;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0 auto 10px;
+      font-size: 32px;
+    }
+
+    header p {
+      max-width: 980px;
+      margin: 0 auto;
+      color: #d6f4ee;
+    }
+
+    h2 {
+      border-left: 6px solid var(--accent);
+      padding-left: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    p,
+    ul,
+    ol {
+      margin-top: 0;
+    }
+
+    code {
+      background: #eef2f7;
+      border-radius: 4px;
+      padding: 0.1em 0.35em;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+      overflow-x: auto;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: 8px;
+      padding: 16px;
+      line-height: 1.55;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #edf5f3;
+      text-align: left;
+    }
+
+    .point {
+      border-left: 6px solid var(--accent);
+      background: var(--accent-soft);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .warning {
+      border-left: 6px solid var(--warn);
+      background: var(--warn-soft);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfcfe;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .answer {
+      border-top: 1px dashed var(--line);
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 28px 16px;
+      }
+
+      main {
+        padding: 18px 12px 40px;
+      }
+
+      section {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>C# 初心者向け: ジャグ配列を学ぼう</h1>
+    <p>2次元配列を学んだあとに、実務コードでよく見かける「配列の中に配列が入っている形」を理解するための教材です。</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. ジャグ配列とは</h2>
+      <p>
+        ジャグ配列は、<strong>配列の中に、さらに配列を入れる</strong>書き方です。
+        C# では <code>int[][]</code> のように書きます。
+      </p>
+
+      <pre><code class="language-csharp">int[][] scores = new int[3][];
+
+scores[0] = new int[] { 80, 90 };
+scores[1] = new int[] { 70, 85, 95 };
+scores[2] = new int[] { 100 };</code></pre>
+
+      <div class="point">
+        <strong>読み方のコツ:</strong>
+        <code>int[][]</code> は「int の配列の配列」です。
+        最初の <code>[]</code> が外側の配列、次の <code>[]</code> が内側の配列だと考えるとわかりやすいです。
+      </div>
+    </section>
+
+    <section>
+      <h2>2. 2次元配列との違い</h2>
+      <p>
+        C# の2次元配列 <code>int[,]</code> は、行と列がきれいな表の形になります。
+        一方、ジャグ配列 <code>int[][]</code> は、行ごとに長さを変えられます。
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>種類</th>
+            <th>型</th>
+            <th>イメージ</th>
+            <th>アクセス方法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2次元配列</td>
+            <td><code>int[,]</code></td>
+            <td>全部の行が同じ列数の表</td>
+            <td><code>matrix[行, 列]</code></td>
+          </tr>
+          <tr>
+            <td>ジャグ配列</td>
+            <td><code>int[][]</code></td>
+            <td>配列の中に配列。行ごとに長さが違ってよい</td>
+            <td><code>scores[行][列]</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid">
+        <div class="mini-card">
+          <h3>2次元配列</h3>
+          <pre><code class="language-csharp">int[,] table =
+{
+    { 1, 2, 3 },
+    { 4, 5, 6 }
+};</code></pre>
+          <p class="muted">2行3列のきれいな表です。</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>ジャグ配列</h3>
+          <pre><code class="language-csharp">int[][] jagged =
+{
+    new int[] { 1, 2 },
+    new int[] { 3, 4, 5 },
+    new int[] { 6 }
+};</code></pre>
+          <p class="muted">1行目は2個、2行目は3個、3行目は1個です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. JS / TS の配列と比べる</h2>
+      <p>
+        JavaScript や TypeScript の経験があるなら、ジャグ配列は
+        <code>number[][]</code> にかなり近いです。
+      </p>
+
+      <div class="grid">
+        <div class="mini-card">
+          <h3>TypeScript</h3>
+          <pre><code class="language-ts">const scores: number[][] = [
+  [80, 90],
+  [70, 85, 95],
+  [100]
+];
+
+console.log(scores[1][2]); // 95</code></pre>
+        </div>
+
+        <div class="mini-card">
+          <h3>C#</h3>
+          <pre><code class="language-csharp">int[][] scores =
+{
+    new int[] { 80, 90 },
+    new int[] { 70, 85, 95 },
+    new int[] { 100 }
+};
+
+Console.WriteLine(scores[1][2]); // 95</code></pre>
+        </div>
+      </div>
+
+      <div class="warning">
+        <strong>大事な違い:</strong>
+        JS の配列はあとから型が混ざりやすいですが、C# の <code>int[][]</code> は
+        「中身は int の配列」と決まっています。文字列を入れることはできません。
+      </div>
+    </section>
+
+    <section>
+      <h2>4. 作り方</h2>
+
+      <h3>最初から値を入れて作る</h3>
+      <pre><code class="language-csharp">string[][] classes =
+{
+    new string[] { "佐藤", "鈴木" },
+    new string[] { "田中", "高橋", "伊藤" },
+    new string[] { "山本" }
+};</code></pre>
+
+      <h3>外側だけ先に作る</h3>
+      <pre><code class="language-csharp">int[][] scores = new int[3][];
+
+scores[0] = new int[] { 80, 90 };
+scores[1] = new int[] { 70, 85, 95 };
+scores[2] = new int[] { 100 };</code></pre>
+
+      <p>
+        <code>new int[3][]</code> は「外側の配列は3個分ある」という意味です。
+        ただし、内側の配列はまだ作られていません。
+      </p>
+
+      <div class="warning">
+        <strong>注意:</strong>
+        内側の配列を作る前に <code>scores[0][0]</code> のように使うと、
+        <code>NullReferenceException</code> になります。
+      </div>
+
+      <pre><code class="language-csharp">int[][] scores = new int[3][];
+
+// scores[0] がまだ null なのでエラーになる
+Console.WriteLine(scores[0][0]);</code></pre>
+    </section>
+
+    <section>
+      <h2>5. 値の取り出し方</h2>
+      <p>
+        ジャグ配列は <code>scores[行][列]</code> で値を取り出します。
+        2次元配列の <code>matrix[行, 列]</code> とはカッコの形が違います。
+      </p>
+
+      <pre><code class="language-csharp">int[][] scores =
+{
+    new int[] { 80, 90 },
+    new int[] { 70, 85, 95 },
+    new int[] { 100 }
+};
+
+Console.WriteLine(scores[0][1]); // 90
+Console.WriteLine(scores[1][2]); // 95
+Console.WriteLine(scores[2][0]); // 100</code></pre>
+    </section>
+
+    <section>
+      <h2>6. for 文で全部表示する</h2>
+      <p>
+        ジャグ配列では、外側の配列の長さと、内側の配列の長さをそれぞれ見ます。
+        2次元配列の <code>GetLength(0)</code> や <code>GetLength(1)</code> ではなく、
+        普通の配列と同じ <code>Length</code> を使います。
+      </p>
+
+      <pre><code class="language-csharp">int[][] scores =
+{
+    new int[] { 80, 90 },
+    new int[] { 70, 85, 95 },
+    new int[] { 100 }
+};
+
+for (int row = 0; row &lt; scores.Length; row++)
+{
+    for (int col = 0; col &lt; scores[row].Length; col++)
+    {
+        Console.Write(scores[row][col] + " ");
+    }
+
+    Console.WriteLine();
+}</code></pre>
+
+      <p>出力はこうなります。</p>
+
+      <pre><code>80 90
+70 85 95
+100</code></pre>
+
+      <div class="point">
+        <strong>ポイント:</strong>
+        <code>scores.Length</code> は外側の配列の長さです。
+        <code>scores[row].Length</code> は、今見ている行の内側の配列の長さです。
+      </div>
+    </section>
+
+    <section>
+      <h2>7. foreach で全部表示する</h2>
+      <p>
+        <code>foreach</code> で書くと、「外側の配列から1行ずつ取り出す」
+        「その行の中身を1個ずつ取り出す」という流れになります。
+      </p>
+
+      <pre><code class="language-csharp">foreach (int[] row in scores)
+{
+    foreach (int score in row)
+    {
+        Console.Write(score + " ");
+    }
+
+    Console.WriteLine();
+}</code></pre>
+
+      <p>
+        <code>int[] row</code> の部分が大事です。
+        外側から取り出されるのは <code>int</code> ではなく、<code>int[]</code> です。
+      </p>
+    </section>
+
+    <section>
+      <h2>8. よくある使いどころ</h2>
+      <ul>
+        <li>クラスごとに生徒数が違う</li>
+        <li>日ごとに記録したデータ数が違う</li>
+        <li>ゲームで、ステージごとに敵の数が違う</li>
+        <li>API から来たデータが「配列の中に配列」の形になっている</li>
+      </ul>
+
+      <p>
+        全部の行の列数が同じなら <code>int[,]</code> でもよいです。
+        行ごとに長さが違う可能性があるなら、ジャグ配列のほうが自然です。
+      </p>
+    </section>
+
+    <section>
+      <h2>9. 練習問題</h2>
+
+      <h3>問題1: 値を取り出す</h3>
+      <p>次のコードで <code>Console.WriteLine(numbers[1][0]);</code> は何を表示しますか。</p>
+      <pre><code class="language-csharp">int[][] numbers =
+{
+    new int[] { 10, 20 },
+    new int[] { 30, 40, 50 },
+    new int[] { 60 }
+};</code></pre>
+      <div class="answer">
+        <strong>答え:</strong> <code>30</code><br>
+        <code>numbers[1]</code> は2行目の <code>{ 30, 40, 50 }</code>、
+        その <code>[0]</code> なので <code>30</code> です。
+      </div>
+
+      <h3>問題2: 合計を出す</h3>
+      <p>全部の点数の合計を出すコードを書いてみましょう。</p>
+      <pre><code class="language-csharp">int[][] scores =
+{
+    new int[] { 80, 90 },
+    new int[] { 70, 85, 95 },
+    new int[] { 100 }
+};</code></pre>
+      <div class="answer">
+        <strong>解答例:</strong>
+        <pre><code class="language-csharp">int total = 0;
+
+for (int row = 0; row &lt; scores.Length; row++)
+{
+    for (int col = 0; col &lt; scores[row].Length; col++)
+    {
+        total += scores[row][col];
+    }
+}
+
+Console.WriteLine(total); // 520</code></pre>
+      </div>
+
+      <h3>問題3: TypeScript と見比べる</h3>
+      <p>次の TypeScript と同じ意味になる C# のコードを書いてみましょう。</p>
+      <pre><code class="language-ts">const names: string[][] = [
+  ["Aki", "Ben"],
+  ["Coco"],
+  ["Dai", "Ema", "Futa"]
+];</code></pre>
+      <div class="answer">
+        <strong>解答例:</strong>
+        <pre><code class="language-csharp">string[][] names =
+{
+    new string[] { "Aki", "Ben" },
+    new string[] { "Coco" },
+    new string[] { "Dai", "Ema", "Futa" }
+};</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>10. まとめ</h2>
+      <ul>
+        <li>ジャグ配列は <code>int[][]</code> のように書く。</li>
+        <li>意味は「配列の中に配列」。</li>
+        <li>値は <code>scores[行][列]</code> で取り出す。</li>
+        <li>行ごとに長さを変えられる。</li>
+        <li>JS / TS の <code>number[][]</code> とかなり近い。</li>
+        <li>2次元配列 <code>int[,]</code> は <code>matrix[行, 列]</code> で、きれいな表向き。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
