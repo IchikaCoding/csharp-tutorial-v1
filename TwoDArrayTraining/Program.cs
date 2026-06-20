@@ -167,3 +167,15 @@ foreach (int[] row in scores2)
     }
 }
 Debug.WriteLine($"合計：{sum}");
+
+
+// 問題3: TypeScript と見比べる
+Debug.WriteLine("=================練習問題03=====================");
+
+string[][] names =
+{
+    new string[]{ "Aki", "Ben" },
+    new string[]{ "Coco" },
+    new string[]{ "Dai", "Ema", "Futa" }
+};
+
