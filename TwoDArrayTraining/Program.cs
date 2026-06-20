@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
 using System.Diagnostics;
 Debug.WriteLine("Hello World");
 
@@ -35,14 +34,14 @@ int[,] m =
 // 行をぐるぐる
 // 列をぐるぐる
 
-for(int row = 0; row < m.GetLength(0); row++)
-{
-    for (int col = 0; col < m.GetLength(1); col++)
-    {
-        Console.Write(m[row, col] + " ");
-    }
-    Console.WriteLine();
-}
+//for(int row = 0; row < m.GetLength(0); row++)
+//{
+//    for (int col = 0; col < m.GetLength(1); col++)
+//    {
+//        Console.Write(m[row, col] + " ");
+//    }
+//    Console.WriteLine();
+//}
 
 // 全部の値を取得したい時はforeachでできるよん
 foreach (int element in m)
@@ -72,3 +71,62 @@ Debug.WriteLine(scores[0][1]);
 // scores[0] は int[] 型、つまり配列そのもの
 // だから中身ではなく型名っぽいものが表示される
 Debug.WriteLine(scores[0]);
+
+// ===================================================================
+string[][] classes =
+{
+    new string[]{"伊藤","Bob"},
+    new string[]{"ロイド","アーニャ", "ヨル"},
+    new string[]{"いろは","ヤチヨ","かぐや"},
+    new string[]{ "大変恐縮なのですが、息の根止めさせて頂いてもよろしいでしょうか？" }
+};
+
+// かぐやちゃん、おはよ～☀
+
+Debug.WriteLine($"{classes[2][2]}ちゃん、おはよ～☀");
+
+// ヨルさん：大変恐縮なのですが、息の根止めさせて頂いてもよろしいでしょうか？
+
+Debug.WriteLine($"{classes[1][2]}さん : {classes[3][0]}");
+
+Debug.WriteLine("==========================================");
+
+// 全部一つずつ表示してみよう！
+// クラスの中から、一人ずつ出す
+// 行を回す、列を中で回す
+for (int row = 0; row < classes.Length; row++)
+{
+    for(int col= 0; col < classes[row].Length; col++)
+    {
+        Debug.Write(classes[row][col]+ " ");
+    }
+    Debug.WriteLine("");
+}
+Debug.WriteLine("==========================================");
+
+// ほぼ一分でかけた(*´σｰ｀)ｴﾍﾍ
+// これ何間違えたら見直す
+// varを書いた時点で型の意識うすそうint[]
+foreach (var row in classes)
+{
+    // ここも型の意識うすそう
+    foreach (var col in row)
+    {
+        Debug.Write(col+ " ");
+    }
+    Debug.WriteLine(" ");
+}
+
+// =====================================================
+
+int[][] scores1 = new int[3][];
+
+// 0行目を指定して表示してSystem.Int32[]
+Debug.WriteLine("これ表示されている？", scores1[0]); // nullだった
+// Debug.WriteLine(scores1[0][0]);だとNullReferenceExceptionが出る
+// 理由は？👉️配列がnullでまだないのにnullの「0番目をください」と言っている
+
+var array = new string[] { null, null };
+Debug.WriteLine("例外？", array[0]);
+
+Debug.WriteLine("==========================================");
