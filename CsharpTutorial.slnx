@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="AsyncAwaitTraining/AsyncAwaitTraining.csproj" Id="4f68bc38-2cf2-4e63-8292-d9df4cc9a2d5" />
   <Project Path="EnumTraining/enum-training.csproj" />
   <Project Path="FirstWpfApp1/FirstWpfApp1.csproj" Id="a84efe88-051a-4f4e-a97a-2c1b52163f24" />
   <Project Path="MyFirstApp/MyFirstApp.csproj" />
