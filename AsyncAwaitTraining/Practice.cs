@@ -18,6 +18,7 @@ namespace AsyncAwaitTraining
             Console.WriteLine("成功処理が動いてます♡");
             return c - '0';
         }
+
         // 2026-07-03-try-catchを実装してみよう
         static int StringToInt(string str)
         {
