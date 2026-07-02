@@ -1,4 +1,5 @@
-﻿using static System.Net.WebRequestMethods;
+﻿using System.Diagnostics;
+using static System.Net.WebRequestMethods;
 
 internal class Program
 {
@@ -66,6 +67,9 @@ internal class Program
         await WaitingForIchika();
         // これは実行出来た。
         Console.WriteLine("最終コード");
+
+        
+
     }
 }
 
