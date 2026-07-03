@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using AsyncAwaitTraining;
 using static System.Net.WebRequestMethods;
 
 internal class Program
@@ -49,26 +50,36 @@ internal class Program
         //}
 
         // 500ms待つ処理
-        async Task WaitingForIchika()
-        {
-            // この処理は時間がかかるから待つ
-            // awaitでTask型の値が帰っている？
-            await Task.Delay(3000);
-            Console.WriteLine("終わりました");
-        }
+        // async Task WaitingForIchika()
+        // {
+        //     // この処理は時間がかかるから待つ
+        //     // awaitでTask型の値が帰っている？
+        //     await Task.Delay(3000);
+        //     Console.WriteLine("終わりました");
+        // }
 
-        // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        // // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-        //Thread.Sleep(3000);
+        // //Thread.Sleep(3000);
 
-        // これawaitがないと実行できない
-        // なぜなら？WaitingForIchika()自体も3000ms止まるし、
-        // マトリョーシカみたいにawaitを使い続けないといけないような気がしています
-        await WaitingForIchika();
-        // これは実行出来た。
-        Console.WriteLine("最終コード");
+        // // これawaitがないと実行できない
+        // // なぜなら？WaitingForIchika()自体も3000ms止まるし、
+        // // マトリョーシカみたいにawaitを使い続けないといけないような気がしています
+        // await WaitingForIchika();
+        // // これは実行出来た。
+        // Console.WriteLine("最終コード");
 
-        
+
+        // 実行コード
+        Practice practice = new Practice();
+        practice.StringToInt("ichika");
+        practice.StringToInt("12345");
+        // ここでオーバーフローする予定だった。でもなっていなかった。
+        // TODO: 結果はval: -2147483648となった理由は？
+        practice.StringToInt("2147483648");
+        // 文字列もASCIIコードで数値として表すことも一応可能
+        // int result = StringToInt("ichika");
+        // int result2 = StringToInt("1234");
 
     }
 }

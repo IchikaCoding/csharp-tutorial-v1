@@ -7,7 +7,7 @@ namespace AsyncAwaitTraining
 {
     public class Practice
     {
-        static int CharToInt(char c)
+        public int CharToInt(char c)
         {
             if (c < '0' || '9' < c)
             {
@@ -16,32 +16,54 @@ namespace AsyncAwaitTraining
                 
             }
             Console.WriteLine("成功処理が動いてます♡");
+             // '0'は10進数で48の意味っぽいかも 
             return c - '0';
         }
-
         // 2026-07-03-try-catchを実装してみよう
-        static int StringToInt(string str)
+        // TODO: これってtry-catchをStringToInt()に書くのはミス？
+        public int StringToInt(string str)
         {
-            int val = 0;
-            foreach (char c in str)
+            try
             {
-                int i = CharToInt(c);
-                if (i == -1)
+                int val = 0;
+                foreach (char c in str)
                 {
-                    return -1;
+                    int i = CharToInt(c);
+                    if (i == -1)
+                    {
+                        return -1;
+                    }
+                    val = val * 10 + i;
                 }
-                val = val * 10 + i;
+                Console.WriteLine($"val: {val}");
+                return val;
             }
-            return val;
+            catch(FormatException)
+            {
+                // TODO: エラーのmessageを表示したい
+                Console.WriteLine("FormatExceptionですよ～");
+                return -1;
+            }
+            // TODO: これってどんなとき？
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException(桁あふれ)です");
+                return -1;
+            }
+            // ここからの処理はreturn しなくてOK
+            // 戻り値が返ったあとにfinallyが実行されているから？
+            // usingステートメントでtry-finallyを省略して書くことができるらしい
+            finally
+            {
+                Console.WriteLine("例外があってもなくて動く場所");
+            }
         }
-        // 文字列もASCIIコードで数値として表すことも一応可能
-        int result = StringToInt("ichika");
-        int result2 = StringToInt("1234");
+        
         //char numString = (char)48;
         //Debug.WriteLine($"numString:{numString}");
 
-        Debug.WriteLine($"result: {result}"); // result: 6272339
-        Debug.WriteLine($"result2: {result2}");
+        // Debug.WriteLine($"result: {result}"); // result: 6272339
+        // Debug.WriteLine($"result2: {result2}");
 
     }
 }
