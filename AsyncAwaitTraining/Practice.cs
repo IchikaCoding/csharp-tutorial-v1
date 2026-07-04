@@ -69,6 +69,7 @@ namespace AsyncAwaitTraining
         // Debug.WriteLine($"result: {result}"); // result: 6272339
         // Debug.WriteLine($"result2: {result2}");
 
+// TODO:　例外を投げた時の戻り値って何になるの？
         public int StringToInt(string str)
         {
             // checked式を使うとオーバーフローを検出可能
@@ -79,12 +80,14 @@ namespace AsyncAwaitTraining
                 int i = CharToInt(c);
                 if (i == -1)
                 {
-                    return -1;
+                    A();
                 }
                 val = val * 10 + i;
             }
             return val;
             }
-            }
+        }
+
+        static void A() => throw new FormatException();
     }
 }

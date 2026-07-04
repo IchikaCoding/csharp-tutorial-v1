@@ -86,16 +86,21 @@ internal class Program
         try
         {
            int result = practice1.StringToInt("2147483648");
+        //    int result = practice1.StringToInt("2147483648");
             Console.WriteLine($"result: {result}");
         }
         catch(FormatException e)
         {
             Console.WriteLine("FormatExceptionですぅ");
             Console.WriteLine(e.Message);
+            Console.WriteLine($"e: {e}");
+
         }catch(OverflowException e)
         {
              Console.WriteLine("OverflowExceptionですぅ");
             Console.WriteLine(e.Message);
+            Console.WriteLine($"e: {e}");
+
         }
         finally
         {
