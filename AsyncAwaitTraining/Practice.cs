@@ -25,6 +25,8 @@ namespace AsyncAwaitTraining
         {
             try
             {
+                // checked式を使うとオーバーフローを検出可能
+                checked{
                 int val = 0;
                 foreach (char c in str)
                 {
@@ -35,8 +37,10 @@ namespace AsyncAwaitTraining
                     }
                     val = val * 10 + i;
                 }
+                // コンソールはここじゃなくて実行するところじゃない？
                 Console.WriteLine($"val: {val}");
                 return val;
+                }
             }
             catch(FormatException)
             {
