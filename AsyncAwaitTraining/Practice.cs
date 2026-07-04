@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Microsoft.VisualBasic;
 
 namespace AsyncAwaitTraining
 {
@@ -89,5 +90,6 @@ namespace AsyncAwaitTraining
         }
 
         static void A() => throw new FormatException();
+        
     }
 }

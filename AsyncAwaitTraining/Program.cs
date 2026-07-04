@@ -106,8 +106,53 @@ internal class Program
         {
             Console.WriteLine("Finallyですぅ");
         }
-        
+        Console.WriteLine("=================================================");
 
+        // var x = true ? null : throw new Exception();
+        // B関数を作成。引数はobject型で戻り値はstring
+        static string B(object obj)
+        {
+            // objをstring型とする。もしnullなら、ArgumentExceptionの例外を投げる。
+            // エラーmessageとして何が変えるのか不明。文字列でmessage書いていた、
+            var s = obj as string ?? throw new ArgumentException($"{obj.GetType()}");
+            // sの長さが0なら、Emptyを出す。5文字よりちいさいならショート、どっちにも当てはまらないならtoo longを出す
+            // これって三項演算子と違う？？条件いっぱい書けるやつ？
+            return s.Length == 0 ? "empty" : s.Length < 5 ? "short": throw new InvalidOperationException("too long");
+        }
+
+        try
+        {
+            // string bResult1 = B("ichika"); // too long
+            var bResult2 = B(1234); // ArgumentException
+            var bResult3 = B(""); // "empty"
+            // Console.WriteLine($"bResult1: {bResult1}");
+            Console.WriteLine($"bResult2: {bResult2}");
+            Console.WriteLine($"bResult3: {bResult3}");
+        }catch(ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine(e.Message);
+            
+        }
+        
+        Console.WriteLine("=================================================");
+        
+        // 例外は伝播する
+        // NotImplementedException はメソッドが未実装だよという意味
+        static void Pochipochi() => throw new NotImplementedException();
+        static void PoseiDon() => Pochipochi();
+        static void ichikaDon() => PoseiDon();
+
+        try
+        {
+            ichikaDon();
+        }catch(NotImplementedException e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
 
