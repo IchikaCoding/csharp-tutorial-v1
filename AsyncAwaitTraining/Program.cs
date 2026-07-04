@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using AsyncAwaitTraining;
 using static System.Net.WebRequestMethods;
 
@@ -71,15 +72,36 @@ internal class Program
 
 
         // 実行コード
-        Practice practice = new Practice();
-        practice.StringToInt("ichika");
-        practice.StringToInt("12345");
-        // ここでオーバーフローする予定だった。でもなっていなかった。
-        // TODO: 結果はval: -2147483648となった理由は？
-        practice.StringToInt("2147483648");
+        // Practice practice = new Practice();
+        // practice.StringToInt("ichika");
+        // practice.StringToInt("12345");
+        // // ここでオーバーフローする予定だった。でもなっていなかった。
+        // // TODO: 結果はval: -2147483648となった理由は？
+        // practice.StringToInt("2147483648");
         // 文字列もASCIIコードで数値として表すことも一応可能
         // int result = StringToInt("ichika");
         // int result2 = StringToInt("1234");
+        
+        Practice practice1 = new Practice();
+        try
+        {
+           int result = practice1.StringToInt("2147483648");
+            Console.WriteLine($"result: {result}");
+        }
+        catch(FormatException e)
+        {
+            Console.WriteLine("FormatExceptionですぅ");
+            Console.WriteLine(e.Message);
+        }catch(OverflowException e)
+        {
+             Console.WriteLine("OverflowExceptionですぅ");
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Finallyですぅ");
+        }
+        
 
     }
 }
