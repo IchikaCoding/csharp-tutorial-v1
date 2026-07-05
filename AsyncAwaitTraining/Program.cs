@@ -153,6 +153,34 @@ internal class Program
         {
             Console.WriteLine(e);
         }
+
+        Console.WriteLine("=================================================");
+        //try
+        //{
+        //    Pochipochi();
+        //}
+        //catch (DirectoryNotFoundException e)
+        //{
+        //    Console.WriteLine(e);
+        //}
+        //catch (NotImplementedException e)
+        //{
+        //    Console.WriteLine(e);
+        //}
+        try
+        {
+            Pochipochi();
+        }catch(Exception e) when( e is DirectoryNotFoundException || e is NotImplementedException)
+        {
+            Console.WriteLine("やるじゃん！");
+            Console.WriteLine(e);
+        }
+        finally
+        {
+            Console.WriteLine("るんるん♪");
+        }
+
+
     }
 }
 
