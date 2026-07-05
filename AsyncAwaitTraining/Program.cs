@@ -180,6 +180,18 @@ internal class Program
             Console.WriteLine("るんるん♪");
         }
 
+        Console.WriteLine("=================================================");
+
+        // TODO: Fがエラーになっちゃった
+        try
+        {
+            Parallel.For(0, 10000, F);
+        }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
+        {
+
+        }
+
+        static void F() => throw new ArgumentException();
 
     }
 }
