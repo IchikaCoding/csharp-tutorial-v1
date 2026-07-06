@@ -182,17 +182,23 @@ internal class Program
 
         Console.WriteLine("=================================================");
 
-        // TODO: Fがエラーになっちゃった
-        try
-        {
-            Parallel.For(0, 10000, F);
-        }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
-        {
+        //// TODO: Fがエラーになっちゃった
+        //try
+        //{
+        //    // Fはintパラメーターを受け取るやつじゃないとダメかもしれない？
+        //    // Console.WriteLineをFのいちに入れても動くかも？！
+        //    Parallel.For(0, 10000, F);
+        //}catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
+        //{
 
-        }
+        //}
 
-        static void F() => throw new ArgumentException();
-
+        //static void F() => throw new ArgumentException();
+        // null許容型というらしい
+        int? z = null;
+        // zがnullなら、-1をiに代入。（JSのnull合体演算子は、null とundefinedどっちかだったら右の値を使う）
+        int i = z ?? -1;
+        Console.WriteLine($"i: {i}");
     }
 }
 
