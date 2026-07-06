@@ -189,10 +189,10 @@ internal class Program
            // Console.WriteLineをFのいちに入れても動くかも？！
            // ! MSLearnのParallelクラスの引数の定義を調べる👉️今回使えそうな物を見つける👉️それに当てはまるようにメソッドを作成する
            // For(Int32, Int32, Action<Int32>)が定義。メソッドで、引数がint型のものを受け取れるってこと
-           Parallel.For(0, 10000, i => F(i));
+           Parallel.For(0, 10000, (i) => F(i));
         }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
         {
-
+            Console.WriteLine("どうだ？！");
         }
         // 
         static void F(int i) => throw new ArgumentException($"{i}が出ました");
