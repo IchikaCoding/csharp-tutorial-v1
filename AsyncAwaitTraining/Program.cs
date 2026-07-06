@@ -182,23 +182,26 @@ internal class Program
 
         Console.WriteLine("=================================================");
 
-        //// TODO: Fがエラーになっちゃった
-        //try
-        //{
-        //    // Fはintパラメーターを受け取るやつじゃないとダメかもしれない？
-        //    // Console.WriteLineをFのいちに入れても動くかも？！
-        //    Parallel.For(0, 10000, F);
-        //}catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
-        //{
+        // TODO: Fがエラーになっちゃった
+        try
+        {
+           // Fはintパラメーターを受け取るやつじゃないとダメかもしれない？
+           // Console.WriteLineをFのいちに入れても動くかも？！
+           // ! MSLearnのParallelクラスの引数の定義を調べる👉️今回使えそうな物を見つける👉️それに当てはまるようにメソッドを作成する
+           // For(Int32, Int32, Action<Int32>)が定義。メソッドで、引数がint型のものを受け取れるってこと
+           Parallel.For(0, 10000, i => F(i));
+        }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
+        {
 
-        //}
-
-        //static void F() => throw new ArgumentException();
-        // null許容型というらしい
-        int? z = null;
-        // zがnullなら、-1をiに代入。（JSのnull合体演算子は、null とundefinedどっちかだったら右の値を使う）
-        int i = z ?? -1;
-        Console.WriteLine($"i: {i}");
+        }
+        // 
+        static void F(int i) => throw new ArgumentException($"{i}が出ました");
+        
+        // // null許容型というらしい
+        // int? z = null;
+        // // zがnullなら、-1をiに代入。（JSのnull合体演算子は、null とundefinedどっちかだったら右の値を使う）
+        // int i = z ?? -1;
+        // Console.WriteLine($"i: {i}");
     }
 }
 
