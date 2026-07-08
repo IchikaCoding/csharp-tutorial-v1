@@ -183,25 +183,43 @@ internal class Program
         Console.WriteLine("=================================================");
 
         // TODO: Fがエラーになっちゃった
-        try
-        {
-           // Fはintパラメーターを受け取るやつじゃないとダメかもしれない？
-           // Console.WriteLineをFのいちに入れても動くかも？！
-           // ! MSLearnのParallelクラスの引数の定義を調べる👉️今回使えそうな物を見つける👉️それに当てはまるようにメソッドを作成する
-           // For(Int32, Int32, Action<Int32>)が定義。メソッドで、引数がint型のものを受け取れるってこと
-           Parallel.For(0, 10000, (i) => F(i));
-        }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
-        {
-            Console.WriteLine("どうだ？！");
-        }
-        // 
-        static void F(int i) => throw new ArgumentException($"{i}が出ました");
+        // try
+        // {
+        //    // Fはintパラメーターを受け取るやつじゃないとダメかもしれない？
+        //    // Console.WriteLineをFのいちに入れても動くかも？！
+        //    // ! MSLearnのParallelクラスの引数の定義を調べる👉️今回使えそうな物を見つける👉️それに当てはまるようにメソッドを作成する
+        //    // For(Int32, Int32, Action<Int32>)が定義。メソッドで、引数がint型のものを受け取れるってこと
+        //     //  引数3つ目は関数の定義
+        //    Parallel.For(0, 10000, F);
+        //     // AnyはLINQで調べたら出てきそう！
+        //     // InnerExceptionsは複数ある例外の中の例外を見るための物
+        // }catch(AggregateException e) when (e.InnerExceptions.Any(i=> i is ArgumentException))
+        // {
+        //     Console.WriteLine("どうだ？！");
+        // }
+        // // 
+        // static void F(int i) => throw new ArgumentException($"{i}が出ました");
         
+        var numbers = new[] {1,2,3,4,5};
+        var num = numbers.Any(i => i>4);
+        Console.WriteLine($"num：{num}");
         // // null許容型というらしい
         // int? z = null;
         // // zがnullなら、-1をiに代入。（JSのnull合体演算子は、null とundefinedどっちかだったら右の値を使う）
         // int i = z ?? -1;
         // Console.WriteLine($"i: {i}");
+
+        // ArgumentExeptionを例外フィルターする処理を書く
+        void Funcy(int i) => throw new ArgumentException($"{i}回目の例外です");
+        // 例外フィルターをwhenで書いてみよう
+        try
+        {
+            Parallel.For(0,10,(i) => Funcy(i));
+        }catch(AggregateException e) when (e.InnerExceptions.Any(exception => exception is ArgumentException))
+        {
+            Console.WriteLine($"例外！！！ArgumentExceptionが発生！直ちに、関数さんのお家に入りなさい");
+        }
+        
     }
 }
 
