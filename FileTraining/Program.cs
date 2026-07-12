@@ -15,6 +15,7 @@ internal class Program
                 Console.WriteLine(line);
                 // 2回読んでいるのはどうして？
                 line = sr.ReadLine();
+                // ここでクローズしているから、改行を挟むと例外となるのかな？
                 sr.Close();
                 // どうしてコンソールの入力を読むの？
                 Console.ReadLine();
@@ -28,5 +29,16 @@ internal class Program
         {
             Console.WriteLine("ここはFinallyブロックです");
         }
+
+        int? temp = null;
+        int displayTemp = temp ?? -999;
+        Console.WriteLine("displayTemp: " + displayTemp);
+        Console.WriteLine("==============================");
+
+        string name = "IchikaDon";
+        string? newName = "Ichika";
+        newName = null;
+        Console.WriteLine("name: "+ name);
+        Console.WriteLine("newName: " + newName);
     }
-}
+} 
