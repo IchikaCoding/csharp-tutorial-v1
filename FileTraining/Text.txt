@@ -1,0 +1,2 @@
+こんちか, いちかどん
+From the StreamWriter class

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿// これはなに？入出力？
+using System.IO;
+using System.Text;
 
 internal class Program
 {
@@ -30,15 +32,32 @@ internal class Program
             Console.WriteLine("ここはFinallyブロックです");
         }
 
-        int? temp = null;
-        int displayTemp = temp ?? -999;
-        Console.WriteLine("displayTemp: " + displayTemp);
-        Console.WriteLine("==============================");
+        //int? temp = null;
+        //int displayTemp = temp ?? -999;
+        //Console.WriteLine("displayTemp: " + displayTemp);
+        //Console.WriteLine("==============================");
 
-        string name = "IchikaDon";
-        string? newName = "Ichika";
-        newName = null;
-        Console.WriteLine("name: "+ name);
-        Console.WriteLine("newName: " + newName);
+        //string name = "IchikaDon";
+        //string? newName = "Ichika";
+        //newName = null;
+        //Console.WriteLine("name: "+ name);
+        //Console.WriteLine("newName: " + newName);
+
+        try
+        {
+            StreamWriter sw = new StreamWriter(　　　"D:\\Dev\\csharp-tutorial-v1\\FileTraining\\Text.txt");
+            sw.WriteLine("こんちか, いちかどん");
+            sw.WriteLine("From the StreamWriter class");
+            sw.Close();
+        }catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("ここはFinallyブロックです");
+        }
+
+
     }
 } 
