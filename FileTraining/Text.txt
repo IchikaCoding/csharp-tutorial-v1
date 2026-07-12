@@ -1,2 +1,4 @@
 こんちか, いちかどん
 From the StreamWriter class
+12345678910
+おいしいです

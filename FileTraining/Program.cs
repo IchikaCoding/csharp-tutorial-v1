@@ -45,7 +45,7 @@ internal class Program
 
         try
         {
-            StreamWriter sw = new StreamWriter(　　　"D:\\Dev\\csharp-tutorial-v1\\FileTraining\\Text.txt");
+            StreamWriter sw = new StreamWriter("D:\\Dev\\csharp-tutorial-v1\\FileTraining\\Text.txt");
             sw.WriteLine("こんちか, いちかどん");
             sw.WriteLine("From the StreamWriter class");
             sw.Close();
@@ -58,6 +58,29 @@ internal class Program
             Console.WriteLine("ここはFinallyブロックです");
         }
 
-
+        // これなんだ？64とは？
+        Int64 x;
+        try
+        {
+            // 引数1つ目：パス
+            // 2つ目：trueなら追加モードで開かれる、falseならファイルの内容を上書きする👉️これやったらうえの処理が消えてしまった
+            // 3つ目：エンコード方法を指定できる
+            StreamWriter sw = new StreamWriter("D:\\Dev\\csharp-tutorial-v1\\FileTraining\\Text.txt", true, Encoding.UTF8);
+            
+            for(x=1; x < 11; x++)
+            {
+                sw.Write(x);
+            }
+            sw.WriteLine();
+            sw.WriteLine("おいしいです");
+            sw.Close();
+        }catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("ここはFinallyブロックです");
+        }
     }
 } 
