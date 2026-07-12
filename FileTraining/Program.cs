@@ -1,4 +1,5 @@
 ﻿// これはなに？入出力？
+using FileTraining;
 using System.IO;
 using System.Text;
 
@@ -82,5 +83,10 @@ internal class Program
         {
             Console.WriteLine("ここはFinallyブロックです");
         }
+        Practice1.DisposeChallenge();
+        Practice1.UsingChallenge();
+        Practice1.UsingReadChallenge();
+        Console.WriteLine("Practice1.Challenge();");
+        Practice1.Challenge();
     }
 } 
