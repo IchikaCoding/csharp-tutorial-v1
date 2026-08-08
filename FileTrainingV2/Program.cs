@@ -14,10 +14,15 @@ Console.WriteLine("favPath👉️" + favPath);
 
 async Task CreateJsonFileAsync()
 {
-    string message = "トマト";
+    string message = "きゅうり";
     await File.WriteAllTextAsync(favPath, message);
 }
 // これはどうしてawait できるの？
 await CreateJsonFileAsync();
 
 Console.WriteLine("保存に成功しました");
+
+// クラスを作成、食べ物の名前、更新した時刻
+// インスタンスを作成、初期化して
+// クラスからJSONにする、見やすくしたいらしい。
+// JSONをファイルに書き込む
