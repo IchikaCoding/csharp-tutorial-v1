@@ -68,6 +68,7 @@ namespace FileTraining
                 string textAll = reader.ReadToEnd();
                 Console.WriteLine("usingで括弧を使わないバージョン");
                 Console.WriteLine("textAll:" + textAll);
+
             }catch(IOException e)
             {
                 Console.WriteLine(e.Message);
