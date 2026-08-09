@@ -38,11 +38,15 @@ DateTime now = DateTime.Now;
 // TODO: 絵文字もJSONに表示したい
 FavoriteFoodClass favoriteFood = new FavoriteFoodClass
 {
-    foodName = "はちみつ made by ぷーさん",
+    // TODO: Listの中に文字列を入れる
+    foods = new List<string> { "はちみつ" },
     upDateTime = now
 };
 
-Console.WriteLine("favoriteFood.foodName: " + favoriteFood.foodName);
+List<string> stringList = new List<string>();
+stringList.Add("おいも");
+
+Console.WriteLine("favoriteFood.foods: " + favoriteFood.foods);
 Console.WriteLine("favoriteFood.upDateTime: " + favoriteFood.upDateTime);
 
 // JsonSerializerOptionsはクラスだよ
@@ -69,24 +73,22 @@ catch (Exception error)
 
 // ＝＝＝＝＝＝＝＝＝オブジェクト初期化子の練習＝＝＝＝＝＝＝＝＝＝＝＝
 // キャラクターの名前、Level
-
-CharacterClass characterClass1 = new CharacterClass
+void PracticeClass()
 {
-    CharacterName = "ichikaDon",
-    Level = 200
-};
 
-Console.WriteLine("name: " + characterClass1.CharacterName);
-Console.WriteLine("level: " + characterClass1.Level);
-
-CharacterClass characterClass2 = new CharacterClass
-{
-    CharacterName = "pochipochiFriends",
-};
-
-Console.WriteLine($"name: {characterClass2.CharacterName}");
-Console.WriteLine($"level: {characterClass2.Level}");
-
-characterClass2.Level = 1200;
-
-Console.WriteLine($"level: {characterClass2.Level}");
+    CharacterClass characterClass1 = new CharacterClass
+    {
+        CharacterName = "ichikaDon",
+        Level = 200
+    };
+    Console.WriteLine("name: " + characterClass1.CharacterName);
+    Console.WriteLine("level: " + characterClass1.Level);
+    CharacterClass characterClass2 = new CharacterClass
+    {
+        CharacterName = "pochipochiFriends",
+    };
+    Console.WriteLine($"name: {characterClass2.CharacterName}");
+    Console.WriteLine($"level: {characterClass2.Level}");
+    characterClass2.Level = 1200;
+    Console.WriteLine($"level: {characterClass2.Level}");
+}
