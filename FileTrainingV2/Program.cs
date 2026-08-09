@@ -57,12 +57,36 @@ try
     // クラスからJSONにするだけならインスタンスとオプションだけでOK
     string json = JsonSerializer.Serialize(favoriteFood, option);
     Console.WriteLine("json:" + json);
-    throw new Exception("テスト用の例外です✨️");
+    // throw new Exception("テスト用の例外です✨️");
     await File.WriteAllTextAsync(favPath, json);
     Console.WriteLine("保存成功！！");
 }
 catch (Exception error)
 {
-    System.Console.WriteLine("保存失敗した");
-    System.Console.WriteLine("エラー内容：" + error.Message);
+    Console.WriteLine("保存失敗した");
+    Console.WriteLine("エラー内容：" + error.Message);
 }
+
+// ＝＝＝＝＝＝＝＝＝オブジェクト初期化子の練習＝＝＝＝＝＝＝＝＝＝＝＝
+// キャラクターの名前、Level
+
+CharacterClass characterClass1 = new CharacterClass
+{
+    CharacterName = "ichikaDon",
+    Level = 200
+};
+
+Console.WriteLine("name: " + characterClass1.CharacterName);
+Console.WriteLine("level: " + characterClass1.Level);
+
+CharacterClass characterClass2 = new CharacterClass
+{
+    CharacterName = "pochipochiFriends",
+};
+
+Console.WriteLine($"name: {characterClass2.CharacterName}");
+Console.WriteLine($"level: {characterClass2.Level}");
+
+characterClass2.Level = 1200;
+
+Console.WriteLine($"level: {characterClass2.Level}");
