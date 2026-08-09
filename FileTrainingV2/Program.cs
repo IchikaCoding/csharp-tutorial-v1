@@ -44,9 +44,10 @@ FavoriteFoodClass favoriteFood = new FavoriteFoodClass
     upDateTime = now
 };
 
-List<string> stringList = new List<string>();
-stringList.Add("おいも");
+// List<string> stringList = new List<string>();
+// stringList.Add("おいも");
 
+favoriteFood.foods.Add("さつまいも");
 Console.WriteLine("favoriteFood.foods: " + favoriteFood.foods);
 Console.WriteLine("favoriteFood.upDateTime: " + favoriteFood.upDateTime);
 
