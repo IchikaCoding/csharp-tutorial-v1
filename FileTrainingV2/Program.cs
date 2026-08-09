@@ -3,6 +3,7 @@ using FileTrainingV2;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Security.Cryptography;
+using System.Text;
 // お気に入りのファイルを実行場所と同じ場所に作成する処理
 // 確認のためにパスも表示したい
 
@@ -92,3 +93,18 @@ void PracticeClass()
     characterClass2.Level = 1200;
     Console.WriteLine($"level: {characterClass2.Level}");
 }
+
+
+async void CreateTextFile()
+{
+    // テキストで「はちみつ」と書く処理
+    string rootPath = AppContext.BaseDirectory;
+    string honeyPath = Path.Combine(rootPath, "favorite-food.txt");
+    await using FileStream stream = File.Create(honeyPath);
+    // stream.Write()ではbyte[]が必要。だから事前に準備している。
+    byte[] foodBytes = Encoding.UTF8.GetBytes("はちみつ");
+    stream.Write(foodBytes);
+    Console.WriteLine("CreateTextFile()動いたよ🎉");
+}
+
+CreateTextFile();
