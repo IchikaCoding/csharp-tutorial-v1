@@ -4,6 +4,8 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Security.Cryptography;
 using System.Text;
+using System.Runtime.CompilerServices;
+using System.Security;
 // お気に入りのファイルを実行場所と同じ場所に作成する処理
 // 確認のためにパスも表示したい
 
@@ -116,3 +118,26 @@ async Task CreateTextFile()
 }
 
 await CreateTextFile();
+
+// ファイル名、poseidon.txt
+// キャラクタークラスのインスタンスを作って、その中身をファイルに入れてみよう
+async Task CreatePoseidonFileAsync()
+{
+    // いまいる場所はどこ？
+    string rootPath = AppContext.BaseDirectory;
+    string poseidonPath = Path.Combine(rootPath, "poseidon.txt");
+    CharacterClass mainCharacter = new CharacterClass()
+    {
+        CharacterName = "Ichika",
+        Level = 1200
+    };
+    Console.WriteLine(mainCharacter.CharacterName);
+    // 文字列を入れ込みたい
+    // byte[]に入れる
+    // stream.Write(byte[] )
+    byte[] bytes = Encoding.UTF8.GetBytes($"名前は、{mainCharacter.CharacterName}です！");
+    await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Create, FileAccess.Write);
+    fileStream.Write(bytes);
+}
+
+await CreatePoseidonFileAsync();
