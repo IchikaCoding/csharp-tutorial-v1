@@ -96,16 +96,23 @@ void PracticeClass()
 }
 
 
-async void CreateTextFile()
+async Task CreateTextFile()
 {
     // テキストで「はちみつ」と書く処理
     string rootPath = AppContext.BaseDirectory;
     string honeyPath = Path.Combine(rootPath, "favorite-food.txt");
+    // await は不要でした！
     await using FileStream stream = File.Create(honeyPath);
     // stream.Write()ではbyte[]が必要。だから事前に準備している。
     byte[] foodBytes = Encoding.UTF8.GetBytes("はちみつ");
+    // var option = new JsonSerializerOptions
+    // {
+    //     WriteIndented = true,
+    //     Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+    // };
+    // await JsonSerializer.SerializeAsync(stream, foodBytes, option);
     stream.Write(foodBytes);
     Console.WriteLine("CreateTextFile()動いたよ🎉");
 }
 
-CreateTextFile();
+await CreateTextFile();
