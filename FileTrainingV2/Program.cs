@@ -16,6 +16,8 @@ string dirPath = AppContext.BaseDirectory;
 Console.WriteLine("dirPath" + dirPath);
 
 string favPath = Path.Combine(dirPath, "favorites.json");
+string favTempPath = Path.Combine(dirPath, "favorites.temp");
+
 Console.WriteLine("favPath👉️" + favPath);
 //// TODO: これだとフォルダを作っている事になっているかも？
 //DirectoryInfo directoryInfo = Directory.CreateDirectory(favPath);
@@ -28,7 +30,7 @@ async Task CreateJsonFileAsync()
     await File.WriteAllTextAsync(favPath, message);
 }
 // これはどうしてawait できるの？
-await CreateJsonFileAsync();
+// await CreateJsonFileAsync();
 
 Console.WriteLine("保存に成功しました");
 
@@ -49,7 +51,7 @@ FavoriteFoodClass favoriteFood = new FavoriteFoodClass
 // List<string> stringList = new List<string>();
 // stringList.Add("おいも");
 
-favoriteFood.foods.Add("さつまいも");
+// favoriteFood.foods.Add("さつまいも");
 Console.WriteLine("favoriteFood.foods: " + favoriteFood.foods);
 Console.WriteLine("favoriteFood.upDateTime: " + favoriteFood.upDateTime);
 
@@ -65,14 +67,32 @@ try
     // クラスからJSONにするだけならインスタンスとオプションだけでOK
     string json = JsonSerializer.Serialize(favoriteFood, option);
     Console.WriteLine("json:" + json);
+    // JSONに直すのが成功したのか確認する？
+    // 中身をファイルに書き込み成功したら、
+
     // throw new Exception("テスト用の例外です✨️");
-    await File.WriteAllTextAsync(favPath, json);
+    // ここで失敗して例外になるなら、、、
+    // 失敗したら例外が発生するから、File.Exists()は不要。成功していたら次の行へ行ける
+    await File.WriteAllTextAsync(favTempPath, json);
+    if (!File.Exists(favTempPath))
+    {
+        throw new Exception("保存失敗");
+    }
+    File.Move(favTempPath, favPath, true);
     Console.WriteLine("保存成功！！");
 }
 catch (Exception error)
 {
     Console.WriteLine("保存失敗した");
     Console.WriteLine("エラー内容：" + error.Message);
+}
+finally
+{
+    // 一時ファイルを削除
+    if (File.Exists(favTempPath))
+    {
+        File.Delete(favTempPath);
+    }
 }
 
 // ＝＝＝＝＝＝＝＝＝オブジェクト初期化子の練習＝＝＝＝＝＝＝＝＝＝＝＝
@@ -131,13 +151,25 @@ async Task CreatePoseidonFileAsync()
         CharacterName = "Ichika",
         Level = 1200
     };
+    CharacterClass supportCharacter = new CharacterClass()
+    {
+        CharacterName = "pochipochiFriends",
+        Level = 12000
+    };
     Console.WriteLine(mainCharacter.CharacterName);
     // 文字列を入れ込みたい
     // byte[]に入れる
     // stream.Write(byte[] )
-    byte[] bytes = Encoding.UTF8.GetBytes($"名前は、{mainCharacter.CharacterName}です！");
+    byte[] mainCharBytes = Encoding.UTF8.GetBytes($"名前は、{mainCharacter.CharacterName}です！");
+    byte[] supportCharBytes = Encoding.UTF8.GetBytes($"名前は、{supportCharacter.CharacterName}です！");
+    //  FileMode.Createが上書き。だから、FileStreamを作成した時点で中身0になるらしい
     await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Create, FileAccess.Write);
-    fileStream.Write(bytes);
+    fileStream.Write(mainCharBytes);
+    fileStream.Write(supportCharBytes);
 }
 
 await CreatePoseidonFileAsync();
+
+// ＝＝＝＝＝＝＝直接JSON上書きやめようプロジェクト＝＝＝＝＝＝＝
+// 一時ファイルを用意する
+
