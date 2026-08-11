@@ -141,11 +141,12 @@ await CreateTextFile();
 
 // ファイル名、poseidon.txt
 // キャラクタークラスのインスタンスを作って、その中身をファイルに入れてみよう
+// いまいる場所はどこ？
+string rootPath = AppContext.BaseDirectory;
+string poseidonPath = Path.Combine(rootPath, "poseidon.txt");
 async Task CreatePoseidonFileAsync()
 {
-    // いまいる場所はどこ？
-    string rootPath = AppContext.BaseDirectory;
-    string poseidonPath = Path.Combine(rootPath, "poseidon.txt");
+
     CharacterClass mainCharacter = new CharacterClass()
     {
         CharacterName = "Ichika",
@@ -170,6 +171,26 @@ async Task CreatePoseidonFileAsync()
 
 await CreatePoseidonFileAsync();
 
-// ＝＝＝＝＝＝＝直接JSON上書きやめようプロジェクト＝＝＝＝＝＝＝
-// 一時ファイルを用意する
+// ＝＝＝＝＝＝＝FileStreamで読みたいじゃんプロジェクト＝＝＝＝＝＝＝
 
+async Task ReadPoseidonFile()
+{
+    // FileStreamを読み取りように作成
+    // FileMode.Open→ファイルが存在するなら開く、ないならFileNotFoundExceptionが投げられる
+    await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Open, FileAccess.Read);
+    // TODO: fileStream.Lengthとはなんだろう？
+    // ファイルの中身を読むために必要なバイト配列を用意。中身まだ空？
+    byte[] bytes = new byte[fileStream.Length];
+    // ファイルからByte配列を読み取る
+    // 引数1つ目は、読み取ったバイトをいれる空の配列。ReadAsyncの引数2つ目はなに？第2引数は読み取ったデータをいれ始めるインデックスを指定、読み取る最大のインデックスは第三引数
+    // 戻り値は読み取れたbyteの数
+    int readCountNum = await fileStream.ReadAsync(bytes, 0, bytes.Length);
+    // 読み取った内容をUTF8の文字列に戻す
+    // bytesの中身を、インデックス0からbytesの最後まで読み取りますよの意味？
+    // どうしてfileStream.LengthじゃなくてreadCountNumを使うの？👉️ReadAsyncで読めた分だけ文字列に変換したほうが安全だから
+    string text = Encoding.UTF8.GetString(bytes, 0, readCountNum);
+    Console.WriteLine($"読み取れた内容：{text}");
+    Console.WriteLine($"読み取れたByteの数？：{readCountNum}");
+}
+
+await ReadPoseidonFile();
