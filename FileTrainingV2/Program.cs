@@ -211,3 +211,7 @@ async Task ReadPoseidonFileAsync()
 }
 
 await ReadPoseidonFileAsync();
+
+// =========================================
+
+string streamPracticePath = Path.Combine(rootPath, "stream-practice.txt");
