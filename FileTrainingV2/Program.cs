@@ -173,24 +173,41 @@ await CreatePoseidonFileAsync();
 
 // ＝＝＝＝＝＝＝FileStreamで読みたいじゃんプロジェクト＝＝＝＝＝＝＝
 
-async Task ReadPoseidonFile()
+// async Task ReadPoseidonFile()
+// {
+//     // FileStreamを読み取りように作成
+//     // FileMode.Open→ファイルが存在するなら開く、ないならFileNotFoundExceptionが投げられる
+//     await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Open, FileAccess.Read);
+//     // TODO: fileStream.Lengthとはなんだろう？
+//     // ファイルの中身を読むために必要なバイト配列を用意。中身まだ空？
+//     byte[] bytes = new byte[fileStream.Length];
+//     // ファイルからByte配列を読み取る
+//     // 引数1つ目は、読み取ったバイトをいれる空の配列。ReadAsyncの引数2つ目はなに？第2引数は読み取ったデータをいれ始めるインデックスを指定、読み取る最大のインデックスは第三引数
+//     // 戻り値は読み取れたbyteの数
+//     int readCountNum = await fileStream.ReadAsync(bytes, 0, bytes.Length);
+//     // 読み取った内容をUTF8の文字列に戻す
+//     // bytesの中身を、インデックス0からbytesの最後まで読み取りますよの意味？
+//     // どうしてfileStream.LengthじゃなくてreadCountNumを使うの？👉️ReadAsyncで読めた分だけ文字列に変換したほうが安全だから
+//     string text = Encoding.UTF8.GetString(bytes, 0, readCountNum);
+//     Console.WriteLine($"読み取れた内容：{text}");
+//     Console.WriteLine($"読み取れたByteの数？：{readCountNum}");
+// }
+
+// await ReadPoseidonFile();
+
+
+// ファイル読み取りFileStreamバージョン再練習！
+
+async Task ReadPoseidonFileAsync()
 {
-    // FileStreamを読み取りように作成
-    // FileMode.Open→ファイルが存在するなら開く、ないならFileNotFoundExceptionが投げられる
+    // File.ReadAsync(bytes, 0, ファイルのbyte数)
     await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Open, FileAccess.Read);
-    // TODO: fileStream.Lengthとはなんだろう？
-    // ファイルの中身を読むために必要なバイト配列を用意。中身まだ空？
+    // 配列の長さを指定するときは角括弧を使うんだよ`[]`
     byte[] bytes = new byte[fileStream.Length];
-    // ファイルからByte配列を読み取る
-    // 引数1つ目は、読み取ったバイトをいれる空の配列。ReadAsyncの引数2つ目はなに？第2引数は読み取ったデータをいれ始めるインデックスを指定、読み取る最大のインデックスは第三引数
-    // 戻り値は読み取れたbyteの数
+    // 文字列に直す時はGetString(読み取ったbyte[],スタートしたいインデックス, 読み取れたbyteの数 )
     int readCountNum = await fileStream.ReadAsync(bytes, 0, bytes.Length);
-    // 読み取った内容をUTF8の文字列に戻す
-    // bytesの中身を、インデックス0からbytesの最後まで読み取りますよの意味？
-    // どうしてfileStream.LengthじゃなくてreadCountNumを使うの？👉️ReadAsyncで読めた分だけ文字列に変換したほうが安全だから
     string text = Encoding.UTF8.GetString(bytes, 0, readCountNum);
-    Console.WriteLine($"読み取れた内容：{text}");
-    Console.WriteLine($"読み取れたByteの数？：{readCountNum}");
+    Console.WriteLine($"受け取れたテキスト：{text}");
 }
 
-await ReadPoseidonFile();
+await ReadPoseidonFileAsync();
