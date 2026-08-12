@@ -213,5 +213,41 @@ async Task ReadPoseidonFileAsync()
 await ReadPoseidonFileAsync();
 
 // =========================================
-
+// =====ここからStreamReader,StreamWriterの練習＝＝＝＝＝
 string streamPracticePath = Path.Combine(rootPath, "stream-practice.txt");
+
+async Task WriteWithStreamWriterAsync()
+{
+    // StreamWriterを用意
+    // WriteLineAsyncを実行して文字列をいれる
+    // 保存しましたを表示する
+    await using StreamWriter streamWriter = new StreamWriter(streamPracticePath);
+    // StreamWriterは、内部でバイト配列に直してくれる
+    await streamWriter.WriteLineAsync("この惑星は「ポセイドン」♫");
+    await streamWriter.WriteAsync("私は「いちかどん」♪ ");
+    await streamWriter.WriteLineAsync("どんだどん♫");
+    Console.WriteLine("保存完了しました🎉");
+}
+
+try
+{
+    await WriteWithStreamWriterAsync();
+}
+catch (Exception error)
+{
+    Console.WriteLine(error.Message);
+}
+
+// StreamReaderで読んでみよう！
+
+async Task ReadWithStreamReaderAsync()
+{
+    // どうしてawait つけたらダメなの？
+    // StreamWriterはIAsyncDisposableを実装しているから、DisposeAsync()が可能。
+    // StreamReaderは、IDisposableだから、Dispose()のみ使用可能。つまり、await using 使えない。
+    using StreamReader streamReader = new StreamReader(streamPracticePath);
+    string text = await streamReader.ReadToEndAsync();
+    Console.WriteLine($"text: {text}");
+}
+
+await ReadWithStreamReaderAsync();
