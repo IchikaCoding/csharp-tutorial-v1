@@ -239,15 +239,51 @@ catch (Exception error)
 }
 
 // StreamReaderで読んでみよう！
+// 一行ずつ読んでみよう！
+
+// async Task ReadWithStreamReaderAsync()
+// {
+//     // どうしてawait つけたらダメなの？
+//     // StreamWriterはIAsyncDisposableを実装しているから、DisposeAsync()が可能。
+//     // StreamReaderは、IDisposableだから、Dispose()のみ使用可能。つまり、await using 使えない。
+//     using StreamReader streamReader = new StreamReader(streamPracticePath);
+//     string? line;
+//     // streamReader.ReadLineAsync()は、一行読み取る。
+//     // またReadLineAsync()が実行されると次の行を読みます
+//     while ((line = await streamReader.ReadLineAsync()) != null)
+//     {
+//         Console.WriteLine($"読み取った行：{line}");
+//     }
+//     // string text = await streamReader.ReadToEndAsync();
+//     // Console.WriteLine($"text: {text}");
+// }
+
+// await ReadWithStreamReaderAsync();
+
+
+// ～練習してみよう～
 
 async Task ReadWithStreamReaderAsync()
 {
-    // どうしてawait つけたらダメなの？
-    // StreamWriterはIAsyncDisposableを実装しているから、DisposeAsync()が可能。
-    // StreamReaderは、IDisposableだから、Dispose()のみ使用可能。つまり、await using 使えない。
-    using StreamReader streamReader = new StreamReader(streamPracticePath);
-    string text = await streamReader.ReadToEndAsync();
-    Console.WriteLine($"text: {text}");
-}
+    // StreamReaderを作成
+    // 全部読みます、その後、一行ずつ読みます
+    // コンソール出力してみる
+    using (StreamReader streamReader1 = new StreamReader(streamPracticePath))
+    {
+        string textAll = await streamReader1.ReadToEndAsync();
+        Console.WriteLine($"textAllはこちら：{textAll}");
+    }
 
+    using (StreamReader streamReader2 = new StreamReader(streamPracticePath))
+    {
+        string? line = await streamReader2.ReadLineAsync();
+        while (line != null)
+        {
+            Console.WriteLine($"Line: {line}");
+            line = await streamReader2.ReadLineAsync();
+        }
+    }
+
+}
+// 実行する
 await ReadWithStreamReaderAsync();
