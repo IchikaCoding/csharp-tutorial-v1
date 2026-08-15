@@ -146,7 +146,7 @@ string rootPath = AppContext.BaseDirectory;
 string poseidonPath = Path.Combine(rootPath, "poseidon.txt");
 async Task CreatePoseidonFileAsync()
 {
-
+    string tempPath = Path.Combine(rootPath, "poseidon-temp.temp");
     CharacterClass mainCharacter = new CharacterClass()
     {
         CharacterName = "Ichika",
@@ -157,19 +157,35 @@ async Task CreatePoseidonFileAsync()
         CharacterName = "pochipochiFriends",
         Level = 12000
     };
-    Console.WriteLine(mainCharacter.CharacterName);
+    // Console.WriteLine(mainCharacter.CharacterName);
     // 文字列を入れ込みたい
     // byte[]に入れる
     // stream.Write(byte[] )
     byte[] mainCharBytes = Encoding.UTF8.GetBytes($"名前は、{mainCharacter.CharacterName}です！");
     byte[] supportCharBytes = Encoding.UTF8.GetBytes($"名前は、{supportCharacter.CharacterName}です！");
     //  FileMode.Createが上書き。だから、FileStreamを作成した時点で中身0になるらしい
-    await using FileStream fileStream = new FileStream(poseidonPath, FileMode.Create, FileAccess.Write);
-    fileStream.Write(mainCharBytes);
-    fileStream.Write(supportCharBytes);
+    await using (FileStream fileTempStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write))
+    {
+        fileTempStream.Write(mainCharBytes);
+        fileTempStream.Write(supportCharBytes);
+        if (!File.Exists(tempPath))
+        {
+            throw new Exception("一時ファイルがありません。");
+        }
+    }
+    // 第一引数は一時ファイル、第二引数はコピー先
+    File.Move(tempPath, poseidonPath, overwrite: true);
 }
 
-await CreatePoseidonFileAsync();
+/** 実行コードです **/
+try
+{
+    await CreatePoseidonFileAsync();
+}
+catch (Exception error)
+{
+    Console.WriteLine(error.Message);
+}
 
 // ＝＝＝＝＝＝＝FileStreamで読みたいじゃんプロジェクト＝＝＝＝＝＝＝
 
@@ -260,9 +276,7 @@ catch (Exception error)
 
 // await ReadWithStreamReaderAsync();
 
-
-// ～練習してみよう～
-
+/* ～練習してみよう～ */
 async Task ReadWithStreamReaderAsync()
 {
     // StreamReaderを作成
@@ -276,6 +290,7 @@ async Task ReadWithStreamReaderAsync()
 
     using (StreamReader streamReader2 = new StreamReader(streamPracticePath))
     {
+        // string型は参照型だから再代入できる！
         string? line = await streamReader2.ReadLineAsync();
         while (line != null)
         {
