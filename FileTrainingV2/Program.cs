@@ -304,3 +304,32 @@ async Task ReadWithStreamReaderAsync()
 }
 // 実行する
 await ReadWithStreamReaderAsync();
+
+// ============================================
+
+// コンパイルエラーになるのか確認
+Weapon weapon = new Weapon("温泉まんじゅう攻撃", 9999, "WP-2525", DateTime.Now, 15);
+
+// weapon.SerialNumber = "WP-999";
+// weapon.CreatedAt = DateTime.Now;
+// weapon.AttackPower = 9999999;
+// weapon.Durability = 100;
+
+weapon.Use();
+Console.WriteLine(weapon.Durability);
+
+
+try
+{
+    var invalidWeapon = new Weapon(
+        "",
+        -100,
+        "",
+        DateTime.Now,
+        -5
+    );
+}
+catch (Exception error)
+{
+    Console.WriteLine($"作成できませんでした：{error.Message}");
+}
