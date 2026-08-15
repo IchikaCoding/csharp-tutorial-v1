@@ -164,6 +164,8 @@ async Task CreatePoseidonFileAsync()
     byte[] mainCharBytes = Encoding.UTF8.GetBytes($"名前は、{mainCharacter.CharacterName}です！");
     byte[] supportCharBytes = Encoding.UTF8.GetBytes($"名前は、{supportCharacter.CharacterName}です！");
     //  FileMode.Createが上書き。だから、FileStreamを作成した時点で中身0になるらしい
+    // using はどこまでで閉じるのか括弧で指定するとよい。
+    // File.Move()は、FileStreamを閉じてから実行する。
     await using (FileStream fileTempStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write))
     {
         fileTempStream.Write(mainCharBytes);
