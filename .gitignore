@@ -1,11 +1,52 @@
-# Build results
-bin/
-obj/
+# .NET build output
+**/bin/
+**/obj/
+artifacts/
 
-# Visual Studio
+# Visual Studio / IDE user settings
 .vs/
 *.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# OS
+# Test and code-coverage output
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet packages and generated package files
+**/packages/
+*.nupkg
+*.snupkg
+
+# Local deployment/service settings
+**/Properties/serviceDependencies.local.json
+**/Properties/serviceDependencies.*.local.json
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.Local.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Operating system files
 .DS_Store
 Thumbs.db
+Desktop.ini
