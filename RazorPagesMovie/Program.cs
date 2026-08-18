@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 
+// スキャフォールディングによって生成された部分。
+// DBとのアクセスしたりする実行環境の用意のコード？
 builder.Services.AddDbContext<RazorPagesMovieContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
