@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @* IndexModelを使用する、と最初に宣言している *@
+                @* modelはどこで入ったのか不明だけど、IndexModelを使用して、ListからTitleを取得している *@
+                @* model.Movie[0]がnullでも例外は発生しない。Titleプロパティを見ているらしい *@
                 @Html.DisplayNameFor(model => model.Movie[0].Title)
             </th>
             <th>
