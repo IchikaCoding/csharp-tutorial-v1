@@ -3,10 +3,27 @@
 @* 画面と対応するクラスを指定する *@
 @* <p>HelloModel</p>で使えるのかと思ったらこのクラスの使い方わからなかった *@
 @model RazorPagesMovie.Pages.Practice.HelloModel
+@{
+    ViewData["Title"] = "Practice";
+}
 
+
+@* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    
+</body>
+</html> *@
 <h1>Razor Page の練習</h1>
 
 <p>こんちか。いちかでっす。</p>
 <p>最初のRazor Pageでっす。</p>
 
 <p>最近のお気に入りは、つめた～い麦茶でっす。</p>
+
+@* ここでC# からデータを渡す *@
