@@ -1,0 +1,26 @@
+@page
+@model RazorPagesMovie.Pages.Practice.FavoriteModel
+
+@{
+    ViewData["Title"] = "推し料理紹介";
+}
+
+<h1>推し料理紹介フォーム</h1>
+<p>このフォームは、推しの料理を紹介するフォームです。<br>
+    どしどし、ご応募ください！
+</p>
+
+@* 送信すると、HTTPが？Postリクエストを送る。 *@
+<form method="post">
+    <div>
+        <label for="name">Name</label>
+        @* name属性は、サーバーに送る時のキーになるらしい *@
+        <input type="text" id="name" name="Name"></>
+        <button type="submit">Submit</button>
+    </div>
+
+</form>
+@* TODO: ＠の使い方が難しい。いるところと要らないところがわからない。 *@
+@if(!string.IsNullOrWhiteSpace(Model.ResultMessage)){
+    <p>@Model.ResultMessage</p>
+}
