@@ -23,4 +23,12 @@
 @* FormatProviderというものがありました。ここでフォーマットで指定できる *@
 @* ここがリロードごとに更新されるってことは、OnGetがその都度動いているってこと *@
 <p>現在の時刻： @Model.DisplayAt.ToString("yyyy/MM/dd, HH:mm:ss")</p>
+<p>現在の西暦： @Model.DisplayAt.Year 年</p>
 
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    <p class="card-text">人気No.1です！</p>
+    <a href="#" class="btn btn-primary">注文する</a>
+  </div>
+</div>
