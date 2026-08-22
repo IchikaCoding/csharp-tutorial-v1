@@ -12,8 +12,7 @@ namespace RazorPagesMovie.Pages.Practice
         public void OnPost()
         {
             ResultMessage = $"{Name}さん、Post成功しましたyo🎉";
-            // コンソールに表示されないのはなぜ？
-            Console.WriteLine(ResultMessage + ResultMessage);
+            Console.WriteLine("ResultMessage: " + ResultMessage);
         }
     }
 }
