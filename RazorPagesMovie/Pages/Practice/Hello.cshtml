@@ -8,17 +8,6 @@
 }
 
 
-@* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-</head>
-<body>
-    
-</body>
-</html> *@
 <h1>Razor Page の練習</h1>
 
 <p>こんちか。いちかでっす。</p>
@@ -27,3 +16,11 @@
 <p>最近のお気に入りは、つめた～い麦茶でっす。</p>
 
 @* ここでC# からデータを渡す *@
+
+@* CSからメッセージを表示する *@
+@* Modelは`@model`で指定した値が使われる *@
+<p>メッセージ： @Model.Message</p>
+@* FormatProviderというものがありました。ここでフォーマットで指定できる *@
+@* ここがリロードごとに更新されるってことは、OnGetがその都度動いているってこと *@
+<p>現在の時刻： @Model.DisplayAt.ToString("yyyy/MM/dd, HH:mm:ss")</p>
+
