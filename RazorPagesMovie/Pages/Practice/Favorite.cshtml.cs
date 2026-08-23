@@ -1,20 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Practice
 {
     public class FavoriteModel : PageModel
     {
+        // ここでは、作ったModelを使用してInputの中身をいれる
         [BindProperty]
-        public string Name { get; set; } = "";
+        public FavoriteInput Input { get; set; } = new FavoriteInput();
+        // 送信されたのかどうか確認するためのプロパティ
+        public bool Submitted { get; private set; }
+        // 送信された時刻のプロパティを追加
+        public DateTime SubmittedAt { get; private set; }
         public string ResultMessage { get; private set; } = "";
         public void OnGet() { }
-        public void OnPost()
+        // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
+        public IActionResult OnPost()
         {
             // Nameプロパティに入力値が入るのは、OnPostが実行される前。
             // だからここが実行される頃にはNameが入っています
-            ResultMessage = $"{Name}さん、Post成功しましたyo🎉";
+            ResultMessage = $"{Input.Name}さん、Post成功しましたyo🎉";
             Console.WriteLine("ResultMessage: " + ResultMessage);
+
+            // Page()を返すようにする
+            Submitted = true;
+            SubmittedAt = DateTime.Now;
+            // 同じページに入力結果を表示したいから使うらしい
+            return Page();
         }
     }
 }

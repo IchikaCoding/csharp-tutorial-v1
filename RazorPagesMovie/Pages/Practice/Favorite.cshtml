@@ -12,17 +12,72 @@
 
 @* 送信すると、HTTPが？Postリクエストを送る。 *@
 <form method="post">
+    @* TODO: 画面の調整はあとからやる*@
     <div>
-        <label for="name">Name</label>
-        @* name属性は、サーバーに送る時のキーになるらしい *@
-        @* ここの値はプロパティ名と一致させる *@
-        <input type="text" id="name" name="Name"></>
+        <div>
+            @* aps-forはタグヘルパーという。*@
+            @* `asp-for` が `id`、`name`、`type` などをプロパティに合わせて生成 *@ 
+            @* タグヘルパーは、_ViewImportsというファイルのおかげで使えるようになっている *@
+            <label asp-for="Input.Name">Name</label>
+            @* name属性は、サーバーに送る時のキーになるらしい *@
+            @* ここの値はプロパティ名と一致させる *@
+            <input asp-for="Input.Name"></>
+        </div>
+        <div>
+            <label asp-for="Input.Title"></label>
+            <input type="text" asp-for="Input.Title">
+        </div>
+        @* TODO: ここからコードいい感じか調べる。 *@
+        <div>
+            <label asp-for="Input.Category"></label>
+            <select asp-for="Input.Category">
+                <option value="和食・日本料理">和食・日本料理</option>
+                <option value="中華・アジア料理">中華・アジア料理</option>
+                <option value="洋食・西洋料理">洋食・西洋料理</option>
+                <option value="その他">その他</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Input.Reason"></label>
+            <textarea asp-for="Input.Reason"></textarea>
+        </div>
+        <div>
+            <label asp-for="Input.Rating"></label>
+            <input asp-for="Input.Rating" min="0" max="10">
+        </div>
+        <div>
+            @* TODO: ここでチェックボックスのTypeを選んでも、プロパティのboolと競合しないの？ *@
+            <input type="checkbox" asp-for="Input.ContainsSpoiler">
+            <label asp-for="Input.ContainsSpoiler"></label>
+        </div>
         <button type="submit">Submit</button>
     </div>
-
 </form>
 @* TODO: ＠の使い方が難しい。いるところと要らないところがわからない。 *@
 @* 逆にどうしてC# の中にpタグをいれる事ができたの？ *@
-@if(!string.IsNullOrWhiteSpace(Model.ResultMessage)){
+@* @if(!string.IsNullOrWhiteSpace(Model.ResultMessage)){
     <p>@Model.ResultMessage</p>
+} *@
+
+@* ================表示部分=================== *@
+
+@if(Model.Submitted){
+    <br />
+    <section>
+        <dl>
+            <dt>投稿者</dt>
+             <dd>@Model.Input.Name</dd>
+            <dt>料理名</dt>
+             <dd>@Model.Input.Title</dd>
+            <dt>カテゴリー</dt>
+             <dd>@Model.Input.Category</dd>
+            <dt>おすすめ理由</dt>
+             <dd>@Model.Input.Category</dd>
+            <dt>おすすめ度</dt>
+             <dd>@Model.Input.Rating</dd>
+             <dt>ネタバレの有無</dt>
+             <dd>@(Model.Input.ContainsSpoiler ? "含みます" : "含みません")</dd>
+        </dl>
+        <p>送信時間： @Model.SubmittedAt.ToString("HH:mm:ss")</p>
+    </section>
 }
