@@ -15,12 +15,14 @@
     <div>
         <label for="name">Name</label>
         @* name属性は、サーバーに送る時のキーになるらしい *@
+        @* ここの値はプロパティ名と一致させる *@
         <input type="text" id="name" name="Name"></>
         <button type="submit">Submit</button>
     </div>
 
 </form>
 @* TODO: ＠の使い方が難しい。いるところと要らないところがわからない。 *@
+@* 逆にどうしてC# の中にpタグをいれる事ができたの？ *@
 @if(!string.IsNullOrWhiteSpace(Model.ResultMessage)){
     <p>@Model.ResultMessage</p>
 }
