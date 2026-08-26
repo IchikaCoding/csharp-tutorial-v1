@@ -43,6 +43,7 @@
         </div>
         <div>
             <label asp-for="Input.Rating"></label>
+            @* これはHTML側の入力制限。サーバー側の制限をつけてみる *@
             <input asp-for="Input.Rating" min="0" max="10">
         </div>
         <div>
