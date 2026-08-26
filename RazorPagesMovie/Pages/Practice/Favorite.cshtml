@@ -12,6 +12,7 @@
 
 @* 送信すると、HTTPが？Postリクエストを送る。 *@
 <form method="post">
+    <div asp-validation-summary="ModelOnly" class="tenxt-danger"></div>
     @* TODO: 画面の調整はあとからやる*@
     <div>
         <div>
@@ -22,10 +23,12 @@
             @* name属性は、サーバーに送る時のキーになるらしい *@
             @* ここの値はプロパティ名と一致させる *@
             <input asp-for="Input.Name"></>
+            <span asp-validation-for="Input.Name" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="Input.Title"></label>
             <input type="text" asp-for="Input.Title">
+            <span asp-validation-for="Input.Title" class="text-danger"></span>
         </div>
         @* TODO: ここからコードいい感じか調べる。 *@
         <div>
@@ -36,20 +39,24 @@
                 <option value="洋食・西洋料理">洋食・西洋料理</option>
                 <option value="その他">その他</option>
             </select>
+            <span asp-validation-for="Input.Category" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="Input.Reason"></label>
             <textarea asp-for="Input.Reason"></textarea>
+            <span asp-validation-for="Input.Reason" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="Input.Rating"></label>
             @* これはHTML側の入力制限。サーバー側の制限をつけてみる *@
             <input asp-for="Input.Rating" min="0" max="10">
+            <span asp-validation-for="Input.Rating" class="text-danger"></span>
         </div>
         <div>
             @* TODO: ここでチェックボックスのTypeを選んでも、プロパティのboolと競合しないの？ *@
             <input type="checkbox" asp-for="Input.ContainsSpoiler">
             <label asp-for="Input.ContainsSpoiler"></label>
+            <span asp-validation-for="Input.ContainsSpoiler" class="text-danger"></span>
         </div>
         <button type="submit">Submit</button>
     </div>

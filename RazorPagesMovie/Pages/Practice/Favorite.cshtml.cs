@@ -19,6 +19,13 @@ namespace RazorPagesMovie.Pages.Practice
         // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
         public IActionResult OnPost()
         {
+            //モデルバインディングとモデル検証でエラーがないならTrue。エラーがあるならfalse
+            // MVCでもよくでてくるif文
+            if (!ModelState.IsValid)
+            {
+                // Page()はページを再表示してくれる。
+                return Page();
+            }
             // Nameプロパティに入力値が入るのは、OnPostが実行される前。
             // だからここが実行される頃にはNameが入っています
             ResultMessage = $"{Input.Name}さん、Post成功しましたyo🎉";

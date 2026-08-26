@@ -13,7 +13,7 @@ namespace RazorPagesMovie.Models
         public string Name { get; set; } = "";
 
         [Display(Name = "推しの料理のタイトル")]
-        [Required(ErrorMessage = "推し料理が入力されてませんが？！")]
+        [Required(ErrorMessage = "推し料理が入力されてません。推し料理はないのですか？")]
         [StringLength(60, MinimumLength = 1, ErrorMessage = "料理名は1文字以上、60文字以内で入力してください。")]
         public string Title { get; set; } = "";
         [Display(Name = "料理のカテゴリー")]
