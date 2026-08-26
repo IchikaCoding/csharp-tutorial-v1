@@ -19,6 +19,7 @@ namespace RazorPagesMovie.Pages.Practice
         // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
         public IActionResult OnPost()
         {
+            Console.WriteLine("OnPostが実行されました。");
             //モデルバインディングとモデル検証でエラーがないならTrue。エラーがあるならfalse
             // MVCでもよくでてくるif文
             if (!ModelState.IsValid)

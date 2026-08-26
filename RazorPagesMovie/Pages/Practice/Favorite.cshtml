@@ -1,4 +1,5 @@
 @page
+@* ここのmodelに書いてあるクラスがHTML内の`@Model`で使われている *@
 @model RazorPagesMovie.Pages.Practice.FavoriteModel
 
 @{
@@ -88,4 +89,13 @@
         </dl>
         <p>送信時間： @Model.SubmittedAt.ToString("HH:mm:ss")</p>
     </section>
+}
+
+@* これなんだろう？ *@
+
+@* _ValidationScriptsPartialというファイルがあった。
+ここでJQueryでクライアント側の検証に必要なJSライブラリを読み込むための部分ビューらしい*@
+@* サーバーに送る前に、ブラウザで検証＆お知らせするためにある。最後の検証は、サーバーサイドだけど。 *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

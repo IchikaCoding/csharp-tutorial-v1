@@ -9,11 +9,11 @@ namespace RazorPagesMovie.Models
         // 必須なのになかった場合はエラー
         [Required(ErrorMessage = "名前を入力してください")]
         // 第一引数は、Maxです
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "名前は2文字以上20文字以内で入力してください。")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "名前は2文字以上50文字以内で入力してください。")]
         public string Name { get; set; } = "";
 
         [Display(Name = "推しの料理のタイトル")]
-        [Required(ErrorMessage = "推し料理が入力されてません。推し料理はないのですか？")]
+        [Required(ErrorMessage = "推し料理が入力されてません")]
         [StringLength(60, MinimumLength = 1, ErrorMessage = "料理名は1文字以上、60文字以内で入力してください。")]
         public string Title { get; set; } = "";
         [Display(Name = "料理のカテゴリー")]
