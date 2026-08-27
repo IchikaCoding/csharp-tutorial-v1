@@ -40,6 +40,8 @@
                 <option value="洋食・西洋料理">洋食・西洋料理</option>
                 <option value="その他">その他</option>
             </select>
+            @* もしModelState.IsValidがfalseだった場合、エラーがあるプロパティのタグのところにエラーを表示する。
+            asp-validation-forのおかげらしいよ（汗） *@
             <span asp-validation-for="Input.Category" class="text-danger"></span>
         </div>
         <div>

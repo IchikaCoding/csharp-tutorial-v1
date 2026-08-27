@@ -27,6 +27,7 @@ namespace RazorPagesMovie.Pages.Practice
                 // Page()はページを再表示してくれる。
                 return Page();
             }
+            Console.WriteLine("ModelState: " + ModelState);
             // Nameプロパティに入力値が入るのは、OnPostが実行される前。
             // だからここが実行される頃にはNameが入っています
             ResultMessage = $"{Input.Name}さん、Post成功しましたyo🎉";

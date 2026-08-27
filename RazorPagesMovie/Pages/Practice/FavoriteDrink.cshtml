@@ -1,0 +1,23 @@
+﻿@page
+@model RazorPagesMovie.Pages.Practice.FavoriteDrinkModel
+
+<h1>美味しい飲み物フォーム</h1>
+
+<form method="post">
+    <div>
+        <lavel asp-for="Input.Name"></lavel>
+        <input asp-for="Input.Name"/>
+        <span asp-validation-for="Input.Name" class="text-danger"></span>
+    </div>
+    <div>
+        <lavel asp-for="Input.Rating"></lavel>
+        <input asp-for="Input.Rating" />
+        <span asp-validation-for="Input.Rating" class="text-danger"></span>
+    </div>
+    <button type="submit">送信</button>
+</form>
+
+@if (Model.Submitted)
+{
+    <p>送信に成功しました！</p>
+}
