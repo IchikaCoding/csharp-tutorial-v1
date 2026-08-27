@@ -16,7 +16,8 @@ namespace RazorPagesMovie.Pages.Practice
         {
             if (!ModelState.IsValid)
             {
-                Submitted = false;
+                // 初期値falseだからこれいらない↓
+                //Submitted = false;
                 return Page();
             }
             Console.WriteLine("OnPost()が実行できました！");
