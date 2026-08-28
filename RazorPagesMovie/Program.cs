@@ -1,5 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+
+// Windowsのイベントログではなく、ターミナルとデバッグ出力へログを表示する。
+// これにより、イベントログへの書き込み権限がない環境でも実行できる。
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
 var connectionString = builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.");
 
 // スキャフォールディングによって生成された部分。
