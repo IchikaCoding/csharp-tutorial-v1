@@ -51,5 +51,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @* requiredをtrueにした場合、Scriptsのセクションがないと、例外発生する *@
     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("FavoriteScripts", required: false)
+    @await RenderSectionAsync("AlertScripts", required: false)
 </body>
 </html>

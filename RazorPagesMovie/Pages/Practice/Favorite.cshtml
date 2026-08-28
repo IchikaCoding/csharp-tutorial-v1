@@ -11,6 +11,10 @@
     どしどし、ご応募ください！
 </p>
 
+@section AlertScripts{
+    <partial name="_PracticeMessage" />
+}
+
 @* 送信すると、HTTPが？Postリクエストを送る。 *@
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="tenxt-danger"></div>
@@ -99,6 +103,10 @@
 ここでJQueryでクライアント側の検証に必要なJSライブラリを読み込むための部分ビューらしい*@
 @* サーバーに送る前に、ブラウザで検証＆お知らせするためにある。最後の検証は、サーバーサイドだけど。 *@
 @* Partialは、タグヘルパー *@
-@section Scripts {
+@* @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+} *@
+
+@section FavoriteScripts {
+    <script>console.log("Favorite.cshtmlは動きました✨️")</script>
 }
