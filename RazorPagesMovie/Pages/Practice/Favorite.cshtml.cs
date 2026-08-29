@@ -17,11 +17,14 @@ namespace RazorPagesMovie.Pages.Practice
         public string ResultMessage { get; private set; } = "";
         public void OnGet() { }
         // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
+        // OnPostが実行されると、自動でBindPropertyが動くよ。
         public IActionResult OnPost()
         {
             Console.WriteLine("OnPostが実行されました。");
             //モデルバインディングとモデル検証でエラーがないならTrue。エラーがあるならfalse
             // MVCでもよくでてくるif文
+            // このIF文を削除した場合、成功した日付とかは表示しない
+            // すぐエラーを表示できるようにreturn Page()をやっていました。
             if (!ModelState.IsValid)
             {
                 // Page()はページを再表示してくれる。

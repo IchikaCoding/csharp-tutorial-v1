@@ -50,6 +50,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @* requiredをtrueにした場合、Scriptsのセクションがないと、例外発生する *@
+    @* このScriptsは、Jqueryをつかった検証処理が入っている。
+    これを実行する場所は、 `jquery.min.js`のscriptタグのうしろ。
+    どうして？👉️jqueryの土台を作ってから検証用のJSを読み込む必要があるらしい（？）*@
+    @* ↑これは、処理される順番にJqueryの読み込みとかを使用をしたらOK *@
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("FavoriteScripts", required: false)
     @await RenderSectionAsync("AlertScripts", required: false)
