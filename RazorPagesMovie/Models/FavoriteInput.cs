@@ -28,5 +28,10 @@ namespace RazorPagesMovie.Models
         public int Rating { get; set; }
         [Display(Name = "ネタバレを含む")]
         public bool ContainsSpoiler { get; set; }
+        // 発売年
+        // TODO: 現在の年ってどうやって計算するの？DateTime.Now.Yearでやれそうなのに。
+        [Display(Name = "発売年")]
+        [Range(1900, int.MaxValue, ErrorMessage = "発売年は1900年から現在の年までで入力してください。")]
+        public int ReleaseYear { get; set; }
     }
 }

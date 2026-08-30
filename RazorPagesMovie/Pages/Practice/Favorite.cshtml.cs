@@ -15,16 +15,29 @@ namespace RazorPagesMovie.Pages.Practice
         // 送信された時刻のプロパティを追加
         public DateTime SubmittedAt { get; private set; }
         public string ResultMessage { get; private set; } = "";
-        public void OnGet() { }
+        public void OnGet()
+        {
+            Practice();
+        }
         // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
         // OnPostが実行されると、自動でBindPropertyが動くよ。
         public IActionResult OnPost()
         {
             Console.WriteLine("OnPostが実行されました。");
+            // TODO: ここに年数の制約をいれる
+            if (Input.ReleaseYear > DateTime.Now.Year)
+            {
+                ModelState.AddModelError("Input.ReleaseYear", $"発売年数が、現在の年({DateTime.Now.Year}年)を超えています。");
+                // これっていれたらダメ？
+                // AddModelErrorを実行すると、ModelStateがfalseになる。👉️だからここで再表示する必要なし！
+                // return Page();
+            }
+
             //モデルバインディングとモデル検証でエラーがないならTrue。エラーがあるならfalse
             // MVCでもよくでてくるif文
             // このIF文を削除した場合、成功した日付とかは表示しない
             // すぐエラーを表示できるようにreturn Page()をやっていました。
+            // ここだけで再表示処理を入れておく👉️上で追加されたエラーが一度に表示できる。
             if (!ModelState.IsValid)
             {
                 // Page()はページを再表示してくれる。
@@ -41,6 +54,18 @@ namespace RazorPagesMovie.Pages.Practice
             SubmittedAt = DateTime.Now;
             // 同じページに入力結果を表示したいから使うらしい
             return Page();
+        }
+        private void Practice()
+        {
+            // System.DateTimeが表示される
+            Console.WriteLine(typeof(DateTime));
+            // 2026が表示された
+            Console.WriteLine(DateTime.Now.Year);
+            // TODO: Yearが表示される。nameofの定義が見つからない。
+            // 変数とか型とかメンバーの文字列定数が生成されるらしい。
+            Console.WriteLine(nameof(DateTime.Now.Year));
+            // TODO: どこで表示できるのか考えよう。
+            System.Diagnostics.Debug.WriteLine("Hello");
         }
     }
 }

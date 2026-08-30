@@ -6,7 +6,7 @@
     ViewData["Title"] = "推し料理紹介";
 }
 
-<h1>推し料理紹介フォーム</h1>
+<h1>推し料理紹介フォーム / Favorite Dish Submission Form</h1>
 <p>このフォームは、推しの料理を紹介するフォームです。<br>
     どしどし、ご応募ください！
 </p>
@@ -17,7 +17,8 @@
 
 @* 送信すると、HTTPが？Postリクエストを送る。 *@
 <form method="post">
-    <div asp-validation-summary="ModelOnly" class="tenxt-danger"></div>
+    @* ModelOnly は「特定のプロパティに結びついたエラー」を表示しません *@
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @* TODO: 画面の調整はあとからやる*@
     <div>
         <div>
@@ -27,12 +28,12 @@
             <label asp-for="Input.Name">Name</label>
             @* name属性は、サーバーに送る時のキーになるらしい *@
             @* ここの値はプロパティ名と一致させる *@
-            <input asp-for="Input.Name"></>
+            <input asp-for="Input.Name" />
             <span asp-validation-for="Input.Name" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="Input.Title"></label>
-            <input type="text" asp-for="Input.Title">
+            <input type="text" asp-for="Input.Title"/>
             <span asp-validation-for="Input.Title" class="text-danger"></span>
         </div>
         @* TODO: ここからコードいい感じか調べる。 *@
@@ -56,14 +57,20 @@
         <div>
             <label asp-for="Input.Rating"></label>
             @* これはHTML側の入力制限。サーバー側の制限をつけてみる *@
-            <input asp-for="Input.Rating" min="0" max="10">
+            <input asp-for="Input.Rating" min="0" max="10"/>
             <span asp-validation-for="Input.Rating" class="text-danger"></span>
         </div>
         <div>
             @* TODO: ここでチェックボックスのTypeを選んでも、プロパティのboolと競合しないの？ *@
-            <input type="checkbox" asp-for="Input.ContainsSpoiler">
+            <input type="checkbox" asp-for="Input.ContainsSpoiler"/>
             <label asp-for="Input.ContainsSpoiler"></label>
             <span asp-validation-for="Input.ContainsSpoiler" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Input.ReleaseYear"></label>
+            @* Type属性も、asp-forで結びついたプロパティの型を反映してくれるからいらない。 *@
+            <input asp-for="Input.ReleaseYear" min="1900" max="@DateTime.Now.Year"  /> 
+            <span asp-validation-for="Input.ReleaseYear" class="text-danger"></span>        
         </div>
         <button type="submit">Submit</button>
     </div>
@@ -81,17 +88,19 @@
     <section>
         <dl>
             <dt>投稿者</dt>
-             <dd>@Model.Input.Name</dd>
+            <dd>@Model.Input.Name</dd>
             <dt>料理名</dt>
-             <dd>@Model.Input.Title</dd>
+            <dd>@Model.Input.Title</dd>
             <dt>カテゴリー</dt>
-             <dd>@Model.Input.Category</dd>
+            <dd>@Model.Input.Category</dd>
             <dt>おすすめ理由</dt>
-             <dd>@Model.Input.Reason</dd>
+            <dd>@Model.Input.Reason</dd>
             <dt>おすすめ度</dt>
-             <dd>@Model.Input.Rating</dd>
-             <dt>ネタバレの有無</dt>
-             <dd>@(Model.Input.ContainsSpoiler ? "含みます" : "含みません")</dd>
+            <dd>@Model.Input.Rating</dd>
+            <dt>ネタバレの有無</dt>
+            <dd>@(Model.Input.ContainsSpoiler ? "含みます" : "含みません")</dd>
+            <dt>発売の年</dt>
+            <dd>@Model.Input.ReleaseYear</dd>
         </dl>
         <p>送信時間： @Model.SubmittedAt.ToString("HH:mm:ss")</p>
     </section>

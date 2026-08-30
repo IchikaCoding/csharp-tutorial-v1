@@ -17,6 +17,7 @@ namespace RazorPagesMovie.Pages.Practice
             DisplayAt = DateTime.Now;
             Name = "いちか丼定食";
         }
+
     }
 
 }
