@@ -24,10 +24,15 @@ namespace RazorPagesMovie.Pages.Practice
         public IActionResult OnPost()
         {
             Console.WriteLine("OnPostが実行されました。");
+            // ModelState.AddModelError("", "これはフォーム全体のエラーです。");
+            if (Input.Rating == 10 && Input.ContainsSpoiler == false)
+            {
+                ModelState.AddModelError("", "おすすめ度10の場合は、ネタバレの有無を確認してください");
+            }
             // TODO: ここに年数の制約をいれる
             if (Input.ReleaseYear > DateTime.Now.Year)
             {
-                ModelState.AddModelError("Input.ReleaseYear", $"発売年数が、現在の年({DateTime.Now.Year}年)を超えています。");
+                ModelState.AddModelError("Input.RealseYear", $"発売年数が、現在の年({DateTime.Now.Year}年)を超えています。");
                 // これっていれたらダメ？
                 // AddModelErrorを実行すると、ModelStateがfalseになる。👉️だからここで再表示する必要なし！
                 // return Page();

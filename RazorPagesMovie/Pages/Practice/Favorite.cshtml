@@ -69,7 +69,7 @@
         <div>
             <label asp-for="Input.ReleaseYear"></label>
             @* Type属性も、asp-forで結びついたプロパティの型を反映してくれるからいらない。 *@
-            <input asp-for="Input.ReleaseYear" min="1900" max="@DateTime.Now.Year"  /> 
+            <input asp-for="Input.ReleaseYear" /> 
             <span asp-validation-for="Input.ReleaseYear" class="text-danger"></span>        
         </div>
         <button type="submit">Submit</button>
