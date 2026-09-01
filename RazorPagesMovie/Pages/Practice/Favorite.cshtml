@@ -58,6 +58,7 @@
             <label asp-for="Input.Rating"></label>
             @* これはHTML側の入力制限。サーバー側の制限をつけてみる *@
             <input asp-for="Input.Rating" min="0" max="10"/>
+            @* <p asp-for="Input.Rating"></p> *@
             <span asp-validation-for="Input.Rating" class="text-danger"></span>
         </div>
         <div>
@@ -84,6 +85,8 @@
 @* ================表示部分=================== *@
 
 @if(Model.Submitted){
+    @* ＠の後ろは書けるタグが限られているらしい。brタグからDivタグに変更したらエラー治った✨️ *@
+    <div>
     <br />
     <section>
         <dl>
@@ -96,7 +99,9 @@
             <dt>おすすめ理由</dt>
             <dd>@Model.Input.Reason</dd>
             <dt>おすすめ度</dt>
-            <dd>@Model.Input.Rating</dd>
+            @* <dd>@Model.Input.Rating</dd>*@
+            <dd>@(new string('★',Model.Input.Rating))</dd>
+            <dd>ここ</dd>
             <dt>ネタバレの有無</dt>
             <dd>@(Model.Input.ContainsSpoiler ? "含みます" : "含みません")</dd>
             <dt>発売の年</dt>
@@ -104,6 +109,7 @@
         </dl>
         <p>送信時間： @Model.SubmittedAt.ToString("HH:mm:ss")</p>
     </section>
+    </div>
 }
 
 @* これなんだろう？ *@
