@@ -43,6 +43,7 @@
                 <option value="和食・日本料理">和食・日本料理</option>
                 <option value="中華・アジア料理">中華・アジア料理</option>
                 <option value="洋食・西洋料理">洋食・西洋料理</option>
+                <option value="根菜類">根菜類</option>
                 <option value="その他">その他</option>
             </select>
             @* もしModelState.IsValidがfalseだった場合、エラーがあるプロパティのタグのところにエラーを表示する。
@@ -73,7 +74,8 @@
             <input asp-for="Input.ReleaseYear" /> 
             <span asp-validation-for="Input.ReleaseYear" class="text-danger"></span>        
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button asp-page-handler="Preview" class="btn btn-secondary">Preview</button>
     </div>
 </form>
 @* TODO: ＠の使い方が難しい。いるところと要らないところがわからない。 *@
@@ -100,8 +102,7 @@
             <dd>@Model.Input.Reason</dd>
             <dt>おすすめ度</dt>
             @* <dd>@Model.Input.Rating</dd>*@
-            <dd>@(new string('★',Model.Input.Rating))</dd>
-            <dd>ここ</dd>
+            <dd>@(new string('★',Model.Input.Rating) + new string('☆', 10-Model.Input.Rating))</dd>
             <dt>ネタバレの有無</dt>
             <dd>@(Model.Input.ContainsSpoiler ? "含みます" : "含みません")</dd>
             <dt>発売の年</dt>

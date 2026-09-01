@@ -24,6 +24,11 @@ namespace RazorPagesMovie.Pages.Practice
         public IActionResult OnPost()
         {
             Console.WriteLine("OnPostが実行されました。");
+            // アプリ独自のルールのことをビジネスルールというらしい。
+            if (Input.Title == Input.Reason)
+            {
+                ModelState.AddModelError("", "タイトルとおすすめ理由が一致しています。変更してください。");
+            }
             // ModelState.AddModelError("", "これはフォーム全体のエラーです。");
             if (Input.Rating == 10 && Input.ContainsSpoiler == false)
             {
@@ -32,7 +37,7 @@ namespace RazorPagesMovie.Pages.Practice
             // TODO: ここに年数の制約をいれる
             if (Input.ReleaseYear > DateTime.Now.Year)
             {
-                ModelState.AddModelError("Input.RealseYear", $"発売年数が、現在の年({DateTime.Now.Year}年)を超えています。");
+                ModelState.AddModelError("Input.ReleaseYear", $"発売年数が、現在の年({DateTime.Now.Year}年)を超えています。");
                 // これっていれたらダメ？
                 // AddModelErrorを実行すると、ModelStateがfalseになる。👉️だからここで再表示する必要なし！
                 // return Page();
@@ -60,6 +65,20 @@ namespace RazorPagesMovie.Pages.Practice
             // 同じページに入力結果を表示したいから使うらしい
             return Page();
         }
+
+        // TODO: OnPostPreviewメソッドを追加する
+        public IActionResult OnPostPreview()
+        {
+            Console.WriteLine("OnPostPreview()が実行されている");
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            Submitted = true;
+            SubmittedAt = DateTime.Now;
+            return Page();
+        }
+
         private void Practice()
         {
             // System.DateTimeが表示される
