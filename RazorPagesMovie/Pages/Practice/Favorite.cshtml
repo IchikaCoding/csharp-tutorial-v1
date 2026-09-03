@@ -74,8 +74,11 @@
             <input asp-for="Input.ReleaseYear" /> 
             <span asp-validation-for="Input.ReleaseYear" class="text-danger"></span>        
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button asp-page-handler="Preview" class="btn btn-secondary">Preview</button>
+        @* OnPost()はハンドラを明示していなかった。そうしたらPreviewのあとにOnPostが動かなくなった。→通常時もハンドラを指定してみたら治ったよ *@
+        <button type="submit" class="btn btn-primary" asp-page-handler="Submit">Submit</button>
+        @* POST + handler=Previewなら、 OnPostPreview()のメソッドが動く。*@
+        @* もし変な名前で一致するメソッドがないならOnPost()が動いていそう *@
+        <button type="submit" asp-page-handler="Preview" class="btn btn-secondary">Preview</button>
     </div>
 </form>
 @* TODO: ＠の使い方が難しい。いるところと要らないところがわからない。 *@

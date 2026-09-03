@@ -21,7 +21,7 @@ namespace RazorPagesMovie.Pages.Practice
         }
         // IActionResult は、このリクエストに対して、次に何を返すか、をあわらせる型
         // OnPostが実行されると、自動でBindPropertyが動くよ。
-        public IActionResult OnPost()
+        public IActionResult OnPostSubmit()
         {
             Console.WriteLine("OnPostが実行されました。");
             // アプリ独自のルールのことをビジネスルールというらしい。
