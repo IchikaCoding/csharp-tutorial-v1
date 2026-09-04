@@ -9,6 +9,7 @@
   <Project Path="OopTrainingV2/OopTrainingV2.csproj" Id="c9e34d93-5a98-40aa-b902-317f684f2c8b" />
   <Project Path="OutAndRefTraining/OutAndRefTraining.csproj" />
   <Project Path="RazorPagesMovie/RazorPagesMovie.csproj" Id="2097626d-e0be-490c-b689-6a30c4a214c8" />
+  <Project Path="RazorPagesStudyLog/RazorPagesStudyLog.csproj" Id="dfaffaa8-6ed4-43da-8cd0-39d3315884d7" />
   <Project Path="StructTraining/StructTraining.csproj" />
   <Project Path="StructTrainingV2/StructTrainingV2.csproj" />
   <Project Path="TwoDArrayTraining/TwoDArrayTraining.csproj" Id="d158f9d8-2842-487a-aa86-6279e2e712b8" />
