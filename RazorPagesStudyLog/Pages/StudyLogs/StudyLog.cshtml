@@ -8,21 +8,30 @@
 </div>
 
 <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>
-        <label for="">名前</label>
-        <input type="text" />
+        <div>
+            @* これはC# のStudyLogModelクラスにBindPropertyするために必要 *@
+            @* 👉️これをやったらFormに反映されるはず！ *@
+            <label asp-for="StudyLogInput.Name">名前</label>
+            <input asp-for="StudyLogInput.Name"/>
+            <span asp-validation-for="StudyLogInput.Name"></span>
+        </div>
+        <div>
+            <label asp-for="StudyLogInput.LearnedToday">今日学んだこと</label>
+            <textarea asp-for="StudyLogInput.LearnedToday"></textarea>
+            <span asp-validation-for="StudyLogInput.LearnedToday"></span>
+        </div>
+        <div>
+            <label asp-for="StudyLogInput.UnderstandingLevel">理解度</label>
+            <input asp-for="StudyLogInput.UnderstandingLevel"/>
+            <span asp-validation-for="StudyLogInput.UnderstandingLevel"></span>
+        </div>
+        <div>
+            <input type="checkbox" asp-for="StudyLogInput.NeedsReview" />
+            <label asp-for="StudyLogInput.NeedsReview">復習は必要ですか？</label>
+            <span asp-validation-for="StudyLogInput.NeedsReview"></span>
+        </div>
+        <button type="subimt" class="btn btn-primary">Submit</button>
     </div>
-    <div>
-        <label for="">今日学んだこと</label>
-        <textarea name="" id=""></textarea>
-    </div>
-    <div>
-        <label for="">理解度</label>
-        <input type="text"/>
-    </div>
-    <div>
-        <input type="checkbox">
-        <label for="">復習は必要ですか？</label>
-    </div>
-    <button type="subimt" class="btn btn-primary">Submit</button>
 </form>
