@@ -25,7 +25,7 @@ namespace RazorPagesMovie.Models
         [Display(Name = "おすすめ度")]
         [Required(ErrorMessage = "おすすめ度が入力されていません")]
         [Range(0, 10)]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
         [Display(Name = "ネタバレを含む")]
         public bool ContainsSpoiler { get; set; }
         // 発売年
