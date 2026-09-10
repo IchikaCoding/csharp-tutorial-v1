@@ -32,7 +32,8 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
             Console.WriteLine("SubmitedAt：" + SubmitedAt);
             Console.WriteLine("Submited：" + Submited);
             Console.WriteLine("Inputの中身これ：" + StudyLogInput.Name);
-            return Page();
+            TempData["SuccessMessage"] = "学習記録を受け付けました。";
+            return RedirectToPage();
         }
     }
 }
