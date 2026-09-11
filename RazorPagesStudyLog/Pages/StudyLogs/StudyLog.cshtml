@@ -36,6 +36,15 @@
     </div>
 </form>
 
+@* TODO: TempDataを使ってみよう！ *@
+@{
+    if(TempData.Peek("Message") != null)
+    {
+        <h3>@TempData.Peek("Message")</h3>
+    }
+}
+
+
 @* これを入れたら、名前の入力なしで送信が押せなくなった。 *@
 @* サーバー側で設定した必須項目👉️ブラウザ側に伝わる用になった👉️だから入力しないっていうのをブラウザ側が止めている。OnPostがされる前にエラー *@
 @section Scripts{

@@ -14,6 +14,10 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
         // 送信した時刻とか
         public bool Submited { get; private set; }
         public DateTime SubmitedAt { get; private set; }
+
+        [TempData]
+        public string? Message { get; set; }
+
         // 送信したかどうかのbool
         public void OnGet()
         {
@@ -32,7 +36,10 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
             Console.WriteLine("SubmitedAt：" + SubmitedAt);
             Console.WriteLine("Submited：" + Submited);
             Console.WriteLine("Inputの中身これ：" + StudyLogInput.Name);
+            // TODO: これは何の処理でどこで確認出来るのか調べる
             TempData["SuccessMessage"] = "学習記録を受け付けました。";
+            Message = $"お名前：{StudyLogInput.Name}";
+            // TODO: RedirectのときのHTTPリクエストを調べる
             return RedirectToPage();
         }
     }
