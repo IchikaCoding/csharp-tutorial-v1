@@ -8,8 +8,8 @@
 </div>
 
 
-@if(TempData.Peek("YattaMessage") != null){
-    <h3 class="text-danger">@TempData.Peek("YattaMessage")</h3>        
+@if(TempData["YattaMessage"] != null){
+    <h3 class="text-danger">@TempData["YattaMessage"]</h3>        
 }
 
 
@@ -44,9 +44,9 @@
 
 @* TODO: TempDataを使ってみよう！ *@
 @{
-    if(TempData.Peek("Message") != null)
+    if(TempData["Message"] != null)
     {
-        <h3>@TempData.Peek("Message")</h3>
+        <h3>@TempData["Message"]</h3>
     }
 }
 
