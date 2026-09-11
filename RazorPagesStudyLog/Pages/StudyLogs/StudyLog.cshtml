@@ -7,6 +7,12 @@
     <h1>いちかどんの学習記録</h1>
 </div>
 
+
+@if(TempData.Peek("YattaMessage") != null){
+    <h3 class="text-danger">@TempData.Peek("YattaMessage")</h3>        
+}
+
+
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>

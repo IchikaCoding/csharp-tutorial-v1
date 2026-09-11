@@ -15,8 +15,11 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
         public bool Submited { get; private set; }
         public DateTime SubmitedAt { get; private set; }
 
+        // TempDataに入れたいプロパティに一つずつつけておきましょう！
         [TempData]
         public string? Message { get; set; }
+        [TempData]
+        public string? YattaMessage { get; set; }
 
         // 送信したかどうかのbool
         public void OnGet()
@@ -37,7 +40,8 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
             Console.WriteLine("Submited：" + Submited);
             Console.WriteLine("Inputの中身これ：" + StudyLogInput.Name);
             // TODO: これは何の処理でどこで確認出来るのか調べる
-            TempData["SuccessMessage"] = "学習記録を受け付けました。";
+            // TempData["SuccessMessage"] = "学習記録を受け付けました。";
+            YattaMessage = $"学習記録を受け付けました。{StudyLogInput.LearnedToday}";
             Message = $"お名前：{StudyLogInput.Name}";
             // TODO: RedirectのときのHTTPリクエストを調べる
             return RedirectToPage();
