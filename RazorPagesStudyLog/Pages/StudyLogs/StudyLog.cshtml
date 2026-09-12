@@ -7,6 +7,12 @@
     <h1>いちかどんの学習記録</h1>
 </div>
 
+
+@if(TempData["YattaMessage"] != null){
+    <h3 class="text-danger">@TempData["YattaMessage"]</h3>        
+}
+
+
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div>
@@ -35,6 +41,15 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+@* TODO: TempDataを使ってみよう！ *@
+@{
+    if(TempData["Message"] != null)
+    {
+        <h3>@TempData["Message"]</h3>
+    }
+}
+
 
 @* これを入れたら、名前の入力なしで送信が押せなくなった。 *@
 @* サーバー側で設定した必須項目👉️ブラウザ側に伝わる用になった👉️だから入力しないっていうのをブラウザ側が止めている。OnPostがされる前にエラー *@
