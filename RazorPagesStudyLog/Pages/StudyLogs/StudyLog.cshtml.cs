@@ -41,7 +41,7 @@ namespace RazorPagesStudyLog.Pages.StudyLogs
             Console.WriteLine("Inputの中身これ：" + StudyLogInput.Name);
             // TODO: これは何の処理でどこで確認出来るのか調べる
             // TempData["SuccessMessage"] = "学習記録を受け付けました。";
-            TempData.Remove("SuccessMessage");
+            // TempData.Remove("SuccessMessage");
             TempData["YattaMessage"] = $"学習記録を受け付けました。{StudyLogInput.LearnedToday}";
             TempData["Message"] = $"お名前：{StudyLogInput.Name}";
             // TODO: RedirectのときのHTTPリクエストを調べる
