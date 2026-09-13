@@ -20,6 +20,9 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+// ルーティングの形式はここで指定されている
+// `id?`の?は省略可能ってことらしい。IDは指定しなくてもOK.
+// TODO: HomeとIndexは何のために書いてあるの？消しても何も変わらなかった、、、
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
