@@ -1,4 +1,5 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.ComponentModel.Design;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MvcMovie.Controllers
@@ -7,9 +8,12 @@ namespace MvcMovie.Controllers
     {
         //
         // GET: https://localhost:{PORT}/HelloWorld/
-        public string Index()
+        // Controllerのメソッドは、アクションメソッドと呼ばれる
+        // 通常の戻り値は、IActionResult型じゃなくて、ActionResultとかString派生のクラスとかになるらしい。
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            // これを戻り値にすると、Viewメソッドを呼び出します
+            return View();
         }
         // これはアクションメソッドという
         // 引数の1は、既定値らしい。値が指定されていないなら、1が設定される
@@ -28,6 +32,10 @@ namespace MvcMovie.Controllers
         public string Ichika()
         {
             return "いちかどん🍠";
+        }
+        public IActionResult Privacy()
+        {
+            return View();
         }
     }
 }
