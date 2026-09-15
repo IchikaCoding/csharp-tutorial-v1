@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using System.Reflection.PortableExecutable;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,10 +23,18 @@ namespace MvcMovie.Controllers
         // GET: http://localhost:{PORT}/HelloWorld/welcome?name=Ichika&days=353
         // MapControllerRouteというものがWelcomeメソッドに含まれている。これのおかげで、以下のURLでもアクセスできるようになったのかな？ 
         // https://localhost:{PORT}/HelloWorld/Welcome/3?name=ichika
-        public string Welcome(string name, int id = 1)
+        // public string Welcome(string name, int id = 1)
+        // {
+        //     // HtmlEncoder.Default.EncodeによってJSとか悪意のある入力からアプリを保護しているらしい
+        //     return HtmlEncoder.Default.Encode($"Hello {name}, ID: {id}");
+        // }
+        public IActionResult Welcome(string name, int numTimes = 1)
         {
             // HtmlEncoder.Default.EncodeによってJSとか悪意のある入力からアプリを保護しているらしい
-            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {id}");
+            // ViewDataはディクショナリ。Messageプロパティ？で保存している
+            ViewData["Message"] = "Hello" + name;
+            ViewData["NumTimes"] = numTimes;
+            return View();
         }
         //
         // GET: https://localhost:{PORT}/HelloWorld/Ichika/

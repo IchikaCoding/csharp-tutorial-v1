@@ -23,9 +23,10 @@ app.MapStaticAssets();
 // ルーティングの形式はここで指定されている
 // `id?`の?は省略可能ってことらしい。IDは指定しなくてもOK.
 // TODO: HomeとIndexは何のために書いてあるの？消しても何も変わらなかった、、、
+// `controller=Ichika`とか`action=Index`の右側を変えたら、デフォルトのControllerとメソッドを変更できる。
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=HelloWorld}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

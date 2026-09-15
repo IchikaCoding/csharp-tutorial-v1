@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @* CSHTMLで代入された値がここ(`@ViewData["Title"]`)に表示される *@
+    @* ViewDataがディクショナリ、Titleがプロパティ *@
     <title>@ViewData["Title"] - MvcMovie</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -52,6 +53,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+     @* おそらく、C# 側で定義されたビジネスロジックをブラウザへ反映させる処理を実行する（？？ *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
