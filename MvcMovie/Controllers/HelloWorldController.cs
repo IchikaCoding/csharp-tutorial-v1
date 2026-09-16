@@ -2,6 +2,7 @@
 using System.Reflection.PortableExecutable;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace MvcMovie.Controllers
 {
@@ -37,10 +38,12 @@ namespace MvcMovie.Controllers
             return View();
         }
         //
-        // GET: https://localhost:{PORT}/HelloWorld/Ichika/
-        public string Ichika()
+        // GET: https://localhost:5224/HelloWorld/Ichika/?foodName=karaage&num=5
+        public IActionResult Ichika(string foodName, int num)
         {
-            return "いちかどん🍠";
+            ViewData["FoodName"] = "好きな食べ物は？：" + foodName + "🐣";
+            ViewData["Num"] = num;
+            return View();
         }
         public IActionResult Privacy()
         {
