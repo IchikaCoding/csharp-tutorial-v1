@@ -5,7 +5,10 @@ using MvcMovie.Models;
 
 public class MoviesController : Controller
 {
+    // readonlyって最初は代入できるのか＿
     private readonly MvcMovieContext _context;
+
+    // TODO: このContextってどこで渡しているのでしょうか？
 
     public MoviesController(MvcMovieContext context)
     {
@@ -13,7 +16,7 @@ public class MoviesController : Controller
     }
 
     // GET: MOVIES
-    public async Task<IActionResult> Index()    
+    public async Task<IActionResult> Index()
     {
         return View(await _context.Movie.ToListAsync());
     }
