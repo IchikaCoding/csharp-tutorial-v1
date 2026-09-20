@@ -9,7 +9,9 @@ public class MoviesController : Controller
     private readonly MvcMovieContext _context;
 
     // TODO: このContextってどこで渡しているのでしょうか？
-
+    // TODO: MS learn が終わってもまだわからないならここの点を学習
+    // ASP.NET CoreのDIという仕組みが自動でわたしている。
+    // これコンストラクターだった。コンストラクターインジェクションというらしい。
     public MoviesController(MvcMovieContext context)
     {
         _context = context;
