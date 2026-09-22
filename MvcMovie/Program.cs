@@ -1,3 +1,4 @@
+// このusingは名前空間を利用するため
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,12 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 // シード初期化子を追加する処理
+// DBContextには有効範囲（期間）がある。ブラウザでリクエストが来る前にDBContextを使うなら、有効期間を自分で設置しないといけないらしい
+// using はどうして必要？👉️これは、usingステートメント。StreamReaderのときと同じで、一時的なscopeを使い終わったら閉じる処理を自動で実行するため
 using (var scope = app.Services.CreateScope())
 {
+    // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
+    // スコープ内のサービスを利用するため
     var services = scope.ServiceProvider;
     // ここでサービスを渡して
     SeedData.Initialize(services);
@@ -24,7 +29,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+// ここらへんはappに登録しているっぽい
 app.UseHttpsRedirection();
 app.UseRouting();
 
