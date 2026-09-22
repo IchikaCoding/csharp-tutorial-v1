@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.");
 // connectionStringが接続文字列らしい
@@ -8,6 +9,13 @@ builder.Services.AddDbContext<MvcMovieContext>(options => options.UseSqlServer(c
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+// シード初期化子を追加する処理
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    // ここでサービスを渡して
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

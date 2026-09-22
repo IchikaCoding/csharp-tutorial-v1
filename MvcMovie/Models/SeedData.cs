@@ -8,6 +8,7 @@ namespace MvcMovie.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
+            // usingはStreamReaderとかと同じで、使い終わったら閉じるってやつ？
             using (var context = new MvcMovieContext(
                 serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>()
                 ))
@@ -17,6 +18,7 @@ namespace MvcMovie.Models
                 {
                     return;
                 }
+                // Contextの中身はAddRangeで追加するっぽい
                 context.Movie.AddRange(
                     new Movie
                     {
@@ -48,6 +50,9 @@ namespace MvcMovie.Models
                         Price = 200000,
                     }
                     );
+                // TODO: これは何をしている？
+                // とりあえず、Contextの変更をDBに保存する
+                context.SaveChanges();
             }
         }
     }
