@@ -9,15 +9,16 @@ builder.Services.AddDbContext<MvcMovieContext>(options => options.UseSqlServer(c
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+// ビルドすると、ここでDIコンテナが作られて、app.Servicesが使えるようになる
+WebApplication app = builder.Build();
 // シード初期化子を追加する処理
 // DBContextには有効範囲（期間）がある。ブラウザでリクエストが来る前にDBContextを使うなら、有効期間を自分で設置しないといけないらしい
 // using はどうして必要？👉️これは、usingステートメント。StreamReaderのときと同じで、一時的なscopeを使い終わったら閉じる処理を自動で実行するため
-using (var scope = app.Services.CreateScope())
+using (IServiceScope scope = app.Services.CreateScope())
 {
     // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
     // スコープ内のサービスを利用するため
-    var services = scope.ServiceProvider;
+    IServiceProvider services = scope.ServiceProvider;
     // ここでサービスを渡して
     SeedData.Initialize(services);
 }
