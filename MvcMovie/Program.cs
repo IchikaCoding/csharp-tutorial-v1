@@ -4,18 +4,20 @@ using MvcMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.");
 // connectionStringが接続文字列らしい
+// ! builder.Servicesがサービス登録
 builder.Services.AddDbContext<MvcMovieContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// ビルドすると、ここでDIコンテナが作られて、app.Servicesが使えるようになる
+// ! ビルドすると、ここでDIコンテナが作られて、app.Servicesが使えるようになる
 WebApplication app = builder.Build();
 // シード初期化子を追加する処理
 // DBContextには有効範囲（期間）がある。ブラウザでリクエストが来る前にDBContextを使うなら、有効期間を自分で設置しないといけないらしい
 // using はどうして必要？👉️これは、usingステートメント。StreamReaderのときと同じで、一時的なscopeを使い終わったら閉じる処理を自動で実行するため
 // CreateScope()には、`this IServiceProvider provider`が引数の場所に書いてある。
 // 👉️これは、`app.Services`からServiceProviderが渡されるから、実行する時に引数を渡さなくてOK
+// ! app.Servicesが構築されたDIコンテナらしい
 using (IServiceScope scope = app.Services.CreateScope())
 {
     // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
