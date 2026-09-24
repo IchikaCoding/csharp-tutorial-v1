@@ -9,6 +9,7 @@ public class ResidentSeedData
     public static void Initialize(IServiceProvider serviceProvider)
     {
         // TODO: ここのエラーを解消する！
+        // optionsをどこからか、取ってきたら治りそう！
         var context = new MvcMovieContext(DbContextOptions < MvcMovieContext > options);
     }
 }
