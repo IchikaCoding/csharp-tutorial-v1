@@ -14,6 +14,8 @@ WebApplication app = builder.Build();
 // シード初期化子を追加する処理
 // DBContextには有効範囲（期間）がある。ブラウザでリクエストが来る前にDBContextを使うなら、有効期間を自分で設置しないといけないらしい
 // using はどうして必要？👉️これは、usingステートメント。StreamReaderのときと同じで、一時的なscopeを使い終わったら閉じる処理を自動で実行するため
+// CreateScope()には、`this IServiceProvider provider`が引数の場所に書いてある。
+// 👉️これは、`app.Services`からServiceProviderが渡されるから、実行する時に引数を渡さなくてOK
 using (IServiceScope scope = app.Services.CreateScope())
 {
     // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
