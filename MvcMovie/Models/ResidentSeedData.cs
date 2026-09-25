@@ -10,6 +10,29 @@ public class ResidentSeedData
     {
         // TODO: ここのエラーを解消する！
         // optionsをどこからか、取ってきたら治りそう！
-        var context = new MvcMovieContext(DbContextOptions < MvcMovieContext > options);
+        using (var context = new MvcMovieContext(serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>()))
+        {
+            // context.Residentがあったら早期リターン
+            if (context.Resident.Any())
+            {
+                return;
+            }
+            // あった場合は、DBにリスナーさんたちをお泊りしてもらう
+            // contextにインスタンスをいれる！！
+            new Resident()
+            {
+                Name = "アルパカどん🦙",
+                AnimalType = "Animal",
+                Job = "窓から人類観察",
+                ResidentSince = new DateTime(1600, 9, 26)
+            };
+            new Resident()
+            {
+                Name = "さつまいもパンまん🍠",
+                AnimalType = "Human",
+                Job = "パン屋さん",
+                ResidentSince = DateTime.Now
+            };
+        }
     }
 }
