@@ -18,13 +18,23 @@ WebApplication app = builder.Build();
 // CreateScope()には、`this IServiceProvider provider`が引数の場所に書いてある。
 // 👉️これは、`app.Services`からServiceProviderが渡されるから、実行する時に引数を渡さなくてOK
 // ! app.Servicesが構築されたDIコンテナらしい
-using (IServiceScope scope = app.Services.CreateScope())
+// using (IServiceScope scope = app.Services.CreateScope())
+// {
+//     // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
+//     // スコープ内のサービスを利用するため
+//     IServiceProvider services = scope.ServiceProvider;
+//     // ここでサービスを渡して
+//     SeedData.Initialize(services);
+// }
+
+// DBContextを使いたい。
+// てことは、serviceProviderをResidentSeedDataに渡したい
+// てことは、
+using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
 {
-    // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
-    // スコープ内のサービスを利用するため
-    IServiceProvider services = scope.ServiceProvider;
-    // ここでサービスを渡して
-    SeedData.Initialize(services);
+    // serviceProviderを作成する
+    IServiceProvider serviceProvider = scope.ServiceProvider;
+    ResidentSeedData.Initialize(serviceProvider);
 }
 
 // Configure the HTTP request pipeline.
