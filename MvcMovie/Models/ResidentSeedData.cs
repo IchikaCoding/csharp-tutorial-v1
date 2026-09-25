@@ -19,20 +19,24 @@ public class ResidentSeedData
             }
             // あった場合は、DBにリスナーさんたちをお泊りしてもらう
             // contextにインスタンスをいれる！！
-            new Resident()
-            {
-                Name = "アルパカどん🦙",
-                AnimalType = "Animal",
-                Job = "窓から人類観察",
-                ResidentSince = new DateTime(1600, 9, 26)
-            };
-            new Resident()
-            {
-                Name = "さつまいもパンまん🍠",
-                AnimalType = "Human",
-                Job = "パン屋さん",
-                ResidentSince = DateTime.Now
-            };
+            context.Resident.AddRange(
+                new Resident()
+                {
+                    Name = "アルパカどん🦙",
+                    AnimalType = "Animal",
+                    Job = "窓から人類観察",
+                    ResidentSince = new DateTime(1600, 9, 26)
+                },
+                new Resident()
+                {
+                    Name = "さつまいもパンまん🍠",
+                    AnimalType = "Human",
+                    Job = "パン屋さん",
+                    ResidentSince = DateTime.Now
+                }
+            );
+            // DBに反映させる
+            context.SaveChanges();
         }
     }
 }
