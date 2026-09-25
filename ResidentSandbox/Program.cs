@@ -1,7 +1,5 @@
-﻿using ResidentSandbox;
-
-Console.WriteLine("Hello, World!");
-
+﻿// 名前空間は、using しないとクラスとか共有できないわよ！
+using ResidentSandbox;
 
 var Alpaca = new Resident()
 {
