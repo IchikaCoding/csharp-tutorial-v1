@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
@@ -21,8 +22,10 @@ namespace MvcMovie.Controllers
         // 改造は、View()を返す形が理想。引数は、_contextのResidentのデータ。
         public ViewResult Index()
         {
+            // ResidentのListバージョンをViewに渡してみよう！
+            List<Resident> residents = _context.Resident.ToList();
             // TODO: いったんResidentのデータをViewに渡してみました。合っているのはわかりません。
-            return View(_context.Resident);
+            return View(residents);
         }
         // GET: Ichika/pochipochi
         public string PochiPochi()

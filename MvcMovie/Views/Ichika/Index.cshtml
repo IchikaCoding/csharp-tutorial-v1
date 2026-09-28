@@ -8,6 +8,7 @@
     <thead>
         <tr>
             @* とりあえずこうやって書くということだけわかった。 *@
+            @* TODO: Htmlが何を意味しているのかわからなかった *@
             <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.AnimalType)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.Job)</th>
@@ -16,8 +17,16 @@
     </thead>
     <tbody>
         @* foreachとかで繰り返す数はデータに合わせる *@
+        @* IDを指定して、テーブルから、1件ずつデータを取得 *@
+        @foreach(Resident item in model)
+        {
+            <tr>
+                @* どうしてitemを同じにしてはいけないの？ *@
+                <td>@Html.DisplayFor(item => item.Name)</td>
+            </tr>
+        }
         <tr>
-            <th scope="row">いちか</th>
+            @* <th scope="row">@Html.DisplayFor(model => model.Name)</th> *@
             <td>さつまいも好き</td>
             <td>さつまいも好き</td>
             <td>さつまいも好き</td>
