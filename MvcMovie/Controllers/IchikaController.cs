@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using MvcMovie.Models;
 
@@ -20,10 +21,11 @@ namespace MvcMovie.Controllers
         // GET: Ichika/index か　ichikaだけでもアクセスできる
         // Controllerは、（DBから？）からContextをゲットして、それをViewに渡す仕事。
         // 改造は、View()を返す形が理想。引数は、_contextのResidentのデータ。
-        public ViewResult Index()
+        // 非同期処理でList化。アクションメソッドの戻り値型はIActionResultっぽい
+        public async Task<IActionResult> Index()
         {
             // ResidentのListバージョンをViewに渡してみよう！
-            List<Resident> residents = _context.Resident.ToList();
+            List<Resident> residents = await _context.Resident.ToListAsync();
             // TODO: いったんResidentのデータをViewに渡してみました。合っているのはわかりません。
             return View(residents);
         }

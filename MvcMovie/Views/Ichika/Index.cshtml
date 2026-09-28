@@ -18,24 +18,15 @@
     <tbody>
         @* foreachとかで繰り返す数はデータに合わせる *@
         @* IDを指定して、テーブルから、1件ずつデータを取得 *@
-        @foreach(Resident item in model)
+        @foreach (Resident item in Model)
         {
             <tr>
-                @* どうしてitemを同じにしてはいけないの？ *@
-                <td>@Html.DisplayFor(item => item.Name)</td>
+                <td>@item.Name</td>
+                <td>@item.AnimalType</td>
+                <td>@item.Job</td>
+                <td>@item.ResidentSince</td>
             </tr>
+            @* Console.WriteLine("item: ", item); *@
         }
-        <tr>
-            @* <th scope="row">@Html.DisplayFor(model => model.Name)</th> *@
-            <td>さつまいも好き</td>
-            <td>さつまいも好き</td>
-            <td>さつまいも好き</td>
-        </tr>
-        <tr>
-            <th scope="row">いちか</th>
-            <td>さつまいも好き</td>
-            <td>さつまいも好き</td>
-            <td>さつまいも好き</td>
-        </tr>
     </tbody>
 </table>
