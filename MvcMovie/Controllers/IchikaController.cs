@@ -34,5 +34,15 @@ namespace MvcMovie.Controllers
         {
             return "毎日お勉強✨️";
         }
+        // Practice アクションメソッドを作成します
+        // Listに変換。非同期処理でやる。そのデータ渡す
+        public async Task<IActionResult> Practice()
+        {
+            // リスト作成
+            // エラーが読めた！！！
+            List<Resident> residents = await _context.Resident.ToListAsync();
+            // 渡す
+            return View(residents);
+        }
     }
 }

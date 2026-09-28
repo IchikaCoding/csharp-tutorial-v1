@@ -1,0 +1,31 @@
+@model IEnumerable<MvcMovie.Models.Resident>
+
+<h2>出来てるかも～✨️✨️</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>動物のタイプ</th>
+            <th>職業</th>
+            <th>住民登録日</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.AnimalType</td>
+                <td>@item.Job</td>
+                <td>@item.ResidentSince</td>
+            </tr>
+        }
+        @* <tr>
+            <td>さつまいも</td>
+            <td>さつまいも</td>
+            <td>さつまいも</td>
+            <td>さつまいも</td>
+        </tr> *@
+    </tbody>
+</table>
