@@ -15,7 +15,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Name</td>
+                @* TODO: DisplayForのラムダ式の理解が全く出来ておりません… *@
+                <td>@Html.DisplayFor(Content => item.Name)</td>
                 <td>@item.AnimalType</td>
                 <td>@item.Job</td>
                 <td>@item.ResidentSince</td>

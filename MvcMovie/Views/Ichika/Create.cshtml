@@ -1,0 +1,35 @@
+@* 先に作成したCreateを参考にして自分で書いてみよう！ *@
+
+@model MvcMovie.Models.Resident
+
+@{
+    @* ViewDataはディクショナリ、そのTitleプロパティの値としてCreateを代入 *@
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+@* TODO: actionは何を入れたらいいの？ *@
+<form action="" method="get">
+    @* Name, AnimalType, Job, ResidentSince *@
+    <div>
+        <label asp-for="Name">お名前：</label>
+        <input asp-for="Name">
+    </div>
+    @* AnimalType, Jobは、必須項目ではない！ *@
+    <div>
+        <label asp-for="AnimalType">動物の種類：</label>
+        <select asp-for="AnimalType">
+            <option value=""></option>
+            <option value="human">Human</option>
+            <option value="animal">Animal</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="Job">仕事：</label>
+        <input asp-for="Job">
+    </div>
+    <div>
+        <label asp-for="ResidentSince">住民登録日：</label>
+        <input asp-for="ResidentSince">
+    </div>
+</form>
