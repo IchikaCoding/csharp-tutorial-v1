@@ -21,10 +21,11 @@
         @foreach (Resident item in Model)
         {
             <tr>
-                <td>@item.Name</td>
-                <td>@item.AnimalType</td>
-                <td>@item.Job</td>
-                <td>@item.ResidentSince</td>
+                @* TODO: どうしてmodelが必要なのか、ラムダ式である必要があるのか、これは調べてみよう！ *@
+                <td>@Html.DisplayFor(model => item.Name)</td>
+                <td>@Html.DisplayFor(model => item.AnimalType)</td>
+                <td>@Html.DisplayFor(model => item.Job)</td>
+                <td>@Html.DisplayFor(model => item.ResidentSince)</td>
             </tr>
             @* Console.WriteLine("item: ", item); *@
         }
