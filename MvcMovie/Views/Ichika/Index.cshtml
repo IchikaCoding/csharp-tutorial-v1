@@ -28,7 +28,8 @@
                 <td>@Html.DisplayFor(contents => item.Name)</td>
                 <td>@Html.DisplayFor(model => item.AnimalType)</td>
                 <td>@Html.DisplayFor(model => item.Job)</td>
-                <td>@Html.DisplayFor(model => item.ResidentSince)</td>
+                @* これでmodelの変数が見えると思ったら見れなかった。。。12と表示された *@
+                <td>@Html.DisplayFor(model => model)</td>
             </tr>
             @* Console.WriteLine("item: ", item); *@
         }

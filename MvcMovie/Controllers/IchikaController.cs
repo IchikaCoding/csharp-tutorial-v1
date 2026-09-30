@@ -36,7 +36,8 @@ namespace MvcMovie.Controllers
         }
         // Practice アクションメソッドを作成します
         // Listに変換。非同期処理でやる。そのデータ渡す
-        public async Task<IActionResult> Practice()
+        // 今回はViewしか戻り値がないからViewResultに修正した
+        public async Task<ViewResult> Practice()
         {
             // リスト作成
             // エラーが読めた！！！
@@ -44,8 +45,8 @@ namespace MvcMovie.Controllers
             // 渡す
             return View(residents);
         }
-        // 処理を継続したいならActionResultになるらしい
-        public IActionResult Create()
+        // TODO: 処理を継続したいならIActionResultになるらしい。でも処理の継続とはなんだろう？
+        public ViewResult Create()
         {
             return View();
         }
