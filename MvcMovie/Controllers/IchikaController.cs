@@ -44,7 +44,8 @@ namespace MvcMovie.Controllers
             // 渡す
             return View(residents);
         }
-        public ViewResult Create()
+        // 処理を継続したいならActionResultになるらしい
+        public IActionResult Create()
         {
             return View();
         }

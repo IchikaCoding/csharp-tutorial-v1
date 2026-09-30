@@ -22,7 +22,10 @@
         {
             <tr>
                 @* TODO: どうしてmodelが必要なのか、ラムダ式である必要があるのか、これは調べてみよう！ *@
-                <td>@Html.DisplayFor(model => item.Name)</td>
+                @* TModelのジェネリック引数がmodel。今回のViewなら、`IEnumerable<MvcMovie.Models.Resident>` *@
+                @* ラムダ式の、右側は表示したいものたち。左側は、このViewの型を書くって理解になった *@
+                @* TODO: どうしてcontentsでも型がResidentになってエラーもなく動くの？！😭😭 *@
+                <td>@Html.DisplayFor(contents => item.Name)</td>
                 <td>@Html.DisplayFor(model => item.AnimalType)</td>
                 <td>@Html.DisplayFor(model => item.Job)</td>
                 <td>@Html.DisplayFor(model => item.ResidentSince)</td>
