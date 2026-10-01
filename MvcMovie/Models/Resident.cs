@@ -8,6 +8,7 @@ namespace MvcMovie.Models
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public string? AnimalType { get; set; }
+        [StringLength(5)]
         public string? Job { get; set; }
         [DataType(DataType.Date)]
         public DateTime ResidentSince { get; set; }

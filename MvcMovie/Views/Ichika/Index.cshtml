@@ -1,5 +1,6 @@
 
 @* ここで、Contextのレジデントが使えるようにモデルとして持ってくる *@
+@* IEnumerableは、foreachとかを回せる反復処理を定義した基本インターフェースらしい *@
 @model IEnumerable<MvcMovie.Models.Resident>
 
 @* データ表示用のヘッダーとかテーブルを作成する *@
@@ -25,11 +26,15 @@
                 @* TModelのジェネリック引数がmodel。今回のViewなら、`IEnumerable<MvcMovie.Models.Resident>` *@
                 @* ラムダ式の、右側は表示したいものたち。左側は、このViewの型を書くって理解になった *@
                 @* TODO: どうしてcontentsでも型がResidentになってエラーもなく動くの？！😭😭 *@
+                @* ! uDisplayForの引数は、`@model IEnumerable<MvcMovie.Models.Resident>`の型が入る。引数の名前は何でもOK *@
                 <td>@Html.DisplayFor(contents => item.Name)</td>
                 <td>@Html.DisplayFor(model => item.AnimalType)</td>
                 <td>@Html.DisplayFor(model => item.Job)</td>
+                <td>@item.Job</td>
                 @* これでmodelの変数が見えると思ったら見れなかった。。。12と表示された *@
-                <td>@Html.DisplayFor(model => model)</td>
+                <td>@Html.DisplayFor(model => item.ResidentSince)</td>
+                @* これは比較用。直接表示したバージョン *@
+                <td>@item.ResidentSince</td>
             </tr>
             @* Console.WriteLine("item: ", item); *@
         }
