@@ -26,7 +26,7 @@
                 @* TModelのジェネリック引数がmodel。今回のViewなら、`IEnumerable<MvcMovie.Models.Resident>` *@
                 @* ラムダ式の、右側は表示したいものたち。左側は、このViewの型を書くって理解になった *@
                 @* TODO: どうしてcontentsでも型がResidentになってエラーもなく動くの？！😭😭 *@
-                @* ! uDisplayForの引数は、`@model IEnumerable<MvcMovie.Models.Resident>`の型が入る。引数の名前は何でもOK *@
+                @* ! DisplayForの引数は、`@model IEnumerable<MvcMovie.Models.Resident>`の型が入る。引数の名前は何でもOK *@
                 <td>@Html.DisplayFor(contents => item.Name)</td>
                 <td>@Html.DisplayFor(model => item.AnimalType)</td>
                 <td>@Html.DisplayFor(model => item.Job)</td>
