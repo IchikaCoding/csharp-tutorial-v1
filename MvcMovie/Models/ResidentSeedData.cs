@@ -33,6 +33,13 @@ public class ResidentSeedData
                     AnimalType = "Human",
                     Job = "パン屋さん",
                     ResidentSince = DateTime.Now
+                },
+                new Resident()
+                {
+                    Name = "いちか丼",
+                    AnimalType = "Human",
+                    Job = null,
+                    ResidentSince = DateTime.Now
                 }
             );
             // DBに反映させる
