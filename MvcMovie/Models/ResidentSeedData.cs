@@ -46,4 +46,13 @@ public class ResidentSeedData
             context.SaveChanges();
         }
     }
+    // テーブルのデータを一括削除したい時のメソッド
+    public static async Task DeleteTable(IServiceProvider serviceProvider)
+    {
+        using (var context = new MvcMovieContext(serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>()))
+        {
+            // ExecuteDeleteAsync()で一括削除
+            int deleteRows = await context.Resident.ExecuteDeleteAsync();
+        }
+    }
 }
