@@ -35,8 +35,8 @@ using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
     // serviceProviderを作成する
     IServiceProvider serviceProvider = scope.ServiceProvider;
     // 削除メソッドをここで実行する
-    // ResidentSeedData.Initialize(serviceProvider);
-    await ResidentSeedData.DeleteTable(serviceProvider);
+    ResidentSeedData.Initialize(serviceProvider);
+    // await ResidentSeedData.DeleteTable(serviceProvider);
 }
 
 // Configure the HTTP request pipeline.

@@ -9,7 +9,7 @@
 
 <h1>Create</h1>
 @* TODO: actionは何を入れたらいいの？ *@
-<form action="" method="get">
+<form asp-action="Create" method="post">
     @* Name, AnimalType, Job, ResidentSince *@
     <div>
         <label asp-for="Name">お名前：</label>
@@ -32,4 +32,12 @@
         <label asp-for="ResidentSince">住民登録日：</label>
         <input asp-for="ResidentSince">
     </div>
+    <div>
+        @* inputタグか、buttonタグ、どっちがおすすめ？！ *@
+        @* I'm here！！ *@
+        <button type="submit">ボタン</button>
+    </div>
 </form>
+
+@* ちょっと違うかも。。 *@
+<a href="http://localhost:5224/ichika/index">さっきの画面に戻る</a>
