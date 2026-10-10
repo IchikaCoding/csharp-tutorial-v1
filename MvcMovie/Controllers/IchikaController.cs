@@ -41,14 +41,35 @@ namespace MvcMovie.Controllers
         {
             // リスト作成
             // エラーが読めた！！！
+            // 意味：DBから Resident のデータを取得し、List<Resident> として residents に入れるという意味
             List<Resident> residents = await _context.Resident.ToListAsync();
             // 渡す
             return View(residents);
         }
         // TODO: 処理を継続したいならIActionResultになるらしい。でも処理の継続とはなんだろう？
+        [HttpGet]
         public ViewResult Create()
         {
             return View();
+        }
+
+        // 引数のBind属性には、プロパティを書く。次は、Resident residentでバインディングするモデルを書く。
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name,AnimalType,Job,ResidentSince")] Resident resident)
+        {
+            // ModelStateが有効か確認。ModelStateも確認
+            if (ModelState.IsValid)
+            {
+                // Contextにフォームの内容を追加。
+                // TODO: 非同期処理でもいい？見本は同期処理だった。
+                await _context.AddAsync(resident);
+                // DBに保存
+                await _context.SaveChangesAsync();
+                // Indexに飛ぶ
+                return RedirectToAction(nameof(Index));
+            }
+            // 今の画面のまま
+            return View(resident);
         }
     }
 }

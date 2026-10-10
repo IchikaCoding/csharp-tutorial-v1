@@ -54,12 +54,19 @@ public class MoviesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
     {
+        // ModelStateってなに？
         if (ModelState.IsValid)
         {
+            // どうして同期処理でいいのか？
             _context.Add(movie);
+            // SQLサーバーに保存するとなるとちょっと時間が掛かりそう。
             await _context.SaveChangesAsync();
+            // DB保存できたら、Indexへ画面遷移します
+            // どうしてnameof?👉️これを使うとアクションメソッドへのリダイレクトが作れる。
+            // 文字列で書いちゃったら、Indexっていう文字になってしまう。アクションメソッドと連携しないといけない。
             return RedirectToAction(nameof(Index));
         }
+        // どうして引数？
         return View(movie);
     }
 
