@@ -10,10 +10,12 @@
 <h1>Create</h1>
 @* TODO: actionは何を入れたらいいの？ *@
 <form asp-action="Create" method="post">
+    <span asp-validation-summary="ModelOnly" class="text-danger"></span>
     @* Name, AnimalType, Job, ResidentSince *@
     <div>
         <label asp-for="Name">お名前：</label>
         <input asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     @* AnimalType, Jobは、必須項目ではない！ *@
     <div>
@@ -23,21 +25,24 @@
             <option value="human">Human</option>
             <option value="animal">Animal</option>
         </select>
+        <span asp-validation-for="AnimalType" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="Job">仕事：</label>
         <input asp-for="Job">
+        <span asp-validation-for="Job" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="ResidentSince">住民登録日：</label>
         <input asp-for="ResidentSince">
+        <span asp-validation-for="ResidentSince" class="text-danger"></span>
     </div>
     <div>
         @* inputタグか、buttonタグ、どっちがおすすめ？！ *@
         @* I'm here！！ *@
-        <button type="submit">ボタン</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
 
 @* ちょっと違うかも。。 *@
-<a href="http://localhost:5224/ichika/index">さっきの画面に戻る</a>
+<a asp-action="Index">ホーム画面に戻る</a>

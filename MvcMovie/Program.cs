@@ -60,7 +60,7 @@ app.MapStaticAssets();
 // `controller=Ichika`とか`action=Index`の右側を変えたら、デフォルトのControllerとメソッドを変更できる。
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=HelloWorld}/{action=Index}/{id?}")
+    pattern: "{controller=Ichika}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

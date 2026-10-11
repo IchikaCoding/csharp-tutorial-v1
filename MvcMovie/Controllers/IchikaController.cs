@@ -42,7 +42,19 @@ namespace MvcMovie.Controllers
             // リスト作成
             // エラーが読めた！！！
             // 意味：DBから Resident のデータを取得し、List<Resident> として residents に入れるという意味
-            List<Resident> residents = await _context.Resident.ToListAsync();
+            // _contextがDBの接続文字列とかテーブルとかを持っている。
+            // .Residentで指定すると、Residentテーブルを操作するための`DbSet<Resident>`オブジェクトがゲットできるらしい
+            // residentsRaw自体がテーブルではない。
+            // 👉️DbSet<Resident> は、Resident エンティティの集合に対して、検索・追加・削除などを行うためのクラスです。
+            DbSet<Resident> residentsRaw = _context.Resident;
+            // ここで実際にテーブルからデータが取得される。
+            List<Resident> residents = await residentsRaw.ToListAsync();
+            string firstName = "";
+            if (residents.Count > 0)
+            {
+                firstName = residents[0].Name;
+
+            }
             // 渡す
             return View(residents);
         }
@@ -55,6 +67,7 @@ namespace MvcMovie.Controllers
 
         // 引数のBind属性には、プロパティを書く。次は、Resident residentでバインディングするモデルを書く。
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,AnimalType,Job,ResidentSince")] Resident resident)
         {
             // ModelStateが有効か確認。ModelStateも確認
