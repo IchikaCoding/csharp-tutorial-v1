@@ -84,5 +84,9 @@ namespace MvcMovie.Controllers
             // 今の画面のまま
             return View(resident);
         }
+        public ViewResult Delete()
+        {
+            return View();
+        }
     }
 }

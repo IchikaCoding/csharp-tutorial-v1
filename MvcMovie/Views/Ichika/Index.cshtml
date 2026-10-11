@@ -4,8 +4,8 @@
 @model IEnumerable<MvcMovie.Models.Resident>
 
 @* データ表示用のヘッダーとかテーブルを作成する *@
-
-<table>
+@* Bootstrapのtable属性って素晴らしい *@
+<table class="table">
     <thead>
         <tr>
             @* とりあえずこうやって書くということだけわかった。 *@
@@ -14,6 +14,8 @@
             <th scope="col">@Html.DisplayNameFor(model => model.AnimalType)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.Job)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.ResidentSince)</th>
+            @* 名無しの列はこれで出来た！ *@
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -30,17 +32,17 @@
                 <td>@Html.DisplayFor(contents => item.Name)</td>
                 <td>@Html.DisplayFor(model => item.AnimalType)</td>
                 <td>@Html.DisplayFor(model => item.Job)</td>
-                <td>@item.Job</td>
+                @* <td>@item.Job</td> *@
                 @* これでmodelの変数が見えると思ったら見れなかった。。。12と表示された *@
                 <td>@Html.DisplayFor(model => item.ResidentSince)</td>
+                <td><a asp-action="Delete" asp-route-id="@item.Id">delete</a></td>
                 @* これは比較用。直接表示したバージョン *@
-                <td>@item.ResidentSince</td>
+                @* <td>@item.ResidentSince</td> *@
             </tr>
             @* Console.WriteLine("item: ", item); *@
         }
     </tbody>
 </table>
-<hr>
 @* <button asp-action="/ichika/Create" class="btn btn-primary">Add</button> *@
 
 <a asp-action="Create">Create Page</a>
