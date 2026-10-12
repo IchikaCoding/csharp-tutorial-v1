@@ -84,9 +84,31 @@ namespace MvcMovie.Controllers
             // 今の画面のまま
             return View(resident);
         }
-        public ViewResult Delete()
+        // Index画面からID情報をもらう
+        // 引数で、IDの情報を受け取る、Viewの引数とする
+
+
+        // そうじゃないなら、IDから取得したデータを表示する
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            // IDを引数とする。もしIDがnullなら、NotFound()を返す。
+            if (id == null)
+            {
+                return NotFound();
+            }
+            // 取得したデータがIDと一致していないならNotFound()
+            DbSet<Resident> residents = _context.Resident;
+            // residentsをリストととしてデータ取得、IDと一致
+            // FirstOrDefaultAsync()とは？👉️IDで一致するものがあったら、Resident型のデータ1件が取得できる。なかったらNull。
+            // awaitしたら、非同期処理をして、データが取得出来てからもらえる。Resident?が取れる。
+            // もしawait していない場合は、Task<Resident?>型となる。まだ非同期処理を実行していないから（？）
+            Resident? resident = await residents.FirstOrDefaultAsync(item => item.Id == id);
+            // →DBに保存されているデータのIDと今回のIDが一致するか見る
+            if (resident == null)
+            {
+                return NotFound();
+            }
+            return View(resident);
         }
     }
 }

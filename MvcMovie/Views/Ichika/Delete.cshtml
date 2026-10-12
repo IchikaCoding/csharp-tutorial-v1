@@ -1,3 +1,18 @@
+@model MvcMovie.Models.Resident
 
+@* TODO: 受け取ったデータをどうやって表示するのか？？ *@
+@* BootstrapのCard形式で表示してみよう！ *@
 
-<p>Deleteきたー！</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">削除したい項目</h5>
+    <p asp-for="Name" class="card-text">Name: @Html.DisplayFor(model => model.Name)</p>
+    <p asp-for="AnimalType" class="card-text">AnimalType: @Html.DisplayFor(model => model.AnimalType)</p>
+    <p asp-for="Job" class="card-text">Job: @Html.DisplayFor(model => model.Job)</p>
+    <p asp-for="ResidentSince" class="card-text">ResidentSince: @Html.DisplayFor(model => model.ResidentSince)</p>
+    @* TODO: asp-action=""がない！ *@
+    @* TODO: CancelとDeleteでいいの？ *@
+    <a asp-action="Index" class="card-link">戻る</a>
+    <a href="#" class="card-link">Delete</a>
+  </div>
+</div>

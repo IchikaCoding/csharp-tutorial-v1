@@ -122,13 +122,15 @@ public class MoviesController : Controller
     }
 
     // GET: MOVIES/Delete/5
+    // TODO: どうやって引数に入れるのか？
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
         {
             return NotFound();
         }
-
+        // _context.MovieはDbSet<Movie>型
+        // TODO: movieの型を調べたい
         var movie = await _context.Movie
             .FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
