@@ -130,7 +130,7 @@ public class MoviesController : Controller
             return NotFound();
         }
         // _context.MovieはDbSet<Movie>型
-        // TODO: movieの型を調べたい
+        // movieの型を調べたい👉️Resident?型！
         var movie = await _context.Movie
             .FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)

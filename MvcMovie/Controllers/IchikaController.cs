@@ -89,6 +89,7 @@ namespace MvcMovie.Controllers
 
 
         // そうじゃないなら、IDから取得したデータを表示する
+        // TODO: idはどこからやってきたの？
         public async Task<IActionResult> Delete(int? id)
         {
             // IDを引数とする。もしIDがnullなら、NotFound()を返す。
