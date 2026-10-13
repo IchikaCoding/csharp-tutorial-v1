@@ -35,7 +35,9 @@
                 @* <td>@item.Job</td> *@
                 @* これでmodelの変数が見えると思ったら見れなかった。。。12と表示された *@
                 <td>@Html.DisplayFor(model => item.ResidentSince)</td>
+                @* asp-route-idヘルパーさんは、aタグのURLにIDを渡してくれる。href="/Ichika/Delete/3" *@
                 <td><a asp-action="Delete" asp-route-id="@item.Id">delete</a></td>
+                <td><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
                 @* これは比較用。直接表示したバージョン *@
                 @* <td>@item.ResidentSince</td> *@
             </tr>

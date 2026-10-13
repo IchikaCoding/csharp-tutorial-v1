@@ -43,8 +43,13 @@
         </dd>
     </dl>
     @* TODO:　どうしてformにしたのですか。 *@
+    @* Form送信したらDeleteメソッドが実行 *@
     <form asp-action="Delete">
+        @* どうやってIDを保持しているの？
+        👉️asp-forでIdを指定したら、Controllerから渡されたMovieデータ1件を受け取って、そのIdをvalueにセットしてくれる。
+        id属性とか、name属性とかはIdとなる。 *@
         <input type="hidden" asp-for="Id" />
+        @* submitだから、送信したらformに設定したアクションメソッドが実行される *@
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

@@ -111,5 +111,9 @@ namespace MvcMovie.Controllers
             }
             return View(resident);
         }
+        public ViewResult Edit(int? id)
+        {
+            return View();
+        }
     }
 }
