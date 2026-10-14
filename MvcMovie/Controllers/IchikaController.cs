@@ -111,6 +111,31 @@ namespace MvcMovie.Controllers
             }
             return View(resident);
         }
+        // DeleteConfirmメソッドを作成しよう！
+        public async Task<IActionResult> DeleteConfirm(int? id)
+        {
+            // Nullじゃないかな？を確認
+            if (id == null)
+            {
+                return NotFound();
+            }
+            // ContextのデータからIDで一致するものを探す
+            Resident? resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
+            // residentがないなら、NotFound()
+            if (resident == null)
+            {
+                return NotFound();
+            }
+            // 一致したら、Contextからそのデータを削除
+            // TODO: どうしてResidentを入れるだけでDBから削除できるの？
+            _context.Remove(resident);
+            // DB自体に変更を反映させる
+            await _context.SaveChangesAsync();
+            // Indexの画面にリダイレクト。（前回のデータが更新されるのか知りません）
+            return RedirectToAction("Index");
+            // return "DeleteConfirmが動きました✨️";
+        }
+
         public ViewResult Edit(int? id)
         {
             return View();

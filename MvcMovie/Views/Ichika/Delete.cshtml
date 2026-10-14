@@ -1,3 +1,4 @@
+@* この構文はRazor。@model ディレクティブ *@
 @model MvcMovie.Models.Resident
 
 @* TODO: 受け取ったデータをどうやって表示するのか？？ *@
@@ -15,7 +16,12 @@
     @* TODO: CancelとDeleteでいいの？ *@
     <a asp-action="Index" class="card-link">戻る</a>
     @* Idを持ったまま本当の削除メソッドを実行する方法を考えてみよう！ヒント：Form *@
-    <a href="#" class="card-link">Delete</a>
+    @* TODO: idをここに入れる方法とは？ *@
+    <a asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a>
   </div>
 </div>
+@* RazorによってHTMLのオブジェクトを書き出す処理 *@
+<p>@Html.DisplayFor(model => model.Id)</p>
+@* 値を直接反映させる処理 *@
+<p>@Model.Id</p>
 </div>
