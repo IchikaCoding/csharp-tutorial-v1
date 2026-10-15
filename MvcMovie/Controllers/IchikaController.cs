@@ -112,6 +112,10 @@ namespace MvcMovie.Controllers
             return View(resident);
         }
         // DeleteConfirmメソッドを作成しよう！
+        // TODO: Postリクエストのときのみ実行されるように修正
+        // [ValidateAntiForgeryToken]を追加して、Postリクエストが安全に送信されるようにしました
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
             // Nullじゃないかな？を確認

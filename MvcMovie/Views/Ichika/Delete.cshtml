@@ -16,8 +16,14 @@
     @* TODO: CancelとDeleteでいいの？ *@
     <a asp-action="Index" class="card-link">戻る</a>
     @* Idを持ったまま本当の削除メソッドを実行する方法を考えてみよう！ヒント：Form *@
-    @* TODO: idをここに入れる方法とは？ *@
-    <a asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a>
+    @* Formに直す *@
+    @* TODO: postリクエストが送れません！！ *@
+    <form method="post">
+      @* input要素のsubmitならFormのPostリクエストが送られる！ *@
+      <input type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id">
+      @* <a type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a> *@
+    </form>
+    
   </div>
 </div>
 @* RazorによってHTMLのオブジェクトを書き出す処理 *@
