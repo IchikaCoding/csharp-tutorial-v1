@@ -7,20 +7,22 @@
 <div class="d-flex justify-content-center">
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">削除したい項目</h5>
-    <p asp-for="Name" class="card-text">Name: @Html.DisplayFor(model => model.Name)</p>
-    <p asp-for="AnimalType" class="card-text">AnimalType: @Html.DisplayFor(model => model.AnimalType)</p>
-    <p asp-for="Job" class="card-text">Job: @Html.DisplayFor(model => model.Job)</p>
-    <p asp-for="ResidentSince" class="card-text">ResidentSince: @Html.DisplayFor(model => model.ResidentSince)</p>
-    @* TODO: asp-action=""がない！ *@
-    @* TODO: CancelとDeleteでいいの？ *@
-    <a asp-action="Index" class="card-link">戻る</a>
-    @* Idを持ったまま本当の削除メソッドを実行する方法を考えてみよう！ヒント：Form *@
-    @* Formに直す *@
-    @* TODO: postリクエストが送れません！！ *@
+    @* 文字をセンターにしたい.mb-2は7pxくらい.mb-3は14px *@
+    <h5 class="card-title mb-3">削除したい項目</h5>
+    <p asp-for="Name" class="card-text mb-0">Name: @Html.DisplayFor(model => model.Name)</p>
+    <p asp-for="AnimalType" class="card-text mb-0">AnimalType: @Html.DisplayFor(model => model.AnimalType)</p>
+    <p asp-for="Job" class="card-text mb-0">Job: @Html.DisplayFor(model => model.Job)</p>
+    <p asp-for="ResidentSince" class="card-text mb-3">ResidentSince: @Html.DisplayFor(model => model.ResidentSince)</p>
+    @* TODO: ここはinput要素に修正 *@
+    @* <a asp-action="Index" class="card-link">戻る</a> *@
+    @* 条件とかあるならFormでGetメソッドで送ってもOK.
+    今回は単純にページの遷移だけだから<a>のほうがシンプル *@
+    <form method="get">
+      <input type="submit"  asp-action="Index" value="戻る">
+    </form>
     <form method="post">
       @* input要素のsubmitならFormのPostリクエストが送られる！ *@
-      <input type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id">
+      <input type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" value="確定">
       @* <a type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a> *@
     </form>
     
