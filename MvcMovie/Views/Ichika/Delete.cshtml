@@ -5,27 +5,28 @@
 @* BootstrapのCard形式で表示してみよう！ *@
 @* カードを真ん中に配置 *@
 <div class="d-flex justify-content-center">
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 25rem;">
   <div class="card-body">
     @* 文字をセンターにしたい.mb-2は7pxくらい.mb-3は14px *@
-    <h5 class="card-title mb-3">削除したい項目</h5>
-    <p asp-for="Name" class="card-text mb-0">Name: @Html.DisplayFor(model => model.Name)</p>
-    <p asp-for="AnimalType" class="card-text mb-0">AnimalType: @Html.DisplayFor(model => model.AnimalType)</p>
-    <p asp-for="Job" class="card-text mb-0">Job: @Html.DisplayFor(model => model.Job)</p>
-    <p asp-for="ResidentSince" class="card-text mb-3">ResidentSince: @Html.DisplayFor(model => model.ResidentSince)</p>
-    @* TODO: ここはinput要素に修正 *@
-    @* <a asp-action="Index" class="card-link">戻る</a> *@
-    @* 条件とかあるならFormでGetメソッドで送ってもOK.
-    今回は単純にページの遷移だけだから<a>のほうがシンプル *@
-    <form method="get">
-      <input type="submit"  asp-action="Index" value="戻る">
-    </form>
-    <form method="post">
-      @* input要素のsubmitならFormのPostリクエストが送られる！ *@
-      <input type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" value="確定">
-      @* <a type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a> *@
-    </form>
-    
+    <h5 class="card-title mb-3 text-center">この項目を削除しますか？</h5>
+    <p asp-for="Name" class="card-text mb-0 ps-5">Name: @Html.DisplayFor(model => model.Name)</p>
+    <p asp-for="AnimalType" class="card-text mb-0 ps-5">AnimalType: @Html.DisplayFor(model => model.AnimalType)</p>
+    <p asp-for="Job" class="card-text mb-0 ps-5">Job: @Html.DisplayFor(model => model.Job)</p>
+    <p asp-for="ResidentSince" class="card-text mb-3 ps-5">ResidentSince: @Html.DisplayFor(model => model.ResidentSince)</p>
+    <div class="d-flex justify-content-around">
+      @* TODO: ボタンは横並びがいい！ *@
+      @* 条件とかあるならFormでGetメソッドで送ってもOK.
+      今回は単純にページの遷移だけだから<a>のほうがシンプル *@
+      <a asp-action="Index" class="btn btn-secondary px-5">戻る</a>
+      @* <form method="get">
+        <input type="submit"  asp-action="Index" value="戻る">
+      </form> *@
+      <form method="post">
+        @* input要素のsubmitならFormのPostリクエストが送られる！ *@
+        <input type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" value="削除確定" class="btn btn-danger px-5">
+        @* <a type="submit" asp-action="DeleteConfirm" asp-route-id="@Model.Id" class="card-link">Confirm</a> *@
+      </form>
+    </div>
   </div>
 </div>
 
