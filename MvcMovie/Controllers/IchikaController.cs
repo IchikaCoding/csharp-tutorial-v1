@@ -139,10 +139,37 @@ namespace MvcMovie.Controllers
             return RedirectToAction("Index");
             // return "DeleteConfirmが動きました✨️";
         }
-
-        public ViewResult Edit(int? id)
+        // IDからデータを取得
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
+            if (resident == null)
+            {
+                return NotFound();
+            }
+            return View(resident);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveEdit(int? id)
+        {
+            // TODO: DBへの保存処理を追加しよう
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
+            if (resident == null)
+            {
+                return NotFound();
+            }
+            // TODO: DBへの保存処理を書こう！AddRangeAsync メソッドを調べたら出来そう
+            // _context.Resident.AddRangeAsync;
+            return RedirectToAction("Index");
         }
     }
 }

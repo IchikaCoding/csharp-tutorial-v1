@@ -1,4 +1,49 @@
-@model IEnumerable<MvcMovie.Models.Resident>
+@model MvcMovie.Models.Resident
 
-<p>できた？</p>
-<p>@Html.DisplayFor(model => model)</p>
+@{
+    @* ViewDataはディクショナリ、そのTitleプロパティの値としてIndexを代入 *@
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+@* TODO: Saveボタン用の処理に修正 *@
+<form asp-action="SaveEdit" method="post" class="mb-3">
+    <span asp-validation-summary="ModelOnly" class="text-danger"></span>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">お名前：</label>
+        @* asp-forはidとかtypeとか、それだけやるのかと思っていた。でも表示（value属性）も担当してくれているから表示も自動反映される *@
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AnimalType" class="form-label">動物の種類：</label>
+        <select asp-for="AnimalType" class="form-select">
+            <option value=""></option>
+            <option value="human">Human</option>
+            <option value="animal">Animal</option>
+        </select>
+        <span asp-validation-for="AnimalType" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Job" class="form-label">仕事：</label>
+        <input asp-for="Job" class="form-control">
+        <span asp-validation-for="Job" class="text-danger"></span>
+    </div>
+    <div class="mb-5">
+        <label asp-for="ResidentSince" class="form-label">住民登録日：</label>
+        <input asp-for="ResidentSince" class="form-control">
+        <span asp-validation-for="ResidentSince" class="text-danger"></span>
+    </div>
+    <div class="row mb-3 g-3 justify-content-center">
+        <div class="col-4">
+            <a asp-action="Index" class="btn btn-secondary w-100">戻る</a>
+        </div>
+        <div class="col-4">
+            @* ! asp-action="SaveEdit"を入れないと、formaction="/Ichika/Edit/9" になってしまう。*@
+            <input asp-route-id="@Model.Id" asp-action="SaveEdit" type="submit" class="btn btn-primary w-100" value="Save"></>
+        </div>
+    </div>
+    @* ここにASP.NET Coreが自動生成してくれた偽造防止トークンがinput要素で表示される。
+    このFormが送信されたら、偽造防止の検証をしてくれる。別サイトから、利用者の意図しない POST を送られる攻撃（CSRF）を防ぐ *@
+</form>
+
