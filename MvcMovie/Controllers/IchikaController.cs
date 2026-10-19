@@ -154,6 +154,9 @@ namespace MvcMovie.Controllers
             return View(resident);
         }
 
+
+        // FormでPostしたデータをDB登録する👉️Createの処理と似ていた。引数は同じでモデルバインディングをする
+        // フォームに入力したデータを受け取って、それDBの値を手動で上書き。上書きされたデータをDB保存する。
         [HttpPost]
         public async Task<IActionResult> SaveEdit(int? id)
         {
@@ -162,13 +165,19 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
-            var resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
+            // IDを取得出来なかった場合はnullの可能性。null許容にしてみた
+            Resident? resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
             if (resident == null)
             {
                 return NotFound();
             }
             // TODO: DBへの保存処理を書こう！AddRangeAsync メソッドを調べたら出来そう
-            // _context.Resident.AddRangeAsync;
+            // モウすでにあるデータへの上書きをしよう！
+            // 仮説：同じIDにデータ保存しようとしているのが問題そう？あとは手動でIDを決めようとしているのも問題っぽい。
+            // 
+            await _context.Resident.AddRangeAsync(resident);
+            // DBへの反映
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }
