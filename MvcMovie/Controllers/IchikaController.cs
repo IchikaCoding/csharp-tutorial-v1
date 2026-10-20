@@ -192,30 +192,6 @@ namespace MvcMovie.Controllers
                 return View("Edit", resident);
             }
 
-            // 一致するかどうか、一つずつ確認してみよう！
-            // 全部&&でくっつけていくと、、、？ちょっと長い
-            // 変更があったら上書き保存
-            // if (dbresident.Name != resident.Name)
-            // {
-            //     dbresident.Name = resident.Name;
-            // }
-            // else if (dbresident.AnimalType != resident.AnimalType)
-            // {
-            //     dbresident.AnimalType = resident.AnimalType;
-            // }
-            // else if (dbresident.Job != resident.Job)
-            // {
-            //     dbresident.Job = resident.Job;
-            // }
-            // else if (dbresident.ResidentSince != resident.ResidentSince)
-            // {
-            //     dbresident.ResidentSince = resident.ResidentSince;
-            // }
-            // else
-            // {
-            //     return RedirectToAction("Index");
-            // }
-
             // TODO: FormのデータでDBを更新したい
             // Bindしたプロパティは4つだから4つしか上書きできない？！
             dbresident.Name = resident.Name;
