@@ -157,25 +157,75 @@ namespace MvcMovie.Controllers
 
         // FormでPostしたデータをDB登録する👉️Createの処理と似ていた。引数は同じでモデルバインディングをする
         // フォームに入力したデータを受け取って、それDBの値を手動で上書き。上書きされたデータをDB保存する。
+        // ValidateAntiForgeryTokenをいれることで、クッキーとフォームのPostのトークンが一致するかチェックしてくれる
         [HttpPost]
-        public async Task<IActionResult> SaveEdit(int? id)
+        [ValidateAntiForgeryToken]
+        // モデルバインディングってIDはしないの？
+        // TODO: Bind属性と[BindProperty]属性を使ってみよう！
+        public async Task<IActionResult> SaveEdit(int? id, [Bind("Name, AnimalType, Job, ResidentSince")] Resident resident)
         {
+            // ここで新しい変数に入れてもダメ。参照型だからIDがリセットされない？
+            // Resident newResident = new Resident();
             // TODO: DBへの保存処理を追加しよう
             if (id == null)
             {
                 return NotFound();
             }
             // IDを取得出来なかった場合はnullの可能性。null許容にしてみた
-            Resident? resident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
-            if (resident == null)
+            Resident? dbresident = await _context.Resident.FirstOrDefaultAsync(item => item.Id == id);
+            if (dbresident == null)
             {
                 return NotFound();
             }
-            // TODO: DBへの保存処理を書こう！AddRangeAsync メソッドを調べたら出来そう
-            // モウすでにあるデータへの上書きをしよう！
+            if (!ModelState.IsValid)
+            {
+                // Formのデータでモデルバインディングが失敗しているから元データを使う処理
+                // residentはまだC#のインスタンス。
+                // そのインスタンスのIdプロパティに値を代入しているだけ
+                // dbresident.Idは自動採番されたID持ってる
+                resident.Id = dbresident.Id;
+                // viewName,　resident
+                // EditにどうしてresidentIdを入れて渡すの？
+                // TODO: 不明。dbresident代入するならそのままdbresident表示してよくない？
+                // 👉️元のDBのデータに戻したいわけじゃない。ユーザーが頑張って入力したデータはそのまま表示してあげる優しさでした。
+                // TODO: 入力値のエラーだった場合、エラーの入力値がまた入ってしまうから、エラー治らないのでは？
+                return View("Edit", resident);
+            }
+
+            // 一致するかどうか、一つずつ確認してみよう！
+            // 全部&&でくっつけていくと、、、？ちょっと長い
+            // 変更があったら上書き保存
+            // if (dbresident.Name != resident.Name)
+            // {
+            //     dbresident.Name = resident.Name;
+            // }
+            // else if (dbresident.AnimalType != resident.AnimalType)
+            // {
+            //     dbresident.AnimalType = resident.AnimalType;
+            // }
+            // else if (dbresident.Job != resident.Job)
+            // {
+            //     dbresident.Job = resident.Job;
+            // }
+            // else if (dbresident.ResidentSince != resident.ResidentSince)
+            // {
+            //     dbresident.ResidentSince = resident.ResidentSince;
+            // }
+            // else
+            // {
+            //     return RedirectToAction("Index");
+            // }
+
+            // TODO: FormのデータでDBを更新したい
+            // Bindしたプロパティは4つだから4つしか上書きできない？！
+            dbresident.Name = resident.Name;
+            dbresident.AnimalType = resident.AnimalType;
+            dbresident.Job = resident.Job;
+            dbresident.ResidentSince = resident.ResidentSince;
+            // // モウすでにあるデータへの上書きをしよう！
             // 仮説：同じIDにデータ保存しようとしているのが問題そう？あとは手動でIDを決めようとしているのも問題っぽい。
-            // 
-            await _context.Resident.AddRangeAsync(resident);
+            // Updateを使うと、IDは変えず、IDをもとに更新してくれる。
+            // _context.Update(dbresident);
             // DBへの反映
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
