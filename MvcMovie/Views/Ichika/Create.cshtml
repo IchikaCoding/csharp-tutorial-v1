@@ -12,39 +12,48 @@
 <form asp-action="Create" method="post">
     <span asp-validation-summary="ModelOnly" class="text-danger"></span>
     @* Name, AnimalType, Job, ResidentSince *@
-    <div>
-        <label asp-for="Name">お名前：</label>
-        <input asp-for="Name">
+    <div class="mb-2">
+        <label asp-for="Name" class="form-label">お名前：</label>
+        <input asp-for="Name" class="form-control">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     @* AnimalType, Jobは、必須項目ではない！ *@
-    <div>
-        <label asp-for="AnimalType">動物の種類：</label>
-        <select asp-for="AnimalType">
+    <div class="mb-2">
+        <label asp-for="AnimalType" class="form-label">動物の種類：</label>
+        <select asp-for="AnimalType" class="form-select">
             <option value=""></option>
             <option value="human">Human</option>
             <option value="animal">Animal</option>
         </select>
         <span asp-validation-for="AnimalType" class="text-danger"></span>
     </div>
-    <div>
-        <label asp-for="Job">仕事：</label>
-        <input asp-for="Job">
+    <div class="mb-2">
+        <label asp-for="Job" class="form-label">仕事：</label>
+        <input asp-for="Job" class="form-control">
         <span asp-validation-for="Job" class="text-danger"></span>
     </div>
-    <div>
-        <label asp-for="ResidentSince">住民登録日：</label>
-        <input asp-for="ResidentSince">
+    <div class="mb-4">
+        <label asp-for="ResidentSince" class="form-label">住民登録日：</label>
+        <input asp-for="ResidentSince" class="form-control">
         <span asp-validation-for="ResidentSince" class="text-danger"></span>
     </div>
-    <div>
-        @* inputタグか、buttonタグ、どっちがおすすめ？！ *@
-        @* I'm here！！ *@
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="row justify-content-center">
+            <div class="col-4">
+                <a asp-action="Index" class="btn btn-secondary w-100">戻る</a>
+            </div>
+            <div class="col-4">
+                @* inputタグか、buttonタグ、どっちがおすすめ？！ *@
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+        
     </div>
     @* ここにASP.NET Coreが自動生成してくれた偽造防止トークンがinput要素で表示される。
     このFormが送信されたら、偽造防止の検証をしてくれる。別サイトから、利用者の意図しない POST を送られる攻撃（CSRF）を防ぐ *@
 </form>
 
 @* ちょっと違うかも。。 *@
-<a asp-action="Index">ホーム画面に戻る</a>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptSPartial");
+    }
+}
