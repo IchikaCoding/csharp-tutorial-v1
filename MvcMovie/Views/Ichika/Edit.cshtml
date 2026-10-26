@@ -48,3 +48,9 @@
     このFormが送信されたら、偽造防止の検証をしてくれる。別サイトから、利用者の意図しない POST を送られる攻撃（CSRF）を防ぐ *@
 </form>
 
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
