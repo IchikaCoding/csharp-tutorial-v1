@@ -14,5 +14,7 @@ namespace MvcMovie.Models
         public string? Job { get; set; }
         [DataType(DataType.Date)]
         public DateTime ResidentSince { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
