@@ -54,6 +54,9 @@ namespace MvcMovie.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("AnimalType")
                         .HasColumnType("nvarchar(max)");
 

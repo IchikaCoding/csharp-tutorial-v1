@@ -8,6 +8,7 @@ namespace MvcMovie.Models
         public int Id { get; set; }
         [StringLength(30)]
         public string Name { get; set; } = "";
+        public int Age { get; set; }
         public string? AnimalType { get; set; }
         [DisplayFormat(NullDisplayText = "未登録")]
         [StringLength(50)]
