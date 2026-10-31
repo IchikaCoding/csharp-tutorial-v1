@@ -71,8 +71,13 @@ namespace MvcMovie.Controllers
         public async Task<IActionResult> Create([Bind("Name,AnimalType,Job,ResidentSince")] Resident resident)
         {
             // ModelStateが有効か確認。ModelStateも確認
+            // trueならエラー1件もなし
             if (ModelState.IsValid)
             {
+                // 日付系を追加
+                // バインドしていないプロパティがあっても、resident変数として利用できるっぽい
+                resident.CreatedAt = DateTime.Now;
+                resident.UpdatedAt = DateTime.Now;
                 // Contextにフォームの内容を追加。
                 // TODO: 非同期処理でもいい？見本は同期処理だった。
                 await _context.AddAsync(resident);
@@ -198,6 +203,7 @@ namespace MvcMovie.Controllers
             dbresident.AnimalType = resident.AnimalType;
             dbresident.Job = resident.Job;
             dbresident.ResidentSince = resident.ResidentSince;
+            dbresident.UpdatedAt = DateTime.Now;
             // // モウすでにあるデータへの上書きをしよう！
             // 仮説：同じIDにデータ保存しようとしているのが問題そう？あとは手動でIDを決めようとしているのも問題っぽい。
             // Updateを使うと、IDは変えず、IDをもとに更新してくれる。
