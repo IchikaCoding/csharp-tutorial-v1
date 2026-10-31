@@ -5,7 +5,7 @@
 namespace MvcMovie.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAge : Migration
+    public partial class AddAgeV2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
