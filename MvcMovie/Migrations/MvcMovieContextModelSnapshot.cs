@@ -43,7 +43,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movie", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Resident", b =>
@@ -54,8 +54,8 @@ namespace MvcMovie.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AnimalType")
-                        .HasColumnType("int");
+                    b.Property<string>("AnimalType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -77,7 +77,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Resident");
+                    b.ToTable("Resident", (string)null);
                 });
 #pragma warning restore 612, 618
         }

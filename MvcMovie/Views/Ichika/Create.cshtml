@@ -20,10 +20,10 @@
     @* AnimalType, Jobは、必須項目ではない！ *@
     <div class="mb-2">
         <label asp-for="AnimalType" class="form-label">動物の種類：</label>
-        <select asp-for="AnimalType" asp-items="Html.GetEnumSelectList<AnimalKind>()" class="form-select">
+        <select asp-for="AnimalType" class="form-select">
             <option value=""></option>
-            @* <option value="@nameof(Resident.AnimalType)">Human</option>
-            <option value="Animal">Animal</option> *@
+            <option value="@nameof(AnimalKinds.Human)">Human</option>
+            <option value="@nameof(AnimalKinds.Animal)">Animal</option>
         </select>
         <span asp-validation-for="AnimalType" class="text-danger"></span>
     </div>

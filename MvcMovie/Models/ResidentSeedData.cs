@@ -24,21 +24,21 @@ public class ResidentSeedData
                 new Resident()
                 {
                     Name = "アルパカどん🦙",
-                    AnimalType = AnimalKind.Human,
+                    AnimalType = AnimalKinds.Human,
                     Job = "窓から人類観察",
                     ResidentSince = new DateTime(1600, 9, 26)
                 },
                 new Resident()
                 {
                     Name = "さつまいもパンまん🍠",
-                    AnimalType = AnimalKind.Human,
+                    AnimalType = AnimalKinds.Human,
                     Job = "パン屋さん",
                     ResidentSince = DateTime.Now
                 },
                 new Resident()
                 {
                     Name = "いちか丼",
-                    AnimalType = AnimalKind.Human,
+                    AnimalType = AnimalKinds.Human,
                     Job = null,
                     ResidentSince = DateTime.Now
                 }
