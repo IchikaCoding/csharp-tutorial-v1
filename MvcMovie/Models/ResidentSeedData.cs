@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace MvcMovie.Models;
 
 public class ResidentSeedData
@@ -23,21 +24,21 @@ public class ResidentSeedData
                 new Resident()
                 {
                     Name = "アルパカどん🦙",
-                    AnimalType = "Animal",
+                    AnimalType = AnimalKind.Human,
                     Job = "窓から人類観察",
                     ResidentSince = new DateTime(1600, 9, 26)
                 },
                 new Resident()
                 {
                     Name = "さつまいもパンまん🍠",
-                    AnimalType = "Human",
+                    AnimalType = AnimalKind.Human,
                     Job = "パン屋さん",
                     ResidentSince = DateTime.Now
                 },
                 new Resident()
                 {
                     Name = "いちか丼",
-                    AnimalType = "Human",
+                    AnimalType = AnimalKind.Human,
                     Job = null,
                     ResidentSince = DateTime.Now
                 }
