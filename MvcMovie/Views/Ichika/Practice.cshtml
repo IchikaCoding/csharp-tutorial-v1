@@ -1,0 +1,26 @@
+@model IEnumerable<MvcMovie.Models.Resident>
+
+<h2>出来てるかも～✨️✨️</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>動物のタイプ</th>
+            <th>職業</th>
+            <th>住民登録日</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @* TODO: DisplayForのラムダ式の理解が全く出来ておりません… *@
+                <td>@Html.DisplayFor(Content => item.Name)</td>
+                <td>@item.AnimalType</td>
+                <td>@item.Job</td>
+                <td>@item.ResidentSince</td>
+            </tr>
+        }
+    </tbody>
+</table>

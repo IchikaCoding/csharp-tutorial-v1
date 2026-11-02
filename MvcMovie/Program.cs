@@ -1,0 +1,67 @@
+// このusingは名前空間を利用するため
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;
+var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.");
+// connectionStringが接続文字列らしい
+// ! builder.Servicesがサービス登録
+builder.Services.AddDbContext<MvcMovieContext>(options => options.UseSqlServer(connectionString));
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// ! ビルドすると、ここでDIコンテナが作られて、app.Servicesが使えるようになる
+WebApplication app = builder.Build();
+// シード初期化子を追加する処理
+// DBContextには有効範囲（期間）がある。ブラウザでリクエストが来る前にDBContextを使うなら、有効期間を自分で設置しないといけないらしい
+// using はどうして必要？👉️これは、usingステートメント。StreamReaderのときと同じで、一時的なscopeを使い終わったら閉じる処理を自動で実行するため
+// CreateScope()には、`this IServiceProvider provider`が引数の場所に書いてある。
+// 👉️これは、`app.Services`からServiceProviderが渡されるから、実行する時に引数を渡さなくてOK
+// ! app.Servicesが構築されたDIコンテナらしい
+// using (IServiceScope scope = app.Services.CreateScope())
+// {
+//     // TODO: Services変数を作成してから、その後の処理の流れを理解しましょう！
+//     // スコープ内のサービスを利用するため
+//     IServiceProvider services = scope.ServiceProvider;
+//     // ここでサービスを渡して
+//     SeedData.Initialize(services);
+// }
+
+// DBContextを使いたい。
+// てことは、serviceProviderをResidentSeedDataに渡したい
+// てことは、
+using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
+{
+    // serviceProviderを作成する
+    IServiceProvider serviceProvider = scope.ServiceProvider;
+    // 削除メソッドをここで実行する
+    ResidentSeedData.Initialize(serviceProvider);
+    // await ResidentSeedData.DeleteTable(serviceProvider);
+}
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+// ここらへんはappに登録しているっぽい
+app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapStaticAssets();
+
+// ルーティングの形式はここで指定されている
+// `id?`の?は省略可能ってことらしい。IDは指定しなくてもOK.
+// TODO: HomeとIndexは何のために書いてあるの？消しても何も変わらなかった、、、
+// `controller=Ichika`とか`action=Index`の右側を変えたら、デフォルトのControllerとメソッドを変更できる。
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Ichika}/{action=Index}/{id?}")
+    .WithStaticAssets();
+
+
+app.Run();

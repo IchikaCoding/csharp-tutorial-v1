@@ -4,12 +4,14 @@
   <Project Path="FileTraining/FileTraining.csproj" Id="eeac4237-3cee-432f-a2bb-8071e9a67c8c" />
   <Project Path="FileTrainingV2/FileTrainingV2.csproj" Id="95580f10-2703-45c5-8a9c-930cc65b397d" />
   <Project Path="FirstWpfApp1/FirstWpfApp1.csproj" Id="a84efe88-051a-4f4e-a97a-2c1b52163f24" />
+  <Project Path="MvcMovie/MvcMovie.csproj" Id="a802c1a0-a923-49fa-b146-5706c3b2d529" />
   <Project Path="MyFirstApp/MyFirstApp.csproj" />
   <Project Path="OopTraining/OopTraining.csproj" Id="a8200dc6-e8f6-41fa-9002-96ec6bc24343" />
   <Project Path="OopTrainingV2/OopTrainingV2.csproj" Id="c9e34d93-5a98-40aa-b902-317f684f2c8b" />
   <Project Path="OutAndRefTraining/OutAndRefTraining.csproj" />
   <Project Path="RazorPagesMovie/RazorPagesMovie.csproj" Id="2097626d-e0be-490c-b689-6a30c4a214c8" />
   <Project Path="RazorPagesStudyLog/RazorPagesStudyLog.csproj" Id="dfaffaa8-6ed4-43da-8cd0-39d3315884d7" />
+  <Project Path="ResidentSandbox/ResidentSandbox.csproj" Id="225a20ea-f660-4405-9d08-0fc2add35946" />
   <Project Path="StructTraining/StructTraining.csproj" />
   <Project Path="StructTrainingV2/StructTrainingV2.csproj" />
   <Project Path="TwoDArrayTraining/TwoDArrayTraining.csproj" Id="d158f9d8-2842-487a-aa86-6279e2e712b8" />

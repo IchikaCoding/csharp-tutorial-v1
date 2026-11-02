@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "ichika";
+}
+
+@* ちょっと難しいかも。For文で繰り返すわよ *@
+
+<h2>好きな食べ物はなーに？</h2>
+
+<ul>
+    @for(int i = 0; i < (int)ViewData["Num"]!; i++ ){
+        <li>@ViewData["FoodName"]</li>
+    }
+</ul>

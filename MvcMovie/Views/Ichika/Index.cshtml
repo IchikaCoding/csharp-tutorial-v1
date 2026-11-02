@@ -1,0 +1,50 @@
+
+@* ここで、Contextのレジデントが使えるようにモデルとして持ってくる *@
+@* IEnumerableは、foreachとかを回せる反復処理を定義した基本インターフェースらしい *@
+@model IEnumerable<MvcMovie.Models.Resident>
+
+@* データ表示用のヘッダーとかテーブルを作成する *@
+@* Bootstrapのtable属性って素晴らしい *@
+<table class="table">
+    <thead>
+        <tr>
+            @* とりあえずこうやって書くということだけわかった。 *@
+            @* TODO: Htmlが何を意味しているのかわからなかった *@
+            <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.AnimalType)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Job)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ResidentSince)</th>
+            @* 名無しの列はこれで出来た！ *@
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* foreachとかで繰り返す数はデータに合わせる *@
+        @* IDを指定して、テーブルから、1件ずつデータを取得 *@
+        @foreach (Resident item in Model)
+        {
+            <tr>
+                @* TODO: どうしてmodelが必要なのか、ラムダ式である必要があるのか、これは調べてみよう！ *@
+                @* TModelのジェネリック引数がmodel。今回のViewなら、`IEnumerable<MvcMovie.Models.Resident>` *@
+                @* ラムダ式の、右側は表示したいものたち。左側は、このViewの型を書くって理解になった *@
+                @* TODO: どうしてcontentsでも型がResidentになってエラーもなく動くの？！😭😭 *@
+                @* ! DisplayForの引数は、`@model IEnumerable<MvcMovie.Models.Resident>`の型が入る。引数の名前は何でもOK *@
+                <td>@Html.DisplayFor(contents => item.Name)</td>
+                <td>@Html.DisplayFor(model => item.AnimalType)</td>
+                <td>@Html.DisplayFor(model => item.Job)</td>
+                @* <td>@item.Job</td> *@
+                @* これでmodelの変数が見えると思ったら見れなかった。。。12と表示された *@
+                <td>@Html.DisplayFor(model => item.ResidentSince)</td>
+                @* asp-route-idヘルパーさんは、aタグのURLにIDを渡してくれる。href="/Ichika/Delete/3" *@
+                <td><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+                <td><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+                @* これは比較用。直接表示したバージョン *@
+                @* <td>@item.ResidentSince</td> *@
+            </tr>
+            @* Console.WriteLine("item: ", item); *@
+        }
+    </tbody>
+</table>
+@* <button asp-action="/ichika/Create" class="btn btn-primary">Add</button> *@
+
+<a asp-action="Create">Create Page</a>
