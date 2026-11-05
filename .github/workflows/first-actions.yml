@@ -1,0 +1,23 @@
+name: First GitHub Actions
+
+on:
+  push:
+    branches: [practice/github-actions]
+  pull_request:
+    branches: [practice/github-actions]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, GitHub Actions!"
+
+      - name: Show runner information
+        run: |
+          echo "This job runs on Linux."
+          pwd

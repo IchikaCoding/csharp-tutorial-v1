@@ -68,9 +68,9 @@ name: First GitHub Actions
 
 on:
   push:
-    branches: [main]
+    branches: [practice/github-actions]
   pull_request:
-    branches: [main]
+    branches: [practice/github-actions]
   workflow_dispatch:
 
 permissions:
