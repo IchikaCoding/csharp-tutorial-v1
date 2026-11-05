@@ -80,6 +80,7 @@ dotnet run --project OopTraining
 
 ## 学習メモ
 
+- [はじめての GitHub Actions：スターターから C# のビルドまで](docs/github-actions-tutorial-ja.md)
 - [個人用タスク管理アプリへの学習教材](個人用タスク管理アプリへの学習教材.md)
 - [ミニチュートリアル 2：DBなしのフォームと OnPost](ミニチュートリアル%202：DBなしのフォームと%20OnPost.md)
 
