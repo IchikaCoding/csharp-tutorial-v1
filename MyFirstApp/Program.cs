@@ -40,20 +40,20 @@ Console.WriteLine("true");
 Console.WriteLine(true);
 
 // 値を代入しているから型推論が働くのでvarでOK
-var firstName = "ichika";
+// var firstName = "ichika";
 
-// 変数名にデータ型をいれると良くないらしいけどこれはどうなの？
-string stringName = "name";
+// // 変数名にデータ型をいれると良くないらしいけどこれはどうなの？
+// string stringName = "name";
 
 
 
-char userOption;
+// char userOption;
 
-int gameScore;
-// decimalっぽさある？
-decimal particlesPerMillion;
-// これってboolっぽさある？
-bool processedCustomer;
+// int gameScore;
+// // decimalっぽさある？
+// decimal particlesPerMillion;
+// // これってboolっぽさある？
+// bool processedCustomer;
 
 
 // =============2026/06/04=================
@@ -73,7 +73,7 @@ Console.WriteLine($"Name: {Name}");
 //varはどうして使うの？
 // あとから型を決めたい時。
 // 初期化するなら型がわかりきっているからvarで省略してかけたらラク
-var message = "Hello, Ichika";
+// var message = "Hello, Ichika";
 
 
 // ---------------------------------
@@ -125,7 +125,7 @@ Console.WriteLine("こんちか✨️(´;ω;｀)");
 #region 2026-06-06
 
 // クラスを作成してみよう
-var dog = new Dog("ぽち",22); // コンストラクタで表示される年齢は22歳
+var dog = new Dog("ぽち", 22); // コンストラクタで表示される年齢は22歳
 dog.Bark();
 // 代入？Ageのセット、書き込む処理をしている
 dog.Age = 25;
@@ -176,7 +176,7 @@ Console.WriteLine(x); // 5。どうして？値型だから
 
 #region 2026-06-07
 
-Console.WriteLine("===================2026-06-07==================="); 
+Console.WriteLine("===================2026-06-07===================");
 double result = MathHelper.Double(2);
 Console.WriteLine(result); // 4
 // インスタンスを作成してメソッドを実行するのが難しい
@@ -293,7 +293,7 @@ foreach (var item in sorted)
 }
 Console.WriteLine("======================================");
 // 犬の年齢もあるリスト
-List<Ai> aiList = new List<Ai> { new Ai { Name = "Chappy", Age = 44 }, new Ai { Name = "Gemini", Age = 10}, new Ai { Name = "Claude", Age = 20 } };
+List<Ai> aiList = new List<Ai> { new Ai { Name = "Chappy", Age = 44 }, new Ai { Name = "Gemini", Age = 10 }, new Ai { Name = "Claude", Age = 20 } };
 
 // 昇順sort（年齢順にする）.まだ実行されていない
 var sortedAi = aiList.OrderBy(n => n.Age);
@@ -309,7 +309,7 @@ foreach (var item in sortedAi)
 #region Ai要素のリストを作る方法を探す
 
 List<Ai> aiList2 = new List<Ai>
-{ 
+{
     new Ai { Name = "Chappy", Age = 44 },
     new Ai { Name = "Gemini", Age = 10 },
     new Ai { Name = "Claude", Age = 20 }

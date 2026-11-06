@@ -15,9 +15,13 @@ namespace MyFirstApp
         public int Age
         {
             // 読むときの処理。Ageを読むと_ageの値が取れる
-            get;
+            get
+            {
+                return _age;
+            }
             // 書き込む時の処理。valueって何？→Dog.Ageに代入する値
-            set {
+            set
+            {
                 if (value >= 0)
                 {
                     _age = value;
