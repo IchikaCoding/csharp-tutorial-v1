@@ -215,7 +215,13 @@ jobs:
 
 `actions/checkout` は、リポジトリのコードを runner に取得します。GitHub 上にコードがあるだけでは、job の作業ディレクトリにはまだ配置されていません。
 
+> runner ってなんだっけ？
+
 `actions/setup-dotnet` は、指定した .NET SDK を使える状態にします。自分の PC に入っている SDK は runner には引き継がれません。設定項目は[公式 README](https://github.com/actions/setup-dotnet)で確認できます。
+
+> dotnet のコマンドを使いたい。
+> でもこのActionを動かすコンピュータには入っていない。
+> だから使えるように入れておく。
 
 `dotnet restore` は必要なパッケージを取得します。`dotnet build` はソースコードをコンパイルします。直前に restore したので、`--no-restore` で重複する復元処理を省きます。
 

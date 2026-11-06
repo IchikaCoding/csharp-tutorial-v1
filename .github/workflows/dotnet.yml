@@ -20,6 +20,6 @@ jobs:
         with:
           dotnet-vertion: "10.0.x"
       - name: Restore dependencies
-        run: dontnet restore MyFirstApp/MyFirstApp.csproj
+        run: dotnet restore MyFirstApp/MyFirstApp.csproj
       - name: Build
-        run: dontnet build MyFirstApp/MyFirstApp.csproj --configuration Release --no-restore
+        run: dotnet build MyFirstApp/MyFirstApp.csproj --configuration Release --no-restore
