@@ -1,0 +1,25 @@
+name: CSharp Build
+
+on:
+  push:
+    branches: [practice/github-actions]
+  pull_request:
+    branches: [practice/github-actions]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup .Net
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-vertion: "10.0.x"
+      - name: Restore dependencies
+        run: dontnet restore MyFirstApp/MyFirstApp.csproj
+      - name: Build
+        run: dontnet build MyFirstApp/MyFirstApp.csproj --configuration Release --no-restore
