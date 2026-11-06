@@ -14,10 +14,10 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo "Hello, GitHub Actions!"
+      - name: Say Ichikadon
+        run: echo "Hello, Ichikadon🍠"
 
       - name: Show runner information
         run: |
-          echo "This job runs on Linux."
+          echo "This job runs on Linux ★"
           pwd

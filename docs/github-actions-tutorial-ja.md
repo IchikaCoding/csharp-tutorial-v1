@@ -129,6 +129,8 @@ Hello, GitHub Actions!
 
 workflow が `main` に入ったら、Actions → **First GitHub Actions** → **Run workflow** をクリックします。ブランチに `main` を選び、実行します。
 
+> **Run workflowの画面は見つからず。。。**
+
 手動実行には `workflow_dispatch:` が必要です。また、その workflow ファイルが既定のブランチに存在する必要があります。[公式の手動実行手順](https://docs.github.com/ja/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)も確認できます。
 
 **ここまでの達成条件：自動実行と手動実行の両方で、ログのメッセージを確認できた。**
