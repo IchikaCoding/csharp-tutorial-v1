@@ -18,7 +18,7 @@ jobs:
       - name: Setup .Net
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-vertion: "10.0.x"
+          dotnet-version: "10.0.x"
       - name: Restore dependencies
         run: dotnet restore MyFirstApp/MyFirstApp.csproj
       - name: Build
