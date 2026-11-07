@@ -1,0 +1,320 @@
+<div
+  id="study-designs"
+  class="viz-carousel"
+  aria-label="学習記録のデザイン案"
+  data-previous-label="前の案"
+  data-next-label="次の案"
+>
+  <section data-variant="ノートテーブル" aria-label="ノートテーブル">
+    <div class="study-app" data-layout="simple"></div>
+  </section>
+  <section data-variant="一覧と詳細" aria-label="一覧と詳細" hidden>
+    <div class="study-app" data-layout="split"></div>
+  </section>
+  <section data-variant="技術別ノート" aria-label="技術別ノート" hidden>
+    <div class="study-app" data-layout="group"></div>
+  </section>
+</div>
+<style>
+  #study-designs .study-app {
+    --paper: light-dark(#fff, #20201f);
+    --ink: light-dark(#30302e, #eeeae3);
+    --sub: light-dark(#706e68, #b5b2aa);
+    --line: light-dark(#e7e5e0, #41413b);
+    --soft: light-dark(#f7f6f3, #292925);
+    --tag: light-dark(#e9edf9, #303b59);
+    --tagink: light-dark(#414e83, #c9d4ff);
+    background: var(--paper);
+    color: var(--ink);
+    font:
+      14px/1.65 system-ui,
+      sans-serif;
+    min-height: 620px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #study-designs * {
+    box-sizing: border-box;
+  }
+  #study-designs .crumb {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--line);
+    color: var(--sub);
+    font-size: 12px;
+  }
+  #study-designs .main {
+    padding: 28px;
+  }
+  #study-designs h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  #study-designs p {
+    margin: 0;
+    color: var(--sub);
+  }
+  #study-designs .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0 16px;
+    align-items: center;
+  }
+  #study-designs input,
+  #study-designs select,
+  #study-designs button {
+    font: inherit;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 6px 10px;
+  }
+  #study-designs input {
+    width: 210px;
+    max-width: 100%;
+  }
+  #study-designs .add {
+    background: var(--ink);
+    color: var(--paper);
+    margin-left: auto;
+  }
+  #study-designs .tag {
+    display: inline-block;
+    background: var(--tag);
+    color: var(--tagink);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 2px;
+  }
+  #study-designs .scroll {
+    overflow-x: auto;
+  }
+  #study-designs table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  #study-designs th {
+    color: var(--sub);
+    font-weight: 400;
+    font-size: 12px;
+    background: var(--soft);
+  }
+  #study-designs td,
+  #study-designs th {
+    padding: 12px 9px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  #study-designs .open {
+    border: 0;
+    padding: 0;
+    text-align: left;
+    background: transparent;
+    font-weight: 500;
+  }
+  #study-designs .date {
+    white-space: nowrap;
+    color: var(--sub);
+    font-size: 12px;
+  }
+  #study-designs .workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 20px;
+  }
+  #study-designs .detail {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    padding: 20px;
+    border-radius: 6px;
+  }
+  #study-designs h3 {
+    font-size: 17px;
+    margin: 0 0 12px;
+  }
+  #study-designs h4 {
+    font-size: 12px;
+    color: var(--sub);
+    font-weight: 500;
+    margin: 20px 0 6px;
+  }
+  #study-designs pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 12px/1.8 monospace;
+    background: var(--paper);
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  #study-designs .del {
+    color: light-dark(#ab3939, #ffaaaa);
+  }
+  #study-designs .ins {
+    color: light-dark(#267143, #a2e7b6);
+  }
+  #study-designs .group {
+    margin-top: 22px;
+  }
+  #study-designs .group-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  #study-designs .count {
+    font-size: 12px;
+    color: var(--sub);
+  }
+  #study-designs .empty {
+    padding: 22px;
+    color: var(--sub);
+  }
+  #study-designs .note {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  #study-designs .detail[hidden] {
+    display: none;
+  }
+  @media (max-width: 700px) {
+    #study-designs .workspace {
+      grid-template-columns: 1fr;
+    }
+    #study-designs .main {
+      padding: 18px;
+    }
+    #study-designs .study-app {
+      min-height: 960px;
+    }
+    #study-designs td,
+    #study-designs th {
+      padding: 9px 6px;
+    }
+    #study-designs .optional {
+      display: none;
+    }
+    #study-designs .add {
+      margin-left: 0;
+    }
+  }
+</style>
+<script>
+  (() => {
+    const root = document.getElementById("study-designs");
+    const records = [
+      {
+        date: "2026/11/07",
+        title: "学習記録の入力チェックを追加",
+        tags: ["C#", "MVC"],
+        learned: "DataAnnotationsで入力条件を指定できる。",
+        memo: "エラーメッセージの表示を調べる。",
+        file: "Models/StudyRecord.cs",
+        before: "public string Title { get; set; }",
+        after: "[Required]\npublic string Title { get; set; }",
+      },
+      {
+        date: "2026/11/06",
+        title: "学習記録をデータベースに保存",
+        tags: ["C#", "EF Core", "SQL Server"],
+        learned: "SaveChangesAsyncで変更を保存する。",
+        memo: "非同期処理を復習する。",
+        file: "Controllers/StudyRecordsController.cs",
+        before: "// 保存処理を追加する",
+        after: "_context.Add(record);\nawait _context.SaveChangesAsync();",
+      },
+      {
+        date: "2026/11/05",
+        title: "一覧画面の余白と表を調整",
+        tags: ["HTML", "CSS"],
+        learned: "paddingでセルの内側に余白を付ける。",
+        memo: "スマートフォンで表示を確認する。",
+        file: "wwwroot/css/site.css",
+        before: "td { padding: 0; }",
+        after: "td { padding: 12px; }",
+      },
+    ];
+    const escape = (s) =>
+      s
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    const chips = (r) =>
+      r.tags.map((t) => `<span class="tag">${t}</span>`).join("");
+    root.querySelectorAll(".study-app").forEach((app) => {
+      const layout = app.dataset.layout;
+      app.innerHTML = `<div class="crumb">My workspace / 学習記録</div><div class="main"><h2>学習ノート</h2><p>${layout === "simple" ? "日々の変更と、わかったことを残す。" : layout === "split" ? "記録を探しながら、コードの変更を振り返る。" : "学んだ技術から、過去の記録をたどる。"}</p><div class="tools"><input aria-label="タイトルと本文を検索" placeholder="タイトル・本文を検索"><select aria-label="技術タグで絞り込み"><option value="">すべてのタグ</option>${["C#", "MVC", "EF Core", "SQL Server", "HTML", "CSS"].map((t) => `<option>${t}</option>`).join("")}</select><button type="button" class="add">＋ 記録を作成</button></div><div class="workspace" ${layout === "split" ? "" : 'style="display:block"'}><div class="listing" aria-live="polite"></div><div class="detail" ${layout === "split" ? "" : "hidden"}></div></div></div>`;
+      let selected = 0;
+      const list = app.querySelector(".listing"),
+        detail = app.querySelector(".detail");
+      function showDetail(i) {
+        selected = i;
+        const r = records[i];
+        detail.hidden = false;
+        detail.innerHTML = `<span class="date">${r.date}</span><h3>${r.title}</h3>${chips(r)}<h4>変更内容 / Content</h4><p>${r.file}</p><pre><span class="del">− ${escape(r.before)}</span>\n<span class="ins">＋ ${escape(r.after)}</span></pre><h4>学んだこと / Learned</h4><div>${r.learned}</div><h4>メモ / Memo</h4><div>${r.memo}</div><p class="note">差分はサンプル表示</p>`;
+      }
+      function table(rows) {
+        return `<div class="scroll"><table><thead><tr><th>学習日</th><th>タイトル</th>${layout === "group" ? "" : "<th>技術タグ</th>"}${layout === "simple" ? '<th class="optional">学んだこと</th>' : ""}</tr></thead><tbody>${rows.map((r) => `<tr><td class="date">${r.date}</td><td><button type="button" class="open" data-record="${records.indexOf(r)}">${r.title}</button></td>${layout === "group" ? "" : `<td>${chips(r)}</td>`}${layout === "simple" ? `<td class="optional">${r.learned}</td>` : ""}</tr>`).join("")}</tbody></table></div>`;
+      }
+      function render() {
+        const q = app.querySelector("input").value.toLowerCase(),
+          tag = app.querySelector("select").value;
+        const rows = records.filter(
+          (r) =>
+            (!tag || r.tags.includes(tag)) &&
+            [r.title, r.learned, r.memo, r.file]
+              .join(" ")
+              .toLowerCase()
+              .includes(q),
+        );
+        if (layout === "group") {
+          const groups = tag
+            ? [tag]
+            : [...new Set(rows.flatMap((r) => r.tags))];
+          list.innerHTML = groups
+            .map((t) => {
+              const rr = rows.filter((r) => r.tags.includes(t));
+              return rr.length
+                ? `<div class="group"><div class="group-label"><span class="tag">${t}</span><span class="count">${rr.length}件</span></div>${table(rr)}</div>`
+                : "";
+            })
+            .join("");
+        } else
+          list.innerHTML = rows.length
+            ? table(rows)
+            : '<div class="empty">一致する記録はありません</div>';
+        list
+          .querySelectorAll("[data-record]")
+          .forEach(
+            (b) => (b.onclick = () => showDetail(Number(b.dataset.record))),
+          );
+      }
+      app.querySelector("input").oninput = render;
+      app.querySelector("select").onchange = render;
+      app.querySelector(".add").onclick = () => {
+        detail.hidden = false;
+        detail.innerHTML =
+          "<h3>新しい学習記録</h3><p>入力画面の構成イメージ</p><h4>学習日</h4><div>2026/11/07</div><h4>タイトル / 技術タグ</h4><div>取り組んだこと / C#・MVC など</div><h4>変更内容</h4><div>変更したファイル・コード・コミットの内容</div><h4>学んだこと（任意）</h4><div>理解できたことを記入</div><h4>メモ（任意）</h4><div>疑問や次にやることを記入</div>";
+      };
+      render();
+      if (layout === "split") showDetail(selected);
+      if (globalThis.Tweak) {
+        const state = { compact: false };
+        const tweak = new Tweak({
+          container: app,
+          onChange: () => {
+            app.querySelector(".main").style.padding = state.compact
+              ? "18px"
+              : "28px";
+          },
+        });
+        tweak.addToggle(state, "compact", { label: "余白をコンパクトにする" });
+      }
+    });
+  })();
+</script>
