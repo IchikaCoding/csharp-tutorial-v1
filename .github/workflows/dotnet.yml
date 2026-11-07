@@ -24,4 +24,4 @@ jobs:
       - name: Build
         run: dotnet build MyFirstApp/MyFirstApp.csproj --configuration Release --no-restore
       - name: Run
-        run: dotnet run MyFirstApp/MyFirstApp.csproj
+        run: dotnet run --project MyFirstApp/MyFirstApp.csproj
